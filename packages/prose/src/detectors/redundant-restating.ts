@@ -16,7 +16,10 @@ const FAIL_THRESHOLD = 0.85;
  * exchanges like "Yes." / "No." never false-positive on shared function
  * words alone.
  */
-export function detectRedundantRestating(lines: DialogueLine[], options: GradeOptions = {}): Finding[] {
+export function detectRedundantRestating(
+  lines: DialogueLine[],
+  options: GradeOptions = {},
+): Finding[] {
   const minTokens = options.minTokensForRedundancy ?? DEFAULT_MIN_TOKENS;
   const threshold = options.redundancyThreshold ?? DEFAULT_THRESHOLD;
   const findings: Finding[] = [];

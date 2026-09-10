@@ -2,7 +2,12 @@ import { z } from "zod";
 import type { McpServer, RegisteredTool } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { diffLines } from "@canvasloop/core";
 import { parseDialogueFile, gradeProsePattern } from "@canvasloop/prose";
-import { gradeOptionsSchema, gradeResultSchema, lineDiffSchema, type GradeOptionsInput } from "../schemas.js";
+import {
+  gradeOptionsSchema,
+  gradeResultSchema,
+  lineDiffSchema,
+  type GradeOptionsInput,
+} from "../schemas.js";
 import { proseSessionStore } from "../session-store.js";
 
 const inputShape = {
@@ -34,7 +39,7 @@ export interface IterateProseInput {
  * The tool's actual logic, exported standalone so tests can drive a
  * multi-call session directly without a transport.
  */
-export async function iterateProseHandler(input: IterateProseInput) {
+export function iterateProseHandler(input: IterateProseInput) {
   const lines = parseDialogueFile(input.text);
   const grade = gradeProsePattern(lines, input.options ?? {});
   const rawLines = lines.map((line) => line.raw);

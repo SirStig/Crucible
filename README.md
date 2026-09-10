@@ -16,12 +16,12 @@ consistency) are scoped in the PRD/TRD but not yet built.
 
 ## Packages
 
-| Package | What it is |
-|---|---|
-| [`@canvasloop/core`](./packages/core) | Track-agnostic shared types and the generate → check → fix loop controller. |
-| [`@canvasloop/prose`](./packages/prose) | The Track B Tier 1 rubric engine: detectors, living-data phrase/bookism lists, export adapters. |
-| [`@canvasloop/mcp-server`](./packages/mcp-server) | MCP server exposing `grade_prose_pattern` and `iterate_prose` over stdio. |
-| [`@canvasloop/cli`](./packages/cli) | The `canvasloop` command-line tool. |
+| Package                                           | What it is                                                                                      |
+| ------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| [`@canvasloop/core`](./packages/core)             | Track-agnostic shared types and the generate → check → fix loop controller.                     |
+| [`@canvasloop/prose`](./packages/prose)           | The Track B Tier 1 rubric engine: detectors, living-data phrase/bookism lists, export adapters. |
+| [`@canvasloop/mcp-server`](./packages/mcp-server) | MCP server exposing `grade_prose_pattern` and `iterate_prose` over stdio.                       |
+| [`@canvasloop/cli`](./packages/cli)               | The `canvasloop` command-line tool.                                                             |
 
 ## Getting started
 

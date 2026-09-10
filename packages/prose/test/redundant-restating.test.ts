@@ -45,7 +45,10 @@ describe("detectRedundantRestating", () => {
 
   it("escalates near-identical restatements to fail", () => {
     const findings = detectRedundantRestating(
-      makeLines(["The blacksmith refuses to lower her price.", "The blacksmith refuses to lower her price."]),
+      makeLines([
+        "The blacksmith refuses to lower her price.",
+        "The blacksmith refuses to lower her price.",
+      ]),
     );
     expect(findings[0]?.severity).toBe("fail");
   });

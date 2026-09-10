@@ -41,7 +41,10 @@ function toGradeOptions(options: GradeCommandOptions): GradeOptions {
  * output and an exit code rather than printing/exiting itself, so it's
  * directly testable without shelling out.
  */
-export function runGradeCommand(filePath: string, options: GradeCommandOptions): GradeCommandResult {
+export function runGradeCommand(
+  filePath: string,
+  options: GradeCommandOptions,
+): GradeCommandResult {
   const text = readFileSync(filePath, "utf-8");
   const lines = parseDialogueFile(text);
   const result = gradeProsePattern(lines, toGradeOptions(options));

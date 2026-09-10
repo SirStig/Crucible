@@ -136,7 +136,11 @@ function mergeAdjacentReplacements(ops: RawOp[]): MergedOp[] {
       });
     }
     for (let p = pairCount; p < removedRun.length; p++) {
-      merged.push({ type: "removed", before: removedRun[p]!.value, lineIndex: removedRun[p]!.index });
+      merged.push({
+        type: "removed",
+        before: removedRun[p]!.value,
+        lineIndex: removedRun[p]!.index,
+      });
     }
     for (let p = pairCount; p < addedRun.length; p++) {
       merged.push({ type: "added", after: addedRun[p]!.value, lineIndex: addedRun[p]!.index });

@@ -68,6 +68,7 @@ function loadJsonFile<T>(absolutePath: string, schema: z.ZodType<T>): T {
   } catch (error) {
     throw new Error(
       `CanvasLoop: could not read data file at ${absolutePath}: ${(error as Error).message}`,
+      { cause: error },
     );
   }
 
@@ -75,7 +76,9 @@ function loadJsonFile<T>(absolutePath: string, schema: z.ZodType<T>): T {
   try {
     parsed = JSON.parse(raw);
   } catch (error) {
-    throw new Error(`CanvasLoop: ${absolutePath} is not valid JSON: ${(error as Error).message}`);
+    throw new Error(`CanvasLoop: ${absolutePath} is not valid JSON: ${(error as Error).message}`, {
+      cause: error,
+    });
   }
 
   const result = schema.safeParse(parsed);

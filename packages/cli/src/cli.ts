@@ -28,19 +28,28 @@ export function createProgram(): Command {
     .description("CanvasLoop — grounded generate-check-fix loops for AI-agent game content.")
     .version(CLI_VERSION);
 
-  const prose = program.command("prose").description("Track B: Prose Craft Loop (Tier 1, no model calls)");
+  const prose = program
+    .command("prose")
+    .description("Track B: Prose Craft Loop (Tier 1, no model calls)");
 
   prose
     .command("grade")
     .description("Grade a dialogue/prose file against the Tier 1 pattern rubric")
-    .argument("<file>", "path to a file using the \"Speaker: line text\" convention (speaker optional)")
+    .argument(
+      "<file>",
+      'path to a file using the "Speaker: line text" convention (speaker optional)',
+    )
     .option("--json", "print machine-readable JSON instead of a human-readable report")
     .option(
       "--min-sentences-for-rhythm <n>",
       "minimum pooled sentences before the rhythm check runs (default 4)",
       parsePositiveInt,
     )
-    .option("--target-cv <n>", "coefficient-of-variation floor for the rhythm check (default 0.35)", parsePositiveFloat)
+    .option(
+      "--target-cv <n>",
+      "coefficient-of-variation floor for the rhythm check (default 0.35)",
+      parsePositiveFloat,
+    )
     .option(
       "--min-tokens-for-redundancy <n>",
       "minimum content tokens before a line pair is compared for redundancy (default 3)",
@@ -61,10 +70,17 @@ export function createProgram(): Command {
 
   prose
     .command("export")
-    .description("Export a dialogue/prose file to Ink, Yarn Spinner, JSON, or a .strings-style format")
-    .argument("<file>", "path to a file using the \"Speaker: line text\" convention (speaker optional)")
+    .description(
+      "Export a dialogue/prose file to Ink, Yarn Spinner, JSON, or a .strings-style format",
+    )
+    .argument(
+      "<file>",
+      'path to a file using the "Speaker: line text" convention (speaker optional)',
+    )
     .addOption(
-      new Option("--format <format>", "export format").choices(EXPORT_FORMATS).makeOptionMandatory(),
+      new Option("--format <format>", "export format")
+        .choices(EXPORT_FORMATS)
+        .makeOptionMandatory(),
     )
     .requiredOption("--out <path>", "output file path")
     .option("--node <name>", "Yarn node title, yarn format only (default CanvasLoopExport)")

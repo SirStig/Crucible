@@ -8,11 +8,17 @@ export default tseslint.config(
     ignores: ["**/dist/**", "**/coverage/**", "**/node_modules/**"],
   },
   js.configs.recommended,
-  ...tseslint.configs.recommendedTypeChecked,
+  ...tseslint.configs.recommended,
   {
+    // Type-aware rules only for the actual package sources/tests — config
+    // files at the repo root (this file, vitest.config.ts) stay on the
+    // non-type-checked ruleset above since they aren't part of any
+    // package's tsconfig.
+    files: ["packages/*/src/**/*.ts", "packages/*/test/**/*.ts"],
+    extends: [...tseslint.configs.recommendedTypeChecked],
     languageOptions: {
       parserOptions: {
-        projectService: true,
+        project: ["./tsconfig.eslint.json"],
         tsconfigRootDir: import.meta.dirname,
       },
     },

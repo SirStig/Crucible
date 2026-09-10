@@ -26,7 +26,8 @@ export function formatReport(result: ProseGradeResult, sourceLabel: string): str
   );
 
   const body = sorted.map((finding) => {
-    const location = finding.location?.line !== undefined ? `line ${finding.location.line}` : "document";
+    const location =
+      finding.location?.line !== undefined ? `line ${finding.location.line}` : "document";
     return `  ${SEVERITY_LABEL[finding.severity]} (${location}) ${finding.ruleId}: ${finding.message}\n         fix: ${finding.fixHint}`;
   });
 

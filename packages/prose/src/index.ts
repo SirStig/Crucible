@@ -3,7 +3,13 @@ export { parseDialogueFile } from "./parse.js";
 export { splitSentences } from "./sentence-split.js";
 export { gradeProsePattern } from "./pattern-grader.js";
 export { loadAiTellData, loadSaidBookismData } from "./data-loader.js";
-export type { AiTellData, SaidBookismData, PhraseEntry, TemplateEntry, BookismEntry } from "./data-loader.js";
+export type {
+  AiTellData,
+  SaidBookismData,
+  PhraseEntry,
+  TemplateEntry,
+  BookismEntry,
+} from "./data-loader.js";
 export { detectAiTellPhrases } from "./detectors/ai-tell-phrases.js";
 export { detectBalancedConstruction } from "./detectors/balanced-construction.js";
 export { detectSentenceRhythm } from "./detectors/sentence-rhythm.js";

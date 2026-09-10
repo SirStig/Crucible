@@ -4,7 +4,9 @@ import { makeLines } from "./helpers.js";
 
 describe("detectBalancedConstruction", () => {
   it("finds nothing when no template matches", () => {
-    expect(detectBalancedConstruction(makeLines(["Real coin, or don't waste my time."]))).toEqual([]);
+    expect(detectBalancedConstruction(makeLines(["Real coin, or don't waste my time."]))).toEqual(
+      [],
+    );
   });
 
   it("flags a single occurrence at the template's declared severity", () => {

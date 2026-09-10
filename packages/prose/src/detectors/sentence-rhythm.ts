@@ -52,7 +52,8 @@ export function detectSentenceRhythm(
       sentenceCount: sentences.length,
       wordCounts,
     },
-    fixHint: "Split one sentence, shorten another — vary the beat instead of keeping every line the same length.",
+    fixHint:
+      "Split one sentence, shorten another — vary the beat instead of keeping every line the same length.",
   };
 
   return { findings: [finding], sentenceCount: sentences.length, skipped: false };

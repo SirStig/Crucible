@@ -32,13 +32,18 @@ describe("diffLines", () => {
   });
 
   it("merges a one-line replacement into a single changed entry", () => {
-    const result = diffLines(["Marta: No.", "The door creaks shut."], [
-      "Marta: Not a chance.",
-      "The door creaks shut.",
-    ]);
+    const result = diffLines(
+      ["Marta: No.", "The door creaks shut."],
+      ["Marta: Not a chance.", "The door creaks shut."],
+    );
     expect(result).toEqual([
       { type: "changed", lineIndex: 0, before: "Marta: No.", after: "Marta: Not a chance." },
-      { type: "unchanged", lineIndex: 1, before: "The door creaks shut.", after: "The door creaks shut." },
+      {
+        type: "unchanged",
+        lineIndex: 1,
+        before: "The door creaks shut.",
+        after: "The door creaks shut.",
+      },
     ]);
   });
 

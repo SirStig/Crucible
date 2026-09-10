@@ -32,7 +32,8 @@ async function main(): Promise<void> {
 // Only auto-start when this file is run directly (`node dist/index.js`) —
 // not when `createServer` is imported elsewhere, such as from a test, where
 // starting a stdio transport would be an unwanted side effect.
-const isMainModule = process.argv[1] !== undefined && import.meta.url === `file://${process.argv[1]}`;
+const isMainModule =
+  process.argv[1] !== undefined && import.meta.url === `file://${process.argv[1]}`;
 if (isMainModule) {
   main().catch((error: unknown) => {
     console.error("CanvasLoop MCP server failed to start:", error);

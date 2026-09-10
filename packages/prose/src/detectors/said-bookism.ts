@@ -20,7 +20,10 @@ export interface SaidBookismResult {
  * `CONTEXT_WORDS` words immediately before and after each quoted span on a
  * line for a verb form listed in the living said-bookisms.json data.
  */
-export function detectSaidBookisms(lines: DialogueLine[], bookismsFile?: string): SaidBookismResult {
+export function detectSaidBookisms(
+  lines: DialogueLine[],
+  bookismsFile?: string,
+): SaidBookismResult {
   const data = loadSaidBookismData(bookismsFile);
   const verbToEntry = new Map<string, BookismEntry>();
   for (const entry of data.banned) {

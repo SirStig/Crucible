@@ -65,7 +65,9 @@ describe("runGradeCommand", () => {
       JSON.stringify({
         version: "test",
         updated: "2026-01-01",
-        phrases: [{ id: "totally-custom", pattern: "zonk-a-doodle", type: "literal", severity: "fail" }],
+        phrases: [
+          { id: "totally-custom", pattern: "zonk-a-doodle", type: "literal", severity: "fail" },
+        ],
         templates: [],
       }),
     );

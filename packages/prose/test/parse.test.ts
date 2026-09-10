@@ -41,7 +41,7 @@ describe("parseDialogueFile", () => {
   });
 
   it("preserves smart quotes and unicode content verbatim in text", () => {
-    const [line] = parseDialogueFile('Marta: “You again,” she said.');
+    const [line] = parseDialogueFile("Marta: “You again,” she said.");
     expect(line?.text).toBe("“You again,” she said.");
   });
 

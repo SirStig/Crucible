@@ -12,7 +12,10 @@ import { detectRedundantRestating } from "./detectors/redundant-restating.js";
  * adjacent-line redundancy) and rolls the results into one GradeResult.
  * Empty/all-blank input is a clean pass, not an error.
  */
-export function gradeProsePattern(lines: DialogueLine[], options: GradeOptions = {}): ProseGradeResult {
+export function gradeProsePattern(
+  lines: DialogueLine[],
+  options: GradeOptions = {},
+): ProseGradeResult {
   const gradedAt = new Date().toISOString();
 
   if (lines.length === 0) {

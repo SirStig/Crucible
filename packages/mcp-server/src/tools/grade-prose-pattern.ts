@@ -20,7 +20,7 @@ export interface GradeProsePatternInput {
  * The tool's actual logic, exported standalone so tests can call it directly
  * without spinning up a transport or an McpServer instance.
  */
-export async function gradeProsePatternHandler(input: GradeProsePatternInput) {
+export function gradeProsePatternHandler(input: GradeProsePatternInput) {
   const lines = parseDialogueFile(input.text);
   const result = gradeProsePattern(lines, input.options ?? {});
   return {
