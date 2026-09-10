@@ -5,6 +5,15 @@ import type { Severity } from "@canvasloop/core";
 
 const severitySchema: z.ZodType<Severity> = z.enum(["info", "warn", "fail"]);
 
+// A named source this entry's inclusion is grounded in — a citation, not
+// free-form commentary. Keep `note` for the entry-specific rationale (why
+// *this* pattern, why this severity) and `source` for where the underlying
+// claim comes from.
+const sourceSchema = z.object({
+  name: z.string().min(1),
+  url: z.string().min(1).optional(),
+});
+
 const phraseEntrySchema = z.object({
   id: z.string().min(1),
   pattern: z.string().min(1),
@@ -12,6 +21,7 @@ const phraseEntrySchema = z.object({
   flags: z.string().optional(),
   severity: severitySchema,
   note: z.string().optional(),
+  source: sourceSchema.optional(),
 });
 
 const templateEntrySchema = z.object({
@@ -20,12 +30,14 @@ const templateEntrySchema = z.object({
   severity: severitySchema,
   note: z.string().optional(),
   minOccurrencesForFail: z.number().int().positive().optional(),
+  source: sourceSchema.optional(),
 });
 
 const aiTellDataSchema = z.object({
   version: z.string(),
   updated: z.string(),
   notes: z.string().optional(),
+  sources: z.array(sourceSchema).optional(),
   phrases: z.array(phraseEntrySchema),
   templates: z.array(templateEntrySchema),
 });
@@ -35,16 +47,19 @@ const bookismEntrySchema = z.object({
   forms: z.array(z.string().min(1)).min(1),
   severity: severitySchema,
   note: z.string().optional(),
+  source: sourceSchema.optional(),
 });
 
 const saidBookismDataSchema = z.object({
   version: z.string(),
   updated: z.string(),
   notes: z.string().optional(),
+  sources: z.array(sourceSchema).optional(),
   banned: z.array(bookismEntrySchema),
   allowed: z.array(z.string()),
 });
 
+export type SourceCitation = z.infer<typeof sourceSchema>;
 export type PhraseEntry = z.infer<typeof phraseEntrySchema>;
 export type TemplateEntry = z.infer<typeof templateEntrySchema>;
 export type AiTellData = z.infer<typeof aiTellDataSchema>;

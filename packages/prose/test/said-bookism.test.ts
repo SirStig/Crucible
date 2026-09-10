@@ -57,4 +57,35 @@ describe("detectSaidBookisms", () => {
     const result = detectSaidBookisms([line]);
     expect(result.findings[0]?.location?.line).toBe(12);
   });
+
+  it("flags the Lexicon's own named bookism examples: retort and inquire", () => {
+    const retort = detectSaidBookisms(makeLines(['"Not a chance," she retorted.']));
+    expect(retort.findings[0]).toMatchObject({ ruleId: "retort" });
+
+    const inquire = detectSaidBookisms(makeLines(['"Is that so?" he inquired.']));
+    expect(inquire.findings[0]).toMatchObject({ ruleId: "inquire" });
+  });
+
+  it("flags a Tom Swifty: a plain said/asked/replied paired with a manner adverb", () => {
+    const after = detectSaidBookisms(makeLines(['"Get out," she said icily.']));
+    expect(after.findings).toHaveLength(1);
+    expect(after.findings[0]).toMatchObject({ ruleId: "tom-swifty", severity: "info" });
+    expect(after.findings[0]?.data).toMatchObject({ matchedVerb: "said", matchedAdverb: "icily" });
+
+    const before = detectSaidBookisms(makeLines(['She asked warily, "Who sent you?"']));
+    expect(before.findings[0]).toMatchObject({ ruleId: "tom-swifty" });
+  });
+
+  it("does not flag a Tom Swifty for an ordinary -ly word that isn't a manner adverb", () => {
+    const result = detectSaidBookisms(makeLines(['"Fine," she said only.']));
+    expect(result.findings).toEqual([]);
+  });
+
+  it("does not flag a Tom Swifty when a real bookism already matched the same quote", () => {
+    // "exclaimed icily" would trip both checks if they weren't mutually
+    // exclusive by construction (bookism check runs first, per-quote).
+    const result = detectSaidBookisms(makeLines(['"Get out," she exclaimed icily.']));
+    expect(result.findings).toHaveLength(1);
+    expect(result.findings[0]?.ruleId).toBe("exclaim");
+  });
 });

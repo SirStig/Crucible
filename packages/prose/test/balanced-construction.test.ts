@@ -30,6 +30,24 @@ describe("detectBalancedConstruction", () => {
     expect(matches[0]?.data?.["occurrences"]).toBe(2);
   });
 
+  it("flags a trailing participial clause, escalating once it recurs (Analysis-Insertion pattern)", () => {
+    const single = detectBalancedConstruction(
+      makeLines(["The old bridge still stands, underscoring the town's resilience."]),
+    );
+    const singleMatch = single.find((f) => f.ruleId === "trailing-participial-clause");
+    expect(singleMatch?.severity).toBe("warn");
+
+    const repeated = detectBalancedConstruction(
+      makeLines([
+        "The old bridge still stands, underscoring the town's resilience.",
+        "The festival returned this year, fostering a sense of unity among the settlers.",
+      ]),
+    );
+    const matches = repeated.filter((f) => f.ruleId === "trailing-participial-clause");
+    expect(matches).toHaveLength(2);
+    expect(matches.every((f) => f.severity === "fail")).toBe(true);
+  });
+
   it("tracks each template id independently", () => {
     const findings = detectBalancedConstruction(
       makeLines([

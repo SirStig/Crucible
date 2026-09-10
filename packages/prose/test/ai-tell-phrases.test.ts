@@ -50,4 +50,25 @@ describe("detectAiTellPhrases", () => {
       /could not read data file/,
     );
   });
+
+  it("flags new Wikipedia-sourced overused words at their documented severity", () => {
+    const findings = detectAiTellPhrases(
+      makeLines([
+        "The blade's intricate engravings garnered every collector's attention.",
+        "Her meticulous notes bolstered the guild's case.",
+      ]),
+    );
+    expect(findings.map((f) => f.ruleId).sort()).toEqual(
+      ["bolstered", "garner", "intricate", "meticulous"].sort(),
+    );
+  });
+
+  it("keeps domain-risky bare words at low severity rather than banning them outright", () => {
+    const findings = detectAiTellPhrases(
+      makeLines(["This armor is remarkably robust and quite valuable across the landscape."]),
+    );
+    // "robust", "valuable", and "landscape" are excluded entirely (see RESEARCH.md);
+    // none of them should fire even though they're on Wikipedia's own list.
+    expect(findings).toEqual([]);
+  });
 });

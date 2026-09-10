@@ -1,35 +1,53 @@
 {
-  "version": "2026.1",
+  "version": "2026.2",
   "updated": "2026-09-10",
-  "notes": "Living data file — the list of phrases that read as machine-generated drifts as models change. Update this file directly (or point at your own copy via --phrases-file / options.phrasesFile) rather than forking the package. Entries are matched case-insensitively with word boundaries for \"literal\" type, or as a raw regex for \"regex\" type.",
+  "notes": "Living data file — the list of phrases that read as machine-generated drifts as models change. Update this file directly (or point at your own copy via --phrases-file / options.phrasesFile) rather than forking the package. Entries are matched case-insensitively with word boundaries for \"literal\" type, or as a raw regex for \"regex\" type. Grounded in the cited sources below, adapted for game dialogue/prose rather than transplanted verbatim: Wikipedia's list was written for detecting AI-written *encyclopedia articles*, a different register from terse dialogue, so several documented categories were deliberately excluded or down-weighted here rather than imported wholesale — see each entry's own `source`/`note`, and packages/prose/RESEARCH.md for the full reasoning, including what was left out and why (bare \"landscape\"/\"robust\"/\"valuable\"/\"key\"/\"crucial\" all have ordinary, legitimate meanings in fantasy-RPG prose specifically, so they're excluded as standalone words to avoid drowning real findings in false positives).",
+  "sources": [
+    {
+      "name": "Wikipedia:Signs of AI writing",
+      "url": "https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing"
+    },
+    {
+      "name": "Cross-referenced overused-ChatGPT-phrase compilations (multiple independent sources agreeing on \"in today's fast-paced world\", \"game-changer\", and \"it's not X, it's Y\" as a cluster)",
+      "url": "https://slopdetector.org/blog/ai-words-list"
+    }
+  ],
   "phrases": [
     {
       "id": "delve-into",
       "pattern": "delves? into",
       "type": "regex",
       "severity": "warn",
-      "note": "Stock transition into a topic."
+      "note": "Stock transition into a topic; \"delve\" is one of the most consistently cited AI-tell words across sources.",
+      "source": {
+        "name": "Wikipedia:Signs of AI writing",
+        "url": "https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing"
+      }
     },
     {
       "id": "moreover",
       "pattern": "moreover",
       "type": "literal",
       "severity": "warn",
-      "note": "Essay-register connector, rare in spoken dialogue."
+      "note": "Essay-register connector, rare in spoken dialogue; sibling of Wikipedia's cited \"Additionally\"."
     },
     {
       "id": "furthermore",
       "pattern": "furthermore",
       "type": "literal",
       "severity": "warn",
-      "note": "Essay-register connector."
+      "note": "Essay-register connector; sibling of Wikipedia's cited \"Additionally\"."
     },
     {
       "id": "additionally",
       "pattern": "additionally",
       "type": "literal",
       "severity": "warn",
-      "note": "Essay-register connector."
+      "note": "Essay-register connector.",
+      "source": {
+        "name": "Wikipedia:Signs of AI writing",
+        "url": "https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing"
+      }
     },
     {
       "id": "in-conclusion",
@@ -64,28 +82,44 @@
       "pattern": "in today'?s fast-paced (world|society)",
       "type": "regex",
       "severity": "fail",
-      "note": "Near-canonical AI-tell opener, essentially never appropriate in dialogue or short prose."
+      "note": "Near-canonical AI-tell opener, essentially never appropriate in dialogue or short prose; independently confirmed across multiple overused-phrase compilations.",
+      "source": {
+        "name": "Cross-referenced overused-ChatGPT-phrase compilations",
+        "url": "https://slopdetector.org/blog/ai-words-list"
+      }
     },
     {
       "id": "boasts",
       "pattern": "\\bboasts\\b",
       "type": "regex",
       "severity": "warn",
-      "note": "Marketing-copy verb (\"the town boasts a market\")."
+      "note": "Marketing-copy verb (\"the town boasts a market\").",
+      "source": {
+        "name": "Wikipedia:Signs of AI writing",
+        "url": "https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing"
+      }
     },
     {
       "id": "testament-to",
       "pattern": "(a |stands as a )?testament to",
       "type": "regex",
       "severity": "warn",
-      "note": "Inflated cliche."
+      "note": "Promotional/editorializing construction.",
+      "source": {
+        "name": "Wikipedia:Signs of AI writing",
+        "url": "https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing"
+      }
     },
     {
       "id": "tapestry",
       "pattern": "tapestry of",
       "type": "regex",
       "severity": "warn",
-      "note": "Inflated metaphor cliche."
+      "note": "Inflated metaphor cliche.",
+      "source": {
+        "name": "Wikipedia:Signs of AI writing",
+        "url": "https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing"
+      }
     },
     {
       "id": "navigate-the-complexities",
@@ -106,7 +140,11 @@
       "pattern": "game[- ]changer",
       "type": "regex",
       "severity": "warn",
-      "note": "Marketing-copy cliche."
+      "note": "Marketing-copy cliche, frequently cited alongside \"in today's fast-paced world\".",
+      "source": {
+        "name": "Cross-referenced overused-ChatGPT-phrase compilations",
+        "url": "https://slopdetector.org/blog/ai-words-list"
+      }
     },
     {
       "id": "seamless",
@@ -117,10 +155,10 @@
     },
     {
       "id": "elevate",
-      "pattern": "\\belevate[sd]?\\b",
+      "pattern": "\\belevat(?:e|es|ed|ing)\\b",
       "type": "regex",
       "severity": "warn",
-      "note": "Overused marketing verb."
+      "note": "Overused marketing verb, close relative of Wikipedia's cited \"enhance\"."
     },
     {
       "id": "embark-on-a-journey",
@@ -134,7 +172,11 @@
       "pattern": "deep[- ]dive",
       "type": "regex",
       "severity": "warn",
-      "note": "Overused framing phrase."
+      "note": "Overused framing phrase.",
+      "source": {
+        "name": "Wikipedia:Signs of AI writing",
+        "url": "https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing"
+      }
     },
     {
       "id": "paint-a-picture",
@@ -145,17 +187,25 @@
     },
     {
       "id": "plays-a-crucial-role",
-      "pattern": "plays? a (crucial|pivotal|vital) role",
+      "pattern": "plays? a (crucial|pivotal|vital|key) role",
       "type": "regex",
       "severity": "warn",
-      "note": "Filler phrase, rarely says anything concrete."
+      "note": "Filler phrase, rarely says anything concrete.",
+      "source": {
+        "name": "Wikipedia:Signs of AI writing",
+        "url": "https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing"
+      }
     },
     {
       "id": "serves-as-a",
       "pattern": "serves? as an? ",
       "type": "regex",
       "severity": "info",
-      "note": "Frequently a sign of restated definition rather than characterization."
+      "note": "Documented \"avoidance of is/are\" pattern, but \"serves as\" alone is common enough in ordinary prose that it's kept low-severity rather than banned outright.",
+      "source": {
+        "name": "Wikipedia:Signs of AI writing",
+        "url": "https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing"
+      }
     },
     {
       "id": "at-the-end-of-the-day",
@@ -211,7 +261,194 @@
       "pattern": "in essence",
       "type": "literal",
       "severity": "warn",
-      "note": "Essay-register summarizing phrase."
+      "note": "Essay-register summarizing phrase, sibling of documented \"In summary\"/\"Overall\" conclusion phrases."
+    },
+    {
+      "id": "bolstered",
+      "pattern": "\\bbolstered\\b",
+      "type": "regex",
+      "severity": "warn",
+      "note": "Uncommon enough in speech to be a reasonably clean signal.",
+      "source": {
+        "name": "Wikipedia:Signs of AI writing",
+        "url": "https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing"
+      }
+    },
+    {
+      "id": "garner",
+      "pattern": "\\bgarner(?:s|ed|ing)?\\b",
+      "type": "regex",
+      "severity": "warn",
+      "note": "Uncommon enough in speech to be a reasonably clean signal.",
+      "source": {
+        "name": "Wikipedia:Signs of AI writing",
+        "url": "https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing"
+      }
+    },
+    {
+      "id": "interplay",
+      "pattern": "\\binterplay\\b",
+      "type": "regex",
+      "severity": "info",
+      "note": "Can appear legitimately in in-world analytical dialogue about mechanics/politics.",
+      "source": {
+        "name": "Wikipedia:Signs of AI writing",
+        "url": "https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing"
+      }
+    },
+    {
+      "id": "intricate",
+      "pattern": "\\bintricate(ly)?\\b",
+      "type": "regex",
+      "severity": "warn",
+      "note": "Overused descriptor.",
+      "source": {
+        "name": "Wikipedia:Signs of AI writing",
+        "url": "https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing"
+      }
+    },
+    {
+      "id": "intricacies",
+      "pattern": "\\bintricacies\\b",
+      "type": "regex",
+      "severity": "warn",
+      "note": "Overused abstraction, sibling of \"intricate\".",
+      "source": {
+        "name": "Wikipedia:Signs of AI writing",
+        "url": "https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing"
+      }
+    },
+    {
+      "id": "meticulous",
+      "pattern": "\\bmeticulous(ly)?\\b",
+      "type": "regex",
+      "severity": "warn",
+      "note": "Overused descriptor.",
+      "source": {
+        "name": "Wikipedia:Signs of AI writing",
+        "url": "https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing"
+      }
+    },
+    {
+      "id": "showcase",
+      "pattern": "\\bshowcas(?:e|es|ed|ing)\\b",
+      "type": "regex",
+      "severity": "warn",
+      "note": "Marketing-copy verb.",
+      "source": {
+        "name": "Wikipedia:Signs of AI writing",
+        "url": "https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing"
+      }
+    },
+    {
+      "id": "underscore",
+      "pattern": "\\bunderscor(?:e|es|ed|ing)\\b",
+      "type": "regex",
+      "severity": "info",
+      "note": "Overused emphasis verb; kept low-severity, the more diagnostic form is the trailing-participial-clause template below.",
+      "source": {
+        "name": "Wikipedia:Signs of AI writing",
+        "url": "https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing"
+      }
+    },
+    {
+      "id": "vibrant",
+      "pattern": "\\bvibrant\\b",
+      "type": "regex",
+      "severity": "info",
+      "note": "Legitimate in flavor/lore text describing a lively settlement; kept low-severity rather than banned.",
+      "source": {
+        "name": "Wikipedia:Signs of AI writing",
+        "url": "https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing"
+      }
+    },
+    {
+      "id": "pivotal",
+      "pattern": "\\bpivotal\\b",
+      "type": "regex",
+      "severity": "info",
+      "note": "The stronger, more diagnostic form (\"plays a pivotal role\") is its own warn-severity entry above; bare \"pivotal\" kept low.",
+      "source": {
+        "name": "Wikipedia:Signs of AI writing",
+        "url": "https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing"
+      }
+    },
+    {
+      "id": "enhance",
+      "pattern": "\\benhanc(?:e|es|ed|ing)\\b",
+      "type": "regex",
+      "severity": "info",
+      "note": "Legitimate RPG mechanics vocabulary (\"enhances your armor\"); kept low-severity rather than banned.",
+      "source": {
+        "name": "Wikipedia:Signs of AI writing",
+        "url": "https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing"
+      }
+    },
+    {
+      "id": "valuable-insights",
+      "pattern": "valuable insights?",
+      "type": "regex",
+      "severity": "warn",
+      "note": "Documented analysis-insertion phrase.",
+      "source": {
+        "name": "Wikipedia:Signs of AI writing",
+        "url": "https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing"
+      }
+    },
+    {
+      "id": "setting-the-stage-for",
+      "pattern": "setting the stage for",
+      "type": "literal",
+      "severity": "warn",
+      "note": "Documented promotional/editorializing phrase.",
+      "source": {
+        "name": "Wikipedia:Signs of AI writing",
+        "url": "https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing"
+      }
+    },
+    {
+      "id": "marks-a-shift",
+      "pattern": "marks? a (shift|turning point)",
+      "type": "regex",
+      "severity": "warn",
+      "note": "Documented promotional/editorializing phrase.",
+      "source": {
+        "name": "Wikipedia:Signs of AI writing",
+        "url": "https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing"
+      }
+    },
+    {
+      "id": "deeply-rooted",
+      "pattern": "deeply rooted",
+      "type": "literal",
+      "severity": "info",
+      "note": "Documented promotional/editorializing phrase; common enough in ordinary lore-writing to keep low-severity.",
+      "source": {
+        "name": "Wikipedia:Signs of AI writing",
+        "url": "https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing"
+      }
+    },
+    {
+      "id": "indelible-mark",
+      "pattern": "indelible mark",
+      "type": "literal",
+      "severity": "warn",
+      "note": "Documented promotional/editorializing phrase.",
+      "source": {
+        "name": "Wikipedia:Signs of AI writing",
+        "url": "https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing"
+      }
+    },
+    {
+      "id": "focal-point",
+      "pattern": "focal point",
+      "type": "literal",
+      "severity": "info",
+      "note": "Documented promotional/editorializing phrase; has a legitimate literal (optics/geometry) meaning too, so kept low-severity.",
+      "source": {
+        "name": "Wikipedia:Signs of AI writing",
+        "url": "https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing"
+      }
     }
   ],
   "templates": [
@@ -220,7 +457,11 @@
       "pattern": "not (?:just|only)\\s+[^,.!?]{1,80},?\\s+(?:it'?s|it is|they'?re|they are|this is|that'?s)\\s+[^,.!?]{1,80}",
       "severity": "warn",
       "minOccurrencesForFail": 2,
-      "note": "The canonical AI balanced-contrast construction (\"it's not just X, it's Y\")."
+      "note": "The canonical AI balanced-contrast construction (\"it's not just X, it's Y\"), independently confirmed across multiple overused-phrase compilations.",
+      "source": {
+        "name": "Wikipedia:Signs of AI writing",
+        "url": "https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing"
+      }
     },
     {
       "id": "more-than-just-x-its-y",
@@ -241,7 +482,22 @@
       "pattern": "not\\s+[^,.!?]{1,60},?\\s+but\\s+[^,.!?]{1,60}",
       "severity": "info",
       "minOccurrencesForFail": 3,
-      "note": "Broad \"not X, but Y\" contrast — a normal rhetorical device on its own, only flagged as fail once it recurs often enough to read as a tic."
+      "note": "Broad \"not X, but Y\" contrast — a normal rhetorical device on its own, only flagged as fail once it recurs often enough to read as a tic.",
+      "source": {
+        "name": "Wikipedia:Signs of AI writing",
+        "url": "https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing"
+      }
+    },
+    {
+      "id": "trailing-participial-clause",
+      "pattern": ",\\s+(?:fostering|underscoring|highlighting|reflecting|emphasizing|ensuring|cultivating|encompassing|contributing to)\\b[^.!?]{1,100}[.!?]",
+      "severity": "warn",
+      "minOccurrencesForFail": 2,
+      "note": "A sentence that caps itself with a dangling present-participle clause (\"..., underscoring its importance.\") — a distinct, documented AI habit from the plain word list above.",
+      "source": {
+        "name": "Wikipedia:Signs of AI writing",
+        "url": "https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing"
+      }
     }
   ]
 }
