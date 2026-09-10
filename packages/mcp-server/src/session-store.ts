@@ -1,0 +1,12 @@
+import { LoopController } from "@canvasloop/core";
+
+const DEFAULT_MAX_ITERATIONS = 5;
+
+/**
+ * One controller for the process's lifetime, backing `iterate_prose`.
+ * Sessions are in-memory only and don't survive a server restart — that's
+ * expected for v0.1, not a gap to fix.
+ */
+export const proseSessionStore = new LoopController<string[]>({
+  defaultMaxIterations: DEFAULT_MAX_ITERATIONS,
+});

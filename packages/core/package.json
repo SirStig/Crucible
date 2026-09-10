@@ -1,0 +1,19 @@
+{
+  "name": "@canvasloop/core",
+  "version": "0.1.0",
+  "description": "Track-agnostic shared types and the generate-check-fix loop controller used by every CanvasLoop craft track.",
+  "author": "Joshua Kac <joshua@houseofkac.com>",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsc -b",
+    "clean": "rm -rf dist *.tsbuildinfo",
+    "typecheck": "tsc --noEmit"
+  }
+}

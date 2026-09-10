@@ -1,0 +1,23 @@
+{
+  "name": "@canvasloop/prose",
+  "version": "0.1.0",
+  "description": "Track B (Prose Craft Loop) Tier 1 rubric engine: deterministic AI-tell/rhythm/redundancy grading and dialogue export, no model calls.",
+  "author": "Joshua Kac <joshua@houseofkac.com>",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "files": ["dist", "data"],
+  "scripts": {
+    "build": "tsc -b",
+    "clean": "rm -rf dist *.tsbuildinfo",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@canvasloop/core": "0.1.0",
+    "zod": "^4.6.2"
+  }
+}

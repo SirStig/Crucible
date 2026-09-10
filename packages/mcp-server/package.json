@@ -1,0 +1,25 @@
+{
+  "name": "@canvasloop/mcp-server",
+  "version": "0.1.0",
+  "description": "CanvasLoop MCP server: exposes the Track B Tier 1 prose rubric (grade_prose_pattern, iterate_prose) as MCP tools over stdio.",
+  "author": "Joshua Kac <joshua@houseofkac.com>",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.js",
+  "bin": {
+    "canvasloop-mcp-server": "./dist/index.js"
+  },
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsc -b",
+    "clean": "rm -rf dist *.tsbuildinfo",
+    "typecheck": "tsc --noEmit",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "@canvasloop/core": "0.1.0",
+    "@canvasloop/prose": "0.1.0",
+    "@modelcontextprotocol/sdk": "^1.30.0",
+    "zod": "^4.6.2"
+  }
+}

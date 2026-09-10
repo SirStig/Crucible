@@ -1,0 +1,39 @@
+{
+  "version": "2026.1",
+  "updated": "2026-09-10",
+  "notes": "Living data file for the said-bookism dialogue-tag check. Each entry lists exact surface forms deliberately (no stemming) since tag verbs are a small, curatable, closed set — grow this list as new offenders show up in your own drafts rather than relying on a suffix rule to catch them.",
+  "banned": [
+    { "id": "exclaim", "forms": ["exclaimed", "exclaims", "exclaiming", "exclaim"], "severity": "warn", "note": "\"Said\" plus punctuation almost always does the same job." },
+    { "id": "assert", "forms": ["asserted", "asserts", "asserting"], "severity": "warn" },
+    { "id": "interject", "forms": ["interjected", "interjects", "interjecting"], "severity": "warn" },
+    { "id": "declare", "forms": ["declared", "declares", "declaring"], "severity": "warn" },
+    { "id": "proclaim", "forms": ["proclaimed", "proclaims", "proclaiming"], "severity": "warn" },
+    { "id": "announce", "forms": ["announced", "announces", "announcing"], "severity": "info", "note": "Sometimes legitimate for a literal public announcement — low severity, not a hard ban." },
+    { "id": "state", "forms": ["stated", "states", "stating"], "severity": "warn" },
+    { "id": "remark", "forms": ["remarked", "remarks", "remarking"], "severity": "warn" },
+    { "id": "utter", "forms": ["uttered", "utters", "uttering"], "severity": "warn" },
+    { "id": "articulate", "forms": ["articulated", "articulates", "articulating"], "severity": "warn" },
+    { "id": "intone", "forms": ["intoned", "intones", "intoning"], "severity": "warn" },
+    { "id": "ejaculate", "forms": ["ejaculated", "ejaculates", "ejaculating"], "severity": "fail", "note": "Classic pulp-era bookism, almost never intentional in 2026 prose." },
+    { "id": "opine", "forms": ["opined", "opines", "opining"], "severity": "warn" },
+    { "id": "ventured", "forms": ["ventured", "ventures", "venturing"], "severity": "info" },
+    { "id": "admonish", "forms": ["admonished", "admonishes", "admonishing"], "severity": "warn" },
+    { "id": "chastise", "forms": ["chastised", "chastises", "chastising"], "severity": "warn" },
+    { "id": "elaborate", "forms": ["elaborated", "elaborates", "elaborating"], "severity": "info" },
+    { "id": "emphasize", "forms": ["emphasized", "emphasizes", "emphasizing"], "severity": "warn" },
+    { "id": "affirm", "forms": ["affirmed", "affirms", "affirming"], "severity": "warn" },
+    { "id": "counter", "forms": ["countered", "counters", "countering"], "severity": "info" },
+    { "id": "rebut", "forms": ["rebutted", "rebuts", "rebutting"], "severity": "warn" },
+    { "id": "chuckle", "forms": ["chuckled", "chuckles", "chuckling"], "severity": "fail", "note": "Physically impossible to speak words by chuckling — a laugh belongs in an action beat, not a dialogue tag." },
+    { "id": "grin", "forms": ["grinned", "grins", "grinning"], "severity": "fail", "note": "You can't grin words." },
+    { "id": "smile", "forms": ["smiled", "smiles", "smiling"], "severity": "fail", "note": "You can't smile words — belongs in an action beat instead." },
+    { "id": "sigh", "forms": ["sighed", "sighs", "sighing"], "severity": "warn", "note": "A sigh can color a line but is usually a lazy substitute for a real tag or beat." },
+    { "id": "growl", "forms": ["growled", "growls", "growling"], "severity": "info", "note": "Legitimate for a genuinely animalistic character; flagged low-severity for overuse elsewhere." },
+    { "id": "hiss", "forms": ["hissed", "hisses", "hissing"], "severity": "info", "note": "Legitimate only for a line with sibilant sounds to actually hiss; frequently misused as a generic \"said angrily.\"" }
+  ],
+  "allowed": [
+    "said", "says", "say", "saying",
+    "asked", "asks", "ask", "asking",
+    "replied", "replies", "reply", "replying"
+  ]
+}

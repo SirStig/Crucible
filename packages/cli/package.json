@@ -1,0 +1,22 @@
+{
+  "name": "@canvasloop/cli",
+  "version": "0.1.0",
+  "description": "canvasloop CLI: grade and export dialogue/prose from the command line using the Track B Tier 1 rubric.",
+  "author": "Joshua Kac <joshua@houseofkac.com>",
+  "license": "MIT",
+  "type": "module",
+  "bin": {
+    "canvasloop": "./dist/bin.js"
+  },
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsc -b",
+    "clean": "rm -rf dist *.tsbuildinfo",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@canvasloop/core": "0.1.0",
+    "@canvasloop/prose": "0.1.0",
+    "commander": "^15.0.0"
+  }
+}

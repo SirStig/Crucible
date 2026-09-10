@@ -1,0 +1,67 @@
+{
+  "version": "2026.1",
+  "updated": "2026-09-10",
+  "notes": "Living data file — the list of phrases that read as machine-generated drifts as models change. Update this file directly (or point at your own copy via --phrases-file / options.phrasesFile) rather than forking the package. Entries are matched case-insensitively with word boundaries for \"literal\" type, or as a raw regex for \"regex\" type.",
+  "phrases": [
+    { "id": "delve-into", "pattern": "delves? into", "type": "regex", "severity": "warn", "note": "Stock transition into a topic." },
+    { "id": "moreover", "pattern": "moreover", "type": "literal", "severity": "warn", "note": "Essay-register connector, rare in spoken dialogue." },
+    { "id": "furthermore", "pattern": "furthermore", "type": "literal", "severity": "warn", "note": "Essay-register connector." },
+    { "id": "additionally", "pattern": "additionally", "type": "literal", "severity": "warn", "note": "Essay-register connector." },
+    { "id": "in-conclusion", "pattern": "in conclusion", "type": "literal", "severity": "warn", "note": "Essay-register wrap-up, out of place in dialogue." },
+    { "id": "its-worth-noting", "pattern": "it'?s worth noting", "type": "regex", "severity": "warn", "note": "Hedge that no character would say aloud." },
+    { "id": "its-important-to-note", "pattern": "it'?s important to (note|remember)", "type": "regex", "severity": "warn", "note": "Hedge phrase." },
+    { "id": "needless-to-say", "pattern": "needless to say", "type": "literal", "severity": "warn", "note": "Filler hedge." },
+    { "id": "in-todays-fast-paced-world", "pattern": "in today'?s fast-paced (world|society)", "type": "regex", "severity": "fail", "note": "Near-canonical AI-tell opener, essentially never appropriate in dialogue or short prose." },
+    { "id": "boasts", "pattern": "\\bboasts\\b", "type": "regex", "severity": "warn", "note": "Marketing-copy verb (\"the town boasts a market\")." },
+    { "id": "testament-to", "pattern": "(a |stands as a )?testament to", "type": "regex", "severity": "warn", "note": "Inflated cliche." },
+    { "id": "tapestry", "pattern": "tapestry of", "type": "regex", "severity": "warn", "note": "Inflated metaphor cliche." },
+    { "id": "navigate-the-complexities", "pattern": "navigate(s|ing)? the complexit(y|ies)", "type": "regex", "severity": "warn", "note": "Stock abstraction." },
+    { "id": "unlock-the-potential", "pattern": "unlock(s|ing)? (its |their |the )?(full )?potential", "type": "regex", "severity": "warn", "note": "Marketing-copy cliche." },
+    { "id": "game-changer", "pattern": "game[- ]changer", "type": "regex", "severity": "warn", "note": "Marketing-copy cliche." },
+    { "id": "seamless", "pattern": "\\bseamless(ly)?\\b", "type": "regex", "severity": "warn", "note": "Overused marketing adjective." },
+    { "id": "elevate", "pattern": "\\belevate[sd]?\\b", "type": "regex", "severity": "warn", "note": "Overused marketing verb." },
+    { "id": "embark-on-a-journey", "pattern": "embark(s|ing)? on (a|this|an|your) journey", "type": "regex", "severity": "warn", "note": "Stock framing phrase." },
+    { "id": "deep-dive", "pattern": "deep[- ]dive", "type": "regex", "severity": "warn", "note": "Overused framing phrase." },
+    { "id": "paint-a-picture", "pattern": "paints? a (vivid )?picture", "type": "regex", "severity": "warn", "note": "Cliched metaphor." },
+    { "id": "plays-a-crucial-role", "pattern": "plays? a (crucial|pivotal|vital) role", "type": "regex", "severity": "warn", "note": "Filler phrase, rarely says anything concrete." },
+    { "id": "serves-as-a", "pattern": "serves? as an? ", "type": "regex", "severity": "info", "note": "Frequently a sign of restated definition rather than characterization." },
+    { "id": "at-the-end-of-the-day", "pattern": "at the end of the day", "type": "literal", "severity": "warn", "note": "Filler transition." },
+    { "id": "in-the-realm-of", "pattern": "in the realm of", "type": "literal", "severity": "warn", "note": "Inflated framing phrase." },
+    { "id": "a-symphony-of", "pattern": "symphony of", "type": "regex", "severity": "warn", "note": "Inflated metaphor cliche." },
+    { "id": "whispers-of", "pattern": "whispers? of", "type": "regex", "severity": "info", "note": "Can be legitimate atmosphere writing; flagged low-severity to catch overuse, not ban outright." },
+    { "id": "in-a-world-where", "pattern": "in a world where", "type": "literal", "severity": "warn", "note": "Trailer-voice cliche opener." },
+    { "id": "unwavering", "pattern": "\\bunwavering\\b", "type": "regex", "severity": "info", "note": "Overused intensifier adjective." },
+    { "id": "myriad", "pattern": "\\bmyriad\\b", "type": "regex", "severity": "info", "note": "Overused word choice, low severity on its own." },
+    { "id": "in-essence", "pattern": "in essence", "type": "literal", "severity": "warn", "note": "Essay-register summarizing phrase." }
+  ],
+  "templates": [
+    {
+      "id": "not-just-x-its-y",
+      "pattern": "not (?:just|only)\\s+[^,.!?]{1,80},?\\s+(?:it'?s|it is|they'?re|they are|this is|that'?s)\\s+[^,.!?]{1,80}",
+      "severity": "warn",
+      "minOccurrencesForFail": 2,
+      "note": "The canonical AI balanced-contrast construction (\"it's not just X, it's Y\")."
+    },
+    {
+      "id": "more-than-just-x-its-y",
+      "pattern": "more than just\\s+[^,.!?]{1,80},?\\s+(?:it'?s|it is|they'?re|this is)\\s+[^,.!?]{1,80}",
+      "severity": "warn",
+      "minOccurrencesForFail": 2,
+      "note": "Variant of the not-just-x-its-y construction."
+    },
+    {
+      "id": "isnt-about-x-its-about-y",
+      "pattern": "isn'?t (?:about|just about)\\s+[^,.!?]{1,80},?\\s+(?:it'?s|it is)\\s+about\\s+[^,.!?]{1,80}",
+      "severity": "warn",
+      "minOccurrencesForFail": 2,
+      "note": "\"isn't about X, it's about Y\" contrastive template."
+    },
+    {
+      "id": "not-x-but-y",
+      "pattern": "not\\s+[^,.!?]{1,60},?\\s+but\\s+[^,.!?]{1,60}",
+      "severity": "info",
+      "minOccurrencesForFail": 3,
+      "note": "Broad \"not X, but Y\" contrast — a normal rhetorical device on its own, only flagged as fail once it recurs often enough to read as a tic."
+    }
+  ]
+}
