@@ -4,12 +4,12 @@ import { normalizeSvgRoot } from "./svg-utils.js";
 
 export interface SpriteSheetFrame extends SpriteInput {
   /** Optional label carried through to the output metadata (e.g. a pose/animation-frame name). */
-  name?: string;
+  name?: string | undefined;
 }
 
 export interface SpriteSheetFrameMeta {
   index: number;
-  name?: string;
+  name?: string | undefined;
   x: number;
   y: number;
   width: number;
@@ -71,7 +71,10 @@ export function packSpriteSheet(frames: SpriteSheetFrame[], columns: number): Sp
       height: cellHeight,
     });
 
-    const inner = normalizeSvgRoot(frame.svg, cellWidth, cellHeight).replace(/<svg\b[^>]*>|<\/svg>/gi, "");
+    const inner = normalizeSvgRoot(frame.svg, cellWidth, cellHeight).replace(
+      /<svg\b[^>]*>|<\/svg>/gi,
+      "",
+    );
     embeddedGroups.push(`<g transform="translate(${x},${y})">${inner}</g>`);
   });
 

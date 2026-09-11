@@ -1,15 +1,19 @@
+// Optional fields explicitly include `| undefined` for the same
+// exactOptionalPropertyTypes reason documented on @canvasloop/prose's
+// GradeOptions — a zod-parsed MCP tool input includes explicit `undefined`
+// on omitted optional fields, not just an absent key.
 export interface LSystemSpec {
   axiom: string;
   rules: Record<string, string>;
   iterations: number;
   angleDegrees: number;
   stepLength: number;
-  startX?: number;
-  startY?: number;
+  startX?: number | undefined;
+  startY?: number | undefined;
   /** Degrees, standard SVG convention (0 = right, 90 = down). Default -90 (pointing up). */
-  startAngleDegrees?: number;
-  strokeColor?: string;
-  strokeWidth?: number;
+  startAngleDegrees?: number | undefined;
+  strokeColor?: string | undefined;
+  strokeWidth?: number | undefined;
 }
 
 export interface FoliageResult {
@@ -22,9 +26,15 @@ const MAX_ITERATIONS = 10;
 const MAX_EXPANDED_LENGTH = 500_000;
 
 /** Standard L-system string rewriting: replace every symbol with its rule (symbols with no rule pass through unchanged). */
-export function expandLSystem(axiom: string, rules: Record<string, string>, iterations: number): string {
+export function expandLSystem(
+  axiom: string,
+  rules: Record<string, string>,
+  iterations: number,
+): string {
   if (!Number.isInteger(iterations) || iterations < 0 || iterations > MAX_ITERATIONS) {
-    throw new RangeError(`CanvasLoop: iterations must be an integer between 0 and ${MAX_ITERATIONS}.`);
+    throw new RangeError(
+      `CanvasLoop: iterations must be an integer between 0 and ${MAX_ITERATIONS}.`,
+    );
   }
 
   let current = axiom;
@@ -153,7 +163,10 @@ export const FOLIAGE_PRESETS: Record<string, LSystemSpec> = {
   },
 };
 
-export function generateFoliagePreset(name: string, overrides: Partial<LSystemSpec> = {}): FoliageResult {
+export function generateFoliagePreset(
+  name: string,
+  overrides: Partial<LSystemSpec> = {},
+): FoliageResult {
   const preset = FOLIAGE_PRESETS[name];
   if (!preset) {
     throw new Error(

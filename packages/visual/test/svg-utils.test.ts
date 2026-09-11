@@ -10,7 +10,11 @@ describe("normalizeSvgRoot", () => {
   });
 
   it("overrides existing width/height/viewBox rather than duplicating them", () => {
-    const result = normalizeSvgRoot('<svg width="999" height="999" viewBox="0 0 999 999"><rect/></svg>', 4, 4);
+    const result = normalizeSvgRoot(
+      '<svg width="999" height="999" viewBox="0 0 999 999"><rect/></svg>',
+      4,
+      4,
+    );
     expect(result.match(/width=/g)).toHaveLength(1);
     expect(result.match(/height=/g)).toHaveLength(1);
     expect(result).toContain('width="4"');
@@ -26,7 +30,11 @@ describe("normalizeSvgRoot", () => {
   });
 
   it("preserves the rest of the SVG content untouched", () => {
-    const result = normalizeSvgRoot('<svg><rect x="1" y="1" width="1" height="1" fill="#f00"/></svg>', 3, 3);
+    const result = normalizeSvgRoot(
+      '<svg><rect x="1" y="1" width="1" height="1" fill="#f00"/></svg>',
+      3,
+      3,
+    );
     expect(result).toContain('<rect x="1" y="1" width="1" height="1" fill="#f00"/>');
   });
 

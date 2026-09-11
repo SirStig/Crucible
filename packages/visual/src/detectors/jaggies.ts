@@ -47,7 +47,10 @@ function buildProfile(grid: PixelGrid, edge: EdgeName): (number | undefined)[] {
  * tread lengths (columns/rows between direction changes) — a regular
  * staircase has near-equal treads; jaggies don't.
  */
-function findDiagonalRuns(profile: ReadonlyArray<number | undefined>, minRunLength: number): DiagonalRun[] {
+function findDiagonalRuns(
+  profile: ReadonlyArray<number | undefined>,
+  minRunLength: number,
+): DiagonalRun[] {
   const runs: DiagonalRun[] = [];
   let segStart = 0;
 
@@ -77,7 +80,8 @@ function findDiagonalRuns(profile: ReadonlyArray<number | undefined>, minRunLeng
       const positions = stepPositions.slice(subRunStart, k);
       if (positions.length >= MIN_TREADS_FOR_JUDGMENT + 1) {
         const treadLengths: number[] = [];
-        for (let m = 1; m < positions.length; m++) treadLengths.push(positions[m]! - positions[m - 1]!);
+        for (let m = 1; m < positions.length; m++)
+          treadLengths.push(positions[m]! - positions[m - 1]!);
         const runLength = positions[positions.length - 1]! - positions[0]!;
         if (runLength >= minRunLength) {
           runs.push({ startIndex: positions[0]!, treadLengths });
@@ -132,8 +136,13 @@ export function detectJaggies(grid: PixelGrid, options: VisualGradeOptions = {})
         severity,
         message: `The ${edge} edge's diagonal step pattern is irregular (tread-length CV ${cv.toFixed(2)}, target < ${cvThreshold}) — reads as jaggy rather than a clean staircase.`,
         location,
-        data: { edge, treadLengths: run.treadLengths, coefficientOfVariation: Number(cv.toFixed(3)) },
-        fixHint: "Regularize the step pattern — pick one over/up ratio for this diagonal and hold it.",
+        data: {
+          edge,
+          treadLengths: run.treadLengths,
+          coefficientOfVariation: Number(cv.toFixed(3)),
+        },
+        fixHint:
+          "Regularize the step pattern — pick one over/up ratio for this diagonal and hold it.",
       });
     }
   }

@@ -12,9 +12,7 @@ describe("detectColorCount", () => {
   });
 
   it("clusters near-duplicate colors and flags the ratio", () => {
-    const grid = gridFrom([
-      ["#ff0000", "#00ff00", "#0000ff", "#fe0101", "#fd0202"],
-    ]);
+    const grid = gridFrom([["#ff0000", "#00ff00", "#0000ff", "#fe0101", "#fd0202"]]);
     const result = detectColorCount(grid);
     expect(result.uniqueColorCount).toBe(5);
     expect(result.effectivePaletteSize).toBe(3);

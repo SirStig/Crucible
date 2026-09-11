@@ -28,7 +28,12 @@ describe("renderSprite", () => {
     const result = renderSprite({ svg, gridWidth: 4, gridHeight: 4 });
     const at = (x: number, y: number): number[] => {
       const i = (y * 4 + x) * 4;
-      return [result.pixels[i]!, result.pixels[i + 1]!, result.pixels[i + 2]!, result.pixels[i + 3]!];
+      return [
+        result.pixels[i]!,
+        result.pixels[i + 1]!,
+        result.pixels[i + 2]!,
+        result.pixels[i + 3]!,
+      ];
     };
     expect(at(1, 2)).toEqual([255, 0, 0, 255]);
     expect(at(0, 0)).toEqual([0, 0, 0, 0]);
@@ -48,6 +53,8 @@ describe("renderSprite", () => {
 
   it("throws a clear error for malformed SVG markup", () => {
     const broken = `<svg xmlns="http://www.w3.org/2000/svg"><rect x="0" y="0" width="1" height="1" fill="#ff0000"`; // unclosed
-    expect(() => renderSprite({ svg: broken, gridWidth: 4, gridHeight: 4 })).toThrow(/could not parse SVG/);
+    expect(() => renderSprite({ svg: broken, gridWidth: 4, gridHeight: 4 })).toThrow(
+      /could not parse SVG/,
+    );
   });
 });

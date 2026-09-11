@@ -10,3 +10,12 @@ const DEFAULT_MAX_ITERATIONS = 5;
 export const proseSessionStore = new LoopController<string[]>({
   defaultMaxIterations: DEFAULT_MAX_ITERATIONS,
 });
+
+/**
+ * Separate instance backing `iterate_sprite` — a deliberately distinct
+ * store from `proseSessionStore` so a prose and a sprite loop can reuse the
+ * same `sessionId` string without colliding.
+ */
+export const spriteSessionStore = new LoopController<string[]>({
+  defaultMaxIterations: DEFAULT_MAX_ITERATIONS,
+});

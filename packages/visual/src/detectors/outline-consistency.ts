@@ -17,7 +17,10 @@ const DEFAULT_RATIO = 0.15;
  * pixels, which would need normal-direction walking and is a documented
  * gap, not an oversight.
  */
-export function detectOutlineConsistency(grid: PixelGrid, options: VisualGradeOptions = {}): Finding[] {
+export function detectOutlineConsistency(
+  grid: PixelGrid,
+  options: VisualGradeOptions = {},
+): Finding[] {
   const ratioThreshold = options.outlineInconsistencyRatio ?? DEFAULT_RATIO;
   const contour = grid.contourPixels();
   if (contour.length === 0) return [];
@@ -44,7 +47,9 @@ export function detectOutlineConsistency(grid: PixelGrid, options: VisualGradeOp
   }
   const dominantHex = colorCounts.get(dominantKey)!.hex;
 
-  const deviations = contour.filter((point) => rgbaKey(grid.colorAt(point.x, point.y)) !== dominantKey);
+  const deviations = contour.filter(
+    (point) => rgbaKey(grid.colorAt(point.x, point.y)) !== dominantKey,
+  );
   const mismatchRatio = deviations.length / contour.length;
   if (mismatchRatio < ratioThreshold) return [];
 
@@ -62,7 +67,8 @@ export function detectOutlineConsistency(grid: PixelGrid, options: VisualGradeOp
         deviatingPixelCount: deviations.length,
         ratio: Number(mismatchRatio.toFixed(3)),
       },
-      fixHint: "Match the outline color/presence around the rest of the silhouette, or give the exception a deliberate reason (e.g. a highlight break).",
+      fixHint:
+        "Match the outline color/presence around the rest of the silhouette, or give the exception a deliberate reason (e.g. a highlight break).",
     },
   ];
 }

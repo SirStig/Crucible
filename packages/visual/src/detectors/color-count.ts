@@ -48,7 +48,10 @@ export interface ColorCountResult {
  * above the cluster count, several colors are reading as the same shade
  * and could be collapsed without losing visible variety.
  */
-export function detectColorCount(grid: PixelGrid, options: VisualGradeOptions = {}): ColorCountResult {
+export function detectColorCount(
+  grid: PixelGrid,
+  options: VisualGradeOptions = {},
+): ColorCountResult {
   const distanceThreshold = options.colorClusterDistance ?? DEFAULT_CLUSTER_DISTANCE;
   const ratioThreshold = options.colorCountRatio ?? DEFAULT_RATIO;
 
@@ -71,7 +74,8 @@ export function detectColorCount(grid: PixelGrid, options: VisualGradeOptions = 
       severity,
       message: `${uniqueColorCount} unique colors cluster into only ${effectivePaletteSize} perceptually distinct group(s) — several read as near-duplicates.`,
       data: { uniqueColorCount, effectivePaletteSize, mergedGroups },
-      fixHint: "Collapse each group of near-identical colors down to one — the extras aren't adding visible palette variety.",
+      fixHint:
+        "Collapse each group of near-identical colors down to one — the extras aren't adding visible palette variety.",
     });
   }
 

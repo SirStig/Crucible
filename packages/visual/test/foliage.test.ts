@@ -1,5 +1,10 @@
 import { describe, expect, it } from "vitest";
-import { expandLSystem, generateFoliageSvg, generateFoliagePreset, FOLIAGE_PRESETS } from "../src/foliage.js";
+import {
+  expandLSystem,
+  generateFoliageSvg,
+  generateFoliagePreset,
+  FOLIAGE_PRESETS,
+} from "../src/foliage.js";
 import { renderSprite } from "../src/render.js";
 
 describe("expandLSystem", () => {
@@ -39,7 +44,13 @@ describe("generateFoliageSvg", () => {
   });
 
   it("is deterministic for the same spec", () => {
-    const spec = { axiom: "F", rules: { F: "F[+F][-F]F" }, iterations: 3, angleDegrees: 20, stepLength: 5 };
+    const spec = {
+      axiom: "F",
+      rules: { F: "F[+F][-F]F" },
+      iterations: 3,
+      angleDegrees: 20,
+      stepLength: 5,
+    };
     expect(generateFoliageSvg(spec)).toEqual(generateFoliageSvg(spec));
   });
 
@@ -51,13 +62,23 @@ describe("generateFoliageSvg", () => {
       angleDegrees: 30,
       stepLength: 3,
     });
-    const rendered = renderSprite({ svg: result.svg, gridWidth: result.width, gridHeight: result.height });
+    const rendered = renderSprite({
+      svg: result.svg,
+      gridWidth: result.width,
+      gridHeight: result.height,
+    });
     expect(rendered.width).toBe(result.width);
     expect(rendered.png.length).toBeGreaterThan(0);
   });
 
   it("draws nothing but still returns a minimal valid SVG for an axiom with no draw commands", () => {
-    const result = generateFoliageSvg({ axiom: "X", rules: {}, iterations: 3, angleDegrees: 20, stepLength: 5 });
+    const result = generateFoliageSvg({
+      axiom: "X",
+      rules: {},
+      iterations: 3,
+      angleDegrees: 20,
+      stepLength: 5,
+    });
     expect(result.width).toBeGreaterThanOrEqual(1);
     expect(result.height).toBeGreaterThanOrEqual(1);
   });

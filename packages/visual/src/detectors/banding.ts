@@ -140,7 +140,8 @@ export function detectBanding(grid: PixelGrid, options: VisualGradeOptions = {})
           message: `Two elongated, similarly-colored regions (${hexA} and ${hexB}) share a nearly straight border — reads as a flat shading band rather than following the form.`,
           location: { x: shapeA.region.minX, y: shapeA.region.minY },
           data: { colors: [hexA, hexB], borderSpread: spread },
-          fixHint: "Break the parallel run — vary the band's edge so it follows the silhouette instead of cutting a straight line.",
+          fixHint:
+            "Break the parallel run — vary the band's edge so it follows the silhouette instead of cutting a straight line.",
         });
       }
     }

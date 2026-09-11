@@ -17,7 +17,9 @@ describe("rgbaEqual / rgbaKey", () => {
 
 describe("redmeanDistance", () => {
   it("is zero for identical colors", () => {
-    expect(redmeanDistance({ r: 100, g: 100, b: 100, a: 255 }, { r: 100, g: 100, b: 100, a: 255 })).toBe(0);
+    expect(
+      redmeanDistance({ r: 100, g: 100, b: 100, a: 255 }, { r: 100, g: 100, b: 100, a: 255 }),
+    ).toBe(0);
   });
 
   it("is large for very different colors", () => {

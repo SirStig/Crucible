@@ -9,6 +9,8 @@ export const findingLocationSchema = z.object({
   charStart: z.number().int().optional(),
   charEnd: z.number().int().optional(),
   excerpt: z.string().optional(),
+  x: z.number().int().optional(),
+  y: z.number().int().optional(),
 });
 
 export const findingSchema = z.object({
@@ -87,3 +89,24 @@ export const styleProfileEntrySchema = z.object({
     })
     .optional(),
 });
+
+// --- Track A (visual) ---
+
+export const spriteInputShape = {
+  svg: z.string().min(1),
+  gridWidth: z.number().int().positive(),
+  gridHeight: z.number().int().positive(),
+};
+
+export const visualGradeOptionsSchema = z.object({
+  minRegionSizeForBanding: z.number().int().positive().optional(),
+  bandingElongationThreshold: z.number().positive().optional(),
+  minDiagonalRunForJaggies: z.number().int().positive().optional(),
+  jaggiesTreadCv: z.number().positive().optional(),
+  ditherMaxTransitionWidth: z.number().positive().optional(),
+  outlineInconsistencyRatio: z.number().min(0).max(1).optional(),
+  colorClusterDistance: z.number().positive().optional(),
+  colorCountRatio: z.number().positive().optional(),
+});
+
+export type VisualGradeOptionsInput = z.infer<typeof visualGradeOptionsSchema>;

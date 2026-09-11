@@ -5,6 +5,11 @@ import { registerIterateProseTool } from "../src/tools/iterate-prose.js";
 import { registerGetProseCraftRubricTool } from "../src/tools/get-prose-craft-rubric.js";
 import { registerGradeProseCraftTool } from "../src/tools/grade-prose-craft.js";
 import { registerGetStyleProfileTool } from "../src/tools/get-style-profile.js";
+import { registerRenderSpriteTool } from "../src/tools/render-sprite.js";
+import { registerGradeSpritePatternTool } from "../src/tools/grade-sprite-pattern.js";
+import { registerIterateSpriteTool } from "../src/tools/iterate-sprite.js";
+import { registerGenerateFoliageTool } from "../src/tools/generate-foliage.js";
+import { registerPackSpriteSheetTool } from "../src/tools/pack-sprite-sheet.js";
 import { createServer } from "../src/index.js";
 
 describe("MCP server tool registration", () => {
@@ -43,7 +48,42 @@ describe("MCP server tool registration", () => {
     expect(tool.description).toContain("FR18");
   });
 
-  it("createServer wires up all five tools without throwing or connecting a transport", () => {
+  it("registers render_sprite as an enabled tool with a description", () => {
+    const server = new McpServer({ name: "test", version: "0.0.0" });
+    const tool = registerRenderSpriteTool(server);
+    expect(tool.enabled).toBe(true);
+    expect(tool.description).toContain("grade_sprite_pattern");
+  });
+
+  it("registers grade_sprite_pattern as an enabled tool with a description", () => {
+    const server = new McpServer({ name: "test", version: "0.0.0" });
+    const tool = registerGradeSpritePatternTool(server);
+    expect(tool.enabled).toBe(true);
+    expect(tool.description).toContain("no-model-call");
+  });
+
+  it("registers iterate_sprite as an enabled tool with a description", () => {
+    const server = new McpServer({ name: "test", version: "0.0.0" });
+    const tool = registerIterateSpriteTool(server);
+    expect(tool.enabled).toBe(true);
+    expect(tool.description).toContain("sessionId");
+  });
+
+  it("registers generate_foliage as an enabled tool with a description", () => {
+    const server = new McpServer({ name: "test", version: "0.0.0" });
+    const tool = registerGenerateFoliageTool(server);
+    expect(tool.enabled).toBe(true);
+    expect(tool.description).toContain("Lindenmayer");
+  });
+
+  it("registers pack_sprite_sheet as an enabled tool with a description", () => {
+    const server = new McpServer({ name: "test", version: "0.0.0" });
+    const tool = registerPackSpriteSheetTool(server);
+    expect(tool.enabled).toBe(true);
+    expect(tool.description).toContain("sheet PNG");
+  });
+
+  it("createServer wires up all ten tools without throwing or connecting a transport", () => {
     expect(() => createServer()).not.toThrow();
     const server = createServer();
     expect(server.isConnected()).toBe(false);

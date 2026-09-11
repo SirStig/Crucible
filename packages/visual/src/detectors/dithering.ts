@@ -23,7 +23,8 @@ function collectDitheredPixels(grid: PixelGrid): Set<string> {
       const topRight = grid.colorAt(x + 1, y);
       const bottomLeft = grid.colorAt(x, y + 1);
       const bottomRight = grid.colorAt(x + 1, y + 1);
-      if (topLeft.a === 0 || topRight.a === 0 || bottomLeft.a === 0 || bottomRight.a === 0) continue;
+      if (topLeft.a === 0 || topRight.a === 0 || bottomLeft.a === 0 || bottomRight.a === 0)
+        continue;
 
       const diagonalsMatch = rgbaEqual(topLeft, bottomRight) && rgbaEqual(topRight, bottomLeft);
       const colorsDiffer = !rgbaEqual(topLeft, topRight);
@@ -39,7 +40,11 @@ function collectDitheredPixels(grid: PixelGrid): Set<string> {
 }
 
 /** 4-connected flood fill over dithered-pixel membership (not color equality — a dither cell alternates two colors). */
-function floodFillDitherRegions(dithered: Set<string>, width: number, height: number): DitherRegion[] {
+function floodFillDitherRegions(
+  dithered: Set<string>,
+  width: number,
+  height: number,
+): DitherRegion[] {
   const visited = new Set<string>();
   const regions: DitherRegion[] = [];
 
@@ -110,7 +115,8 @@ export function detectDithering(grid: PixelGrid, options: VisualGradeOptions = {
     const narrowWidth = Math.min(width, height);
     if (narrowWidth <= maxTransitionWidth) continue;
 
-    const severity: Severity = narrowWidth >= maxTransitionWidth * FAIL_WIDTH_MULTIPLIER ? "fail" : "warn";
+    const severity: Severity =
+      narrowWidth >= maxTransitionWidth * FAIL_WIDTH_MULTIPLIER ? "fail" : "warn";
     findings.push({
       id: "visual.dithering",
       ruleId: "dithering-overuse",
@@ -118,7 +124,8 @@ export function detectDithering(grid: PixelGrid, options: VisualGradeOptions = {
       message: `A dithered checkerboard region is ${narrowWidth}px thick in its narrow dimension (target ≤ ${maxTransitionWidth}px) — reads as covering a solid field rather than buffering a transition.`,
       location: { x: region.minX, y: region.minY },
       data: { width, height, area: region.size },
-      fixHint: "Commit to a flat color, or add an intermediate palette step, instead of dithering across an open area.",
+      fixHint:
+        "Commit to a flat color, or add an intermediate palette step, instead of dithering across an open area.",
     });
   }
 

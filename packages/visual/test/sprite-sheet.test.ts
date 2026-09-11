@@ -1,7 +1,10 @@
 import { describe, expect, it } from "vitest";
 import { packSpriteSheet } from "../src/sprite-sheet.js";
 
-function frame(color: string, name?: string): { svg: string; gridWidth: number; gridHeight: number; name?: string } {
+function frame(
+  color: string,
+  name?: string,
+): { svg: string; gridWidth: number; gridHeight: number; name?: string } {
   const base = {
     svg: `<svg xmlns="http://www.w3.org/2000/svg"><rect x="0" y="0" width="4" height="4" fill="${color}"/></svg>`,
     gridWidth: 4,
@@ -39,7 +42,9 @@ describe("packSpriteSheet", () => {
       gridHeight: 8,
       name: "oops",
     };
-    expect(() => packSpriteSheet([frame("#f00"), mismatched], 2)).toThrow(/must share the same grid size/);
+    expect(() => packSpriteSheet([frame("#f00"), mismatched], 2)).toThrow(
+      /must share the same grid size/,
+    );
   });
 
   it("throws for an empty frame list", () => {

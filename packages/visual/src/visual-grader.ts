@@ -1,5 +1,10 @@
 import type { Finding, GradeStatus } from "@canvasloop/core";
-import type { RenderedSprite, SpriteInput, VisualGradeOptions, VisualGradeResult } from "./types.js";
+import type {
+  RenderedSprite,
+  SpriteInput,
+  VisualGradeOptions,
+  VisualGradeResult,
+} from "./types.js";
 import { renderSprite } from "./render.js";
 import { PixelGrid } from "./pixel-grid.js";
 import { gradeStructure } from "./structural-grader.js";
@@ -74,7 +79,10 @@ export function gradeRenderedSprite(
 }
 
 /** Convenience wrapper: renders then grades in one call. */
-export function gradeSpritePattern(input: SpriteInput, options: VisualGradeOptions = {}): VisualGradeResult {
+export function gradeSpritePattern(
+  input: SpriteInput,
+  options: VisualGradeOptions = {},
+): VisualGradeResult {
   return gradeRenderedSprite(renderSprite(input), options);
 }
 

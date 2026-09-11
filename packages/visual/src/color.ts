@@ -25,9 +25,7 @@ export function redmeanDistance(a: RGBA, b: RGBA): number {
   const dR = a.r - b.r;
   const dG = a.g - b.g;
   const dB = a.b - b.b;
-  return Math.sqrt(
-    (2 + rMean / 256) * dR * dR + 4 * dG * dG + (2 + (255 - rMean) / 256) * dB * dB,
-  );
+  return Math.sqrt((2 + rMean / 256) * dR * dR + 4 * dG * dG + (2 + (255 - rMean) / 256) * dB * dB);
 }
 
 /** Formats opaque RGB as `#rrggbb` for human-readable findings (alpha dropped — findings only ever cover opaque pixels). */

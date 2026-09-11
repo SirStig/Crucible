@@ -5,14 +5,24 @@ import { registerIterateProseTool } from "./tools/iterate-prose.js";
 import { registerGetProseCraftRubricTool } from "./tools/get-prose-craft-rubric.js";
 import { registerGradeProseCraftTool } from "./tools/grade-prose-craft.js";
 import { registerGetStyleProfileTool } from "./tools/get-style-profile.js";
+import { registerRenderSpriteTool } from "./tools/render-sprite.js";
+import { registerGradeSpritePatternTool } from "./tools/grade-sprite-pattern.js";
+import { registerIterateSpriteTool } from "./tools/iterate-sprite.js";
+import { registerGenerateFoliageTool } from "./tools/generate-foliage.js";
+import { registerPackSpriteSheetTool } from "./tools/pack-sprite-sheet.js";
 
+/**
+ * One shared server for both tracks, per the TRD's own architecture note
+ * ("one MCP server... shared shell, track-specific tools") — this used to
+ * be named/described as prose-only back when Track A didn't exist yet.
+ */
 export function createServer(): McpServer {
   const server = new McpServer({
-    name: "canvasloop-prose",
+    name: "canvasloop",
     version: "0.1.0",
-    title: "CanvasLoop — Prose Craft Loop",
+    title: "CanvasLoop",
     description:
-      "Tier 1 (deterministic, no model calls) grading for game dialogue and UI prose — AI-tell phrases, templated constructions, sentence rhythm, said-bookisms, adjacent-line redundancy, document-wide word repetition, and FR18 style-profile-aware vocabulary checking — plus Tier 2 narrative-craft rubric items the calling agent applies with its own judgment.",
+      "Grounded generate-check-fix loops for AI-agent game content. Track B (prose): Tier 1 deterministic grading for dialogue/UI text (AI-tell phrases, templated constructions, sentence rhythm, said-bookisms, redundancy, word repetition, style-profile vocabulary) plus Tier 2 narrative-craft rubric items the calling agent applies itself. Track A (visual): renders sprite SVG to an exact pixel grid and grades it against a deterministic pixel-art craft rubric (banding, jaggies, dithering overuse, outline inconsistency, too-many-similar-colors), plus an L-system foliage generator and a sprite-sheet layout helper.",
   });
 
   registerGradeProsePatternTool(server);
@@ -20,6 +30,12 @@ export function createServer(): McpServer {
   registerGetProseCraftRubricTool(server);
   registerGradeProseCraftTool(server);
   registerGetStyleProfileTool(server);
+
+  registerRenderSpriteTool(server);
+  registerGradeSpritePatternTool(server);
+  registerIterateSpriteTool(server);
+  registerGenerateFoliageTool(server);
+  registerPackSpriteSheetTool(server);
 
   return server;
 }

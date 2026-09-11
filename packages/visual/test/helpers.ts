@@ -25,7 +25,11 @@ export function gridFrom(rows: Cell[][]): PixelGrid {
 }
 
 /** Builds an `n`x`n` grid of rows/columns from a fill function, for larger procedurally-defined fixtures. */
-export function gridFromFn(width: number, height: number, fill: (x: number, y: number) => Cell): PixelGrid {
+export function gridFromFn(
+  width: number,
+  height: number,
+  fill: (x: number, y: number) => Cell,
+): PixelGrid {
   const rows: Cell[][] = [];
   for (let y = 0; y < height; y++) {
     const row: Cell[] = [];
