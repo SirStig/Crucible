@@ -73,4 +73,23 @@ describe("runVisualGradeCommand", () => {
     });
     expect(strict.output).not.toContain("banding");
   });
+
+  it("flags an unattached fragment by default and clears it with a stricter maxAttachmentGap", () => {
+    const path = writeSvg(
+      "post-with-gap.svg",
+      `<svg xmlns="http://www.w3.org/2000/svg">
+        <rect x="0" y="0" width="6" height="6" fill="#4488cc"/>
+        <rect x="8" y="0" width="1" height="1" fill="#4488cc"/>
+      </svg>`,
+    );
+    const withGap = runVisualGradeCommand(path, { gridWidth: 20, gridHeight: 20 });
+    expect(withGap.output).toContain("unattached-fragment");
+
+    const strict = runVisualGradeCommand(path, {
+      gridWidth: 20,
+      gridHeight: 20,
+      maxAttachmentGap: 1,
+    });
+    expect(strict.output).not.toContain("unattached-fragment");
+  });
 });

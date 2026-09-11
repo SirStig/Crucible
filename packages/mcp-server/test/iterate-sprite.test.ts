@@ -90,6 +90,47 @@ describe("iterateSpriteHandler", () => {
     expect(third.structuredContent.iteration).toBe(3);
   });
 
+  it("folds Tier 2 craftFindings into this iteration's grade and status", () => {
+    const clean = iterateSpriteHandler({
+      sessionId: "sprite-session-craft-pass",
+      svg: CLEAN_SVG,
+      gridWidth: 4,
+      gridHeight: 4,
+    });
+    expect(clean.structuredContent.status).toBe("pass");
+    expect(clean.structuredContent.grade.findings).toEqual([]);
+
+    const withCraft = iterateSpriteHandler({
+      sessionId: "sprite-session-craft-fail",
+      svg: CLEAN_SVG,
+      gridWidth: 4,
+      gridHeight: 4,
+      craftFindings: [
+        {
+          id: "visual.craft-rubric",
+          ruleId: "pillow-shading",
+          severity: "fail",
+          message: "Pillow shading: every post is lit from its own center, not one direction.",
+          fixHint: "Pick one light-source direction and re-place every highlight/shadow.",
+        },
+      ],
+    });
+    expect(withCraft.structuredContent.status).toBe("fail");
+    expect(withCraft.structuredContent.grade.findings).toHaveLength(1);
+    expect(withCraft.structuredContent.grade.findings[0]?.ruleId).toBe("pillow-shading");
+  });
+
+  it("does not force a fail from an empty craftFindings array", () => {
+    const result = iterateSpriteHandler({
+      sessionId: "sprite-session-craft-empty",
+      svg: CLEAN_SVG,
+      gridWidth: 4,
+      gridHeight: 4,
+      craftFindings: [],
+    });
+    expect(result.structuredContent.status).toBe("pass");
+  });
+
   it("keeps independent sessions from interfering, and does not collide with a prose session of the same id", () => {
     const a = iterateSpriteHandler({
       sessionId: "shared-id",

@@ -8,6 +8,8 @@ import { registerGetStyleProfileTool } from "./tools/get-style-profile.js";
 import { registerRenderSpriteTool } from "./tools/render-sprite.js";
 import { registerGradeSpritePatternTool } from "./tools/grade-sprite-pattern.js";
 import { registerIterateSpriteTool } from "./tools/iterate-sprite.js";
+import { registerGetSpriteCraftRubricTool } from "./tools/get-sprite-craft-rubric.js";
+import { registerGradeSpriteCraftTool } from "./tools/grade-sprite-craft.js";
 import { registerGenerateFoliageTool } from "./tools/generate-foliage.js";
 import { registerPackSpriteSheetTool } from "./tools/pack-sprite-sheet.js";
 
@@ -22,7 +24,7 @@ export function createServer(): McpServer {
     version: "0.1.0",
     title: "CanvasLoop",
     description:
-      "Grounded generate-check-fix loops for AI-agent game content. Track B (prose): Tier 1 deterministic grading for dialogue/UI text (AI-tell phrases, templated constructions, sentence rhythm, said-bookisms, redundancy, word repetition, style-profile vocabulary) plus Tier 2 narrative-craft rubric items the calling agent applies itself. Track A (visual): renders sprite SVG to an exact pixel grid and grades it against a deterministic pixel-art craft rubric (banding, jaggies, dithering overuse, outline inconsistency, too-many-similar-colors), plus an L-system foliage generator and a sprite-sheet layout helper.",
+      "Grounded generate-check-fix loops for AI-agent game content. Track B (prose): Tier 1 deterministic grading for dialogue/UI text (AI-tell phrases, templated constructions, sentence rhythm, said-bookisms, redundancy, word repetition, style-profile vocabulary) plus Tier 2 narrative-craft rubric items the calling agent applies itself. Track A (visual): renders sprite SVG to an exact pixel grid and grades it against a deterministic pixel-art craft rubric (banding, jaggies, dithering overuse, outline inconsistency, too-many-similar-colors, unattached fragments, unintended holes), plus Tier 2 visual-craft rubric items (pillow shading, light-source consistency, hue shifting, selective outlining, silhouette readability, value contrast, shape/proportion plausibility) the calling agent applies itself against the rendered image, plus an L-system foliage generator and a sprite-sheet layout helper.",
   });
 
   registerGradeProsePatternTool(server);
@@ -34,6 +36,8 @@ export function createServer(): McpServer {
   registerRenderSpriteTool(server);
   registerGradeSpritePatternTool(server);
   registerIterateSpriteTool(server);
+  registerGetSpriteCraftRubricTool(server);
+  registerGradeSpriteCraftTool(server);
   registerGenerateFoliageTool(server);
   registerPackSpriteSheetTool(server);
 

@@ -41,6 +41,12 @@ export interface VisualGradeOptions {
   colorClusterDistance?: number | undefined;
   /** unique/effective palette-size ratio above which "too many similar colors" fires. Default 1.5. */
   colorCountRatio?: number | undefined;
+  /** A stray component smaller than this fraction of the main body's pixel count is a candidate "unattached fragment." Default 0.15. */
+  maxFragmentSizeRatio?: number | undefined;
+  /** A stray component farther than this (Chebyshev distance, px) from the main body isn't flagged — likely an intentional separate effect/decoration. Default 4. */
+  maxAttachmentGap?: number | undefined;
+  /** An enclosed transparent region larger than this (px) isn't flagged — likely an intentional feature (a window), not a stray gap. Default 3. */
+  maxUnintendedHoleSize?: number | undefined;
 }
 
 export interface VisualGradeSummary {

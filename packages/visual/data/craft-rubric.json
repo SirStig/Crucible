@@ -1,0 +1,114 @@
+{
+  "version": "2026.1",
+  "updated": "2026-09-10",
+  "notes": "Tier 2 visual-craft rubric. Like Track B's Tier 1/Tier 2 split, Tier 1 (structural-grader.ts + the 5 deterministic detectors) catches geometric/pixel-pattern problems with no model call. It cannot tell whether a sprite is actually GOOD — well-shaded, well-lit, readable, using its palette on purpose — only whether it's clean. Tier 2 items here are genuine craft judgment calls: get_sprite_craft_rubric hands the calling agent one named item's definition; the agent looks at the rendered sprite (render_sprite/grade_sprite_pattern already return an image content block) and applies the rubric itself, then reports a verdict through grade_sprite_craft, which structures it into a Finding. No model call is embedded in the server, matching Track B's Tier 2 architecture and keeping CanvasLoop free/self-hostable.",
+  "sources": [
+    {
+      "name": "Derek Yu, \"Pixel Art Tutorial\" (widely-cited pixel-art craft guide covering light-source choice, hue shifting, and selective outlining)"
+    },
+    {
+      "name": "Frank Thomas & Ollie Johnston, \"The Illusion of Life: Disney Animation\" (Disney Editions, 1981) — the silhouette/staging principle"
+    },
+    {
+      "name": "James Gurney, \"Color and Light: A Guide for the Realist Painter\" (Andrews McMeel, 2010) — value vs. hue as the primary driver of form and depth"
+    }
+  ],
+  "rubric": [
+    {
+      "id": "pillow-shading",
+      "name": "Pillow shading",
+      "definition": "Shading that darkens or lightens a form based on distance from its own edges or center — like an inflated pillow — rather than a consistent light-source direction. Every rounded or faceted part gets its own independent highlight in the middle and shadow at its edges, regardless of which way that part actually faces relative to a light source.",
+      "howToCheck": "Look at the rendered sprite. Find the single brightest highlight and the single darkest shadow. Do highlights consistently fall on the same relative side of every rounded/faceted form (e.g. always upper-left) with shadow on the opposite side, or does each shape have its own halo — light in the middle, dark symmetrically at both edges — independent of orientation? If a cylindrical or curved part is brightest in its center and dark on all surrounding edges rather than one side, that's pillow shading.",
+      "examples": {
+        "bad": [
+          "A barrel shaded with a bright vertical band down its center and dark bands at both the left and right edges, with no single implied light direction."
+        ],
+        "good": [
+          "A barrel lit from the upper-left: highlight concentrated on the upper-left curve, shadow on the lower-right curve, midtone everywhere else."
+        ]
+      },
+      "fixHint": "Pick one light-source direction for the whole sprite and re-place every highlight/shadow consistent with it — light should hit one side of each form, not radiate symmetrically from its own center.",
+      "source": {
+        "name": "Derek Yu, \"Pixel Art Tutorial\""
+      }
+    },
+    {
+      "id": "light-source-consistency",
+      "name": "Cross-sprite light-source consistency",
+      "definition": "Multiple sprites meant to appear in the same scene (tileset pieces, scenery objects, a character plus its environment) should share one implied light direction. Mixing light directions across pieces that appear together breaks the illusion of a single, coherently lit space.",
+      "howToCheck": "Only applicable when comparing more than one sprite from the same scene or tileset — a single sprite in isolation can't fail this on its own (see pillow-shading for that case). Compare where each sprite's highlights and shadows fall: do they agree on one light direction, or does one piece read as lit from the left while another reads as lit from directly above?",
+      "fixHint": "Re-derive every sprite's highlight/shadow placement from one light direction chosen for the whole scene or tileset, not decided independently per sprite.",
+      "note": "Especially relevant for scenery/tileset pieces meant to sit next to each other in the same map, not just single character sprites.",
+      "source": {
+        "name": "Derek Yu, \"Pixel Art Tutorial\""
+      }
+    },
+    {
+      "id": "hue-shifting",
+      "name": "Hue shifting in shadow/highlight",
+      "definition": "Believable shadows aren't the base color with black mixed in — they shift hue toward a cooler, often more saturated tone (a warm brown shifts toward violet/blue in shadow). Highlights shift toward a warmer, lighter tone (toward yellow) rather than flat white. Shading with only black/white/gray mixed straight into the base color reads as muddy and flat.",
+      "howToCheck": "Sample the shadow tone against the base color. Is it just darker and grayer/duller (mixed toward black), or does it visibly shift hue toward blue/violet/cooler? Same check on the highlight toward warm/yellow rather than plain white. No hue movement at all — pure lightness change — is the failure case.",
+      "examples": {
+        "bad": [
+          "A red brick shaded only by mixing black into the red, producing a dull brownish-gray shadow with the same hue as the base."
+        ],
+        "good": ["A red brick's shadow shifts toward a deep violet-red rather than brownish-gray."]
+      },
+      "fixHint": "Build shadow colors by rotating hue toward cool/blue (and increasing saturation) instead of mixing in black; build highlight colors by rotating toward warm/yellow instead of mixing in white.",
+      "source": {
+        "name": "Derek Yu, \"Pixel Art Tutorial\""
+      }
+    },
+    {
+      "id": "selective-outlining",
+      "name": "Selective outlining",
+      "definition": "Outline color shouldn't be one flat color (usually pure black) around the entire silhouette. It should vary — a darker shade of the adjacent fill where that part of the form is in shadow, a lighter/less-saturated tone where it catches a highlight — so the outline reads as part of the form's own lighting instead of a uniform coloring-book border.",
+      "howToCheck": "Sample outline pixels at a few points around the sprite's edge, on both the highlight side and the shadow side. Are they all identical (typically pure black everywhere), or does the outline color shift to a darkened version of whatever it borders? A single uniform outline color regardless of local lighting is the failure case.",
+      "fixHint": "Replace the flat outline color with darker-shaded versions of each region's own fill color, keeping the darkest/most neutral outline for the side facing away from the light.",
+      "source": {
+        "name": "Derek Yu, \"Pixel Art Tutorial\""
+      }
+    },
+    {
+      "id": "silhouette-readability",
+      "name": "Silhouette readability",
+      "definition": "The sprite's solid silhouette alone — as if filled entirely black — should be immediately identifiable and visually distinct from other objects. This is the animation and character-design \"silhouette test.\"",
+      "howToCheck": "Picture (or actually render) the sprite's opaque region filled solid black, with all internal color/shading removed. Is the resulting shape distinct, readable, and specific to this object, or does it read as an ambiguous blob that could be almost anything? Watch especially for parts that overlap into one merged mass and lose their individual readability.",
+      "fixHint": "Adjust the underlying shape or pose so the silhouette alone is distinct — separate overlapping parts, exaggerate the features that define the object, avoid a symmetric blob outline.",
+      "source": {
+        "name": "Frank Thomas & Ollie Johnston, \"The Illusion of Life: Disney Animation\""
+      }
+    },
+    {
+      "id": "value-contrast-range",
+      "name": "Value contrast / range",
+      "definition": "Form and depth are read primarily through value — lightness and darkness — not hue. A sprite that varies mainly in hue at a roughly constant lightness reads as flat and lifeless even with many colors in its palette.",
+      "howToCheck": "Picture (or actually convert) the sprite in grayscale. Does it still show clear light/mid/dark separation between its forms, or does most of it collapse to roughly the same gray value once hue is removed? A flat, low-contrast grayscale version means the sprite is leaning on hue variety instead of real value contrast.",
+      "fixHint": "Push the lightest highlight lighter and the darkest shadow darker — widen the value range — independent of hue, so the sprite still reads clearly with color removed.",
+      "source": {
+        "name": "James Gurney, \"Color and Light: A Guide for the Realist Painter\""
+      }
+    },
+    {
+      "id": "shape-proportion-plausibility",
+      "name": "Shape / proportion plausibility",
+      "definition": "The object's proportions and construction should look believable for what it's meant to represent — limbs, supports, or repeated parts the same length/size where they should match, no part drawn at a scale that reads as broken or accidental, nothing that looks like it's missing a piece it obviously needs.",
+      "howToCheck": "Compare parts that should match (two legs, two support posts, both sides of a symmetric object) — are they actually the same size/shape, or does one look shorter, thinner, or offset in a way that reads as a mistake rather than a style choice? Does any part look disproportionately large/small relative to the rest of the object in a way that breaks the read, rather than being a deliberate stylization?",
+      "examples": {
+        "bad": [
+          "A table with one leg visibly shorter than the other three.",
+          "A character with one arm twice the width of the other for no stylistic reason."
+        ],
+        "good": [
+          "A table with all four legs matching in length and thickness.",
+          "A stylized character with intentionally oversized hands, consistent across both hands."
+        ]
+      },
+      "fixHint": "Re-measure the mismatched parts against each other and correct the one that's off, or confirm the asymmetry is a deliberate stylistic choice rather than an oversight.",
+      "note": "General figure/object-proportion craft principle (e.g. Andrew Loomis' figure-proportion method for character work) applied here to pixel-art objects generally, not a single pixel-art-specific citation — the same 'a form must read correctly' idea the lighting-focused items above apply to shading, applied here to shape instead.",
+      "source": {
+        "name": "Andrew Loomis, \"Figure Drawing for All It's Worth\" (proportion/construction method)"
+      }
+    }
+  ]
+}

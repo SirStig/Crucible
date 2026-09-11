@@ -8,6 +8,8 @@ import { registerGetStyleProfileTool } from "../src/tools/get-style-profile.js";
 import { registerRenderSpriteTool } from "../src/tools/render-sprite.js";
 import { registerGradeSpritePatternTool } from "../src/tools/grade-sprite-pattern.js";
 import { registerIterateSpriteTool } from "../src/tools/iterate-sprite.js";
+import { registerGetSpriteCraftRubricTool } from "../src/tools/get-sprite-craft-rubric.js";
+import { registerGradeSpriteCraftTool } from "../src/tools/grade-sprite-craft.js";
 import { registerGenerateFoliageTool } from "../src/tools/generate-foliage.js";
 import { registerPackSpriteSheetTool } from "../src/tools/pack-sprite-sheet.js";
 import { createServer } from "../src/index.js";
@@ -69,6 +71,20 @@ describe("MCP server tool registration", () => {
     expect(tool.description).toContain("sessionId");
   });
 
+  it("registers get_sprite_craft_rubric as an enabled tool with a description", () => {
+    const server = new McpServer({ name: "test", version: "0.0.0" });
+    const tool = registerGetSpriteCraftRubricTool(server);
+    expect(tool.enabled).toBe(true);
+    expect(tool.description).toContain("grade_sprite_craft");
+  });
+
+  it("registers grade_sprite_craft as an enabled tool with a description", () => {
+    const server = new McpServer({ name: "test", version: "0.0.0" });
+    const tool = registerGradeSpriteCraftTool(server);
+    expect(tool.enabled).toBe(true);
+    expect(tool.description).toContain("get_sprite_craft_rubric");
+  });
+
   it("registers generate_foliage as an enabled tool with a description", () => {
     const server = new McpServer({ name: "test", version: "0.0.0" });
     const tool = registerGenerateFoliageTool(server);
@@ -83,7 +99,7 @@ describe("MCP server tool registration", () => {
     expect(tool.description).toContain("sheet PNG");
   });
 
-  it("createServer wires up all ten tools without throwing or connecting a transport", () => {
+  it("createServer wires up all twelve tools without throwing or connecting a transport", () => {
     expect(() => createServer()).not.toThrow();
     const server = createServer();
     expect(server.isConnected()).toBe(false);

@@ -42,6 +42,28 @@ describe("gradeSpritePattern", () => {
     expect(ruleIds).toContain("content-touches-canvas-edge");
   });
 
+  it("surfaces an unattached fragment through the full pipeline", () => {
+    const svg = `<svg xmlns="http://www.w3.org/2000/svg">
+      <rect x="0" y="0" width="6" height="6" fill="#4488cc"/>
+      <rect x="8" y="0" width="1" height="1" fill="#4488cc"/>
+    </svg>`;
+    const result = gradeSpritePattern({ svg, gridWidth: 20, gridHeight: 20 });
+    expect(result.findings.map((f) => f.ruleId)).toContain("unattached-fragment");
+  });
+
+  it("surfaces an unintended hole through the full pipeline", () => {
+    // A 3x3 ring built from four strips (no fill in the middle), leaving a
+    // literal 1px transparent gap sealed in the center.
+    const svg = `<svg xmlns="http://www.w3.org/2000/svg">
+      <rect x="5" y="5" width="3" height="1" fill="#22aa66"/>
+      <rect x="5" y="7" width="3" height="1" fill="#22aa66"/>
+      <rect x="5" y="6" width="1" height="1" fill="#22aa66"/>
+      <rect x="7" y="6" width="1" height="1" fill="#22aa66"/>
+    </svg>`;
+    const result = gradeSpritePattern({ svg, gridWidth: 20, gridHeight: 20 });
+    expect(result.findings.map((f) => f.ruleId)).toContain("unintended-hole");
+  });
+
   it("passes options through to the underlying detectors", () => {
     const svg = `<svg xmlns="http://www.w3.org/2000/svg">
       <rect x="2" y="0" width="20" height="4" fill="#cc4444"/>

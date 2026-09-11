@@ -76,6 +76,62 @@ describe("PixelGrid.floodFillRegions", () => {
   });
 });
 
+describe("PixelGrid.connectedComponents", () => {
+  it("merges differently-colored touching pixels into one component", () => {
+    const grid = gridFrom([["#ff0000", "#00ff00"]]);
+    const components = grid.connectedComponents();
+    expect(components).toHaveLength(1);
+    expect(components[0]?.pixels).toHaveLength(2);
+  });
+
+  it("connects diagonally-touching pixels (8-connectivity)", () => {
+    const grid = gridFrom([
+      ["#ff0000", null],
+      [null, "#00ff00"],
+    ]);
+    const components = grid.connectedComponents();
+    expect(components).toHaveLength(1);
+  });
+
+  it("keeps genuinely separate blobs apart", () => {
+    const grid = gridFrom([["#ff0000", null, null, "#00ff00"]]);
+    const components = grid.connectedComponents();
+    expect(components).toHaveLength(2);
+  });
+});
+
+describe("PixelGrid.enclosedTransparentRegions", () => {
+  it("does not treat border-reachable transparent pixels as enclosed", () => {
+    const grid = gridFrom([
+      ["#000", "#000"],
+      [null, null],
+    ]);
+    expect(grid.enclosedTransparentRegions()).toEqual([]);
+  });
+
+  it("finds a single transparent pixel fully sealed inside a ring", () => {
+    const grid = gridFrom([
+      ["#000", "#000", "#000"],
+      ["#000", null, "#000"],
+      ["#000", "#000", "#000"],
+    ]);
+    const holes = grid.enclosedTransparentRegions();
+    expect(holes).toHaveLength(1);
+    expect(holes[0]?.pixels).toHaveLength(1);
+  });
+
+  it("groups a multi-pixel enclosed hole into one component", () => {
+    const grid = gridFrom([
+      ["#000", "#000", "#000", "#000"],
+      ["#000", null, null, "#000"],
+      ["#000", "#000", "#000", "#000"],
+    ]);
+    const holes = grid.enclosedTransparentRegions();
+    expect(holes).toHaveLength(1);
+    expect(holes[0]?.pixels).toHaveLength(2);
+  });
+});
+
 describe("PixelGrid.contourPixels", () => {
   it("excludes the interior of a solid block", () => {
     const grid = gridFrom([

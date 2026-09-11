@@ -194,6 +194,21 @@ export function createProgram(): Command {
       "unique/effective palette-size ratio above which too-many-similar-colors fires (default 1.5)",
       parsePositiveFloat,
     )
+    .option(
+      "--max-fragment-size-ratio <n>",
+      "a stray component smaller than this fraction of the main body's pixel count is a candidate unattached fragment (default 0.15)",
+      parsePositiveFloat,
+    )
+    .option(
+      "--max-attachment-gap <n>",
+      "a stray component farther than this (px) from the main body isn't flagged as unattached (default 4)",
+      parsePositiveFloat,
+    )
+    .option(
+      "--max-unintended-hole-size <n>",
+      "an enclosed transparent region larger than this (px) isn't flagged as an unintended hole (default 3)",
+      parsePositiveInt,
+    )
     .action((file: string, options: VisualGradeCommandOptions) => {
       const { exitCode, output } = runVisualGradeCommand(file, options);
       console.log(output);

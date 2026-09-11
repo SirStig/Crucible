@@ -107,6 +107,9 @@ export const visualGradeOptionsSchema = z.object({
   outlineInconsistencyRatio: z.number().min(0).max(1).optional(),
   colorClusterDistance: z.number().positive().optional(),
   colorCountRatio: z.number().positive().optional(),
+  maxFragmentSizeRatio: z.number().min(0).max(1).optional(),
+  maxAttachmentGap: z.number().min(0).optional(),
+  maxUnintendedHoleSize: z.number().int().positive().optional(),
 });
 
 export type VisualGradeOptionsInput = z.infer<typeof visualGradeOptionsSchema>;

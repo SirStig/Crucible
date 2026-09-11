@@ -1,5 +1,6 @@
 import { z } from "zod";
 import type { McpServer, RegisteredTool } from "@modelcontextprotocol/sdk/server/mcp.js";
+import type { Finding, GradeStatus } from "@canvasloop/core";
 import { diffLines } from "@canvasloop/core";
 import { renderSprite, gradeRenderedSprite } from "@canvasloop/visual";
 import {
@@ -7,6 +8,7 @@ import {
   visualGradeOptionsSchema,
   gradeResultSchema,
   lineDiffSchema,
+  findingSchema,
   type VisualGradeOptionsInput,
 } from "../schemas.js";
 import { spriteSessionStore } from "../session-store.js";
@@ -16,6 +18,11 @@ const inputShape = {
   ...spriteInputShape,
   maxIterations: z.number().int().positive().optional(),
   options: visualGradeOptionsSchema.optional(),
+  // Connects Tier 1 and Tier 2 into one loop: pass the Finding(s) returned
+  // by grade_sprite_craft for this same render, and they're folded into
+  // this iteration's grade/status/history alongside the Tier 1 pixel-pattern
+  // findings — one session, one status, instead of two disconnected tool flows.
+  craftFindings: z.array(findingSchema).optional(),
 };
 
 const outputShape = {
@@ -34,6 +41,13 @@ export interface IterateSpriteInput {
   gridHeight: number;
   maxIterations?: number | undefined;
   options?: VisualGradeOptionsInput | undefined;
+  craftFindings?: Finding[] | undefined;
+}
+
+function combinedStatus(findings: readonly Finding[]): GradeStatus {
+  if (findings.some((finding) => finding.severity === "fail")) return "fail";
+  if (findings.some((finding) => finding.severity === "warn")) return "warn";
+  return "pass";
 }
 
 /**
@@ -45,7 +59,18 @@ export interface IterateSpriteInput {
  */
 export function iterateSpriteHandler(input: IterateSpriteInput) {
   const rendered = renderSprite(input);
-  const grade = gradeRenderedSprite(rendered, input.options ?? {});
+  const patternGrade = gradeRenderedSprite(rendered, input.options ?? {});
+  const craftFindings = input.craftFindings ?? [];
+
+  const grade =
+    craftFindings.length === 0
+      ? patternGrade
+      : {
+          ...patternGrade,
+          findings: [...patternGrade.findings, ...craftFindings],
+          status: combinedStatus([...patternGrade.findings, ...craftFindings]),
+        };
+
   const svgLines = input.svg.split(/\r\n|\r|\n/);
 
   const previous = spriteSessionStore.getSession(input.sessionId)?.iterations.at(-1)?.input;
@@ -80,7 +105,7 @@ export function registerIterateSpriteTool(server: McpServer): RegisteredTool {
     {
       title: "Track sprite revision iterations for one editing session",
       description:
-        "Grades a sprite with the same Tier 1 pixel-art rubric as grade_sprite_pattern, tracks iteration count per sessionId (in-memory, for this server process's lifetime only), diffs the current SVG source lines against the previous iteration's, and enforces a max-iteration cutoff (default 5, fixed by the first call for a given session).",
+        "Grades a sprite with the same Tier 1 pixel-art rubric as grade_sprite_pattern, tracks iteration count per sessionId (in-memory, for this server process's lifetime only), diffs the current SVG source lines against the previous iteration's, and enforces a max-iteration cutoff (default 5, fixed by the first call for a given session). Optionally accepts craftFindings — the Finding(s) grade_sprite_craft returned for this same render — and folds them into this iteration's grade and status, so Tier 1 and Tier 2 results live in one session instead of two disconnected checks.",
       inputSchema: inputShape,
       outputSchema: outputShape,
     },

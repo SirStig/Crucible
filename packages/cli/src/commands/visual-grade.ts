@@ -15,6 +15,9 @@ export interface VisualGradeCommandOptions {
   outlineInconsistencyRatio?: number;
   colorClusterDistance?: number;
   colorCountRatio?: number;
+  maxFragmentSizeRatio?: number;
+  maxAttachmentGap?: number;
+  maxUnintendedHoleSize?: number;
 }
 
 export interface VisualGradeCommandResult {
@@ -45,6 +48,15 @@ function toVisualGradeOptions(options: VisualGradeCommandOptions): VisualGradeOp
     gradeOptions.colorClusterDistance = options.colorClusterDistance;
   }
   if (options.colorCountRatio !== undefined) gradeOptions.colorCountRatio = options.colorCountRatio;
+  if (options.maxFragmentSizeRatio !== undefined) {
+    gradeOptions.maxFragmentSizeRatio = options.maxFragmentSizeRatio;
+  }
+  if (options.maxAttachmentGap !== undefined) {
+    gradeOptions.maxAttachmentGap = options.maxAttachmentGap;
+  }
+  if (options.maxUnintendedHoleSize !== undefined) {
+    gradeOptions.maxUnintendedHoleSize = options.maxUnintendedHoleSize;
+  }
   return gradeOptions;
 }
 

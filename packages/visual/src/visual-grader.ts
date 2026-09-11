@@ -13,6 +13,8 @@ import { detectJaggies } from "./detectors/jaggies.js";
 import { detectDithering } from "./detectors/dithering.js";
 import { detectOutlineConsistency } from "./detectors/outline-consistency.js";
 import { detectColorCount } from "./detectors/color-count.js";
+import { detectDisconnectedFragments } from "./detectors/attachment.js";
+import { detectEnclosedHoles } from "./detectors/enclosed-holes.js";
 
 /**
  * Grades an already-rendered sprite (no re-render) — the entry point tool
@@ -61,6 +63,8 @@ export function gradeRenderedSprite(
     ...detectDithering(grid, options),
     ...detectOutlineConsistency(grid, options),
     ...colorCount.findings,
+    ...detectDisconnectedFragments(grid, options),
+    ...detectEnclosedHoles(grid, options),
   ];
 
   return {
