@@ -1,7 +1,12 @@
 import { describe, expect, it } from "vitest";
+import { fileURLToPath } from "node:url";
 import { gradeProsePattern } from "../src/pattern-grader.js";
 import { parseDialogueFile } from "../src/parse.js";
 import { MESSY_SCENE, CLEAN_SCENE } from "./fixtures/sample-scene.js";
+
+const EXAMPLE_PROFILES = fileURLToPath(
+  new URL("../data/example-style-profiles.json", import.meta.url),
+);
 
 describe("gradeProsePattern", () => {
   it("passes cleanly on empty input", () => {
@@ -56,5 +61,33 @@ describe("gradeProsePattern", () => {
     const strict = gradeProsePattern(lines, { redundancyThreshold: 0.1 });
     expect(lenient.findings.some((f) => f.ruleId === "adjacent-line-redundancy")).toBe(false);
     expect(strict.findings.some((f) => f.ruleId === "adjacent-line-redundancy")).toBe(true);
+  });
+
+  it("does nothing style-profile-related when no profile is supplied", () => {
+    const result = gradeProsePattern(parseDialogueFile(CLEAN_SCENE));
+    expect(result.summary.styleProfileApplied).toBeNull();
+  });
+
+  it("applies a style profile's vocabulary and rhythm overrides when supplied", () => {
+    const lines = parseDialogueFile("Marta: Please, won't you reconsider?");
+    const result = gradeProsePattern(lines, {
+      styleProfilesFile: EXAMPLE_PROFILES,
+      styleProfileId: "gruff-terse",
+    });
+    expect(result.summary.styleProfileApplied).toBe("gruff-terse");
+    expect(result.findings.some((f) => f.ruleId === "voice-vocabulary-mismatch")).toBe(true);
+  });
+
+  it("falls back to the profiles file's defaultProfile when no styleProfileId is given", () => {
+    const lines = parseDialogueFile("Marta: Please, won't you reconsider?");
+    const result = gradeProsePattern(lines, { styleProfilesFile: EXAMPLE_PROFILES });
+    expect(result.summary.styleProfileApplied).toBe("gruff-terse");
+  });
+
+  it("throws a clear error for an unresolvable style profile", () => {
+    const lines = parseDialogueFile("Marta: Hello.");
+    expect(() =>
+      gradeProsePattern(lines, { styleProfilesFile: EXAMPLE_PROFILES, styleProfileId: "nope" }),
+    ).toThrow(/could not resolve style profile/);
   });
 });

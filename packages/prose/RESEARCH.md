@@ -112,24 +112,61 @@ model-call-free proxy for "semantic similarity") is a documented engineering
 tradeoff, not a research claim — see the comment in
 `detectors/redundant-restating.ts`.
 
-## Research gathered for Tier 2 (not yet built)
+## FR16/FR17 — Tier 2 rubric library (now built)
 
-Tier 2 (`grade_prose_craft` — on-the-nose dialogue, exposition dumps, voice
-consistency) is out of scope for this pass, but the research for it is
-already gathered and worth keeping so it isn't re-done from scratch later:
+Tier 2 is live: `get_prose_craft_rubric` hands the calling agent a named
+rubric item's definition; the agent applies it with its own judgment and
+reports a verdict through `grade_prose_craft`, which structures it into a
+`Finding`. No model call is embedded in the server — see
+`data/craft-rubric.json`'s own `notes` for why.
 
-- **On-the-nose dialogue**: well-documented screenwriting-craft term —
-  dialogue that states a character's thought/feeling/intent directly instead
-  of through subtext (tone, indirection, action, a non-answer). See
-  [No Film School's explainer](https://nofilmschool.com/on-the-nose-dialogue)
-  and [ScreenCraft](https://screencraft.org/blog/how-to-avoid-writing-on-the-nose-dialogue/)
-  for worked examples.
-- **Exposition dumps / "As You Know, Bob"**: named directly in the Turkey
-  City Lexicon — "characters tell each other things they already know
-  merely to inform the reader," also called "maid and butler dialogue." The
-  TRD's own "ATM-style NPC" framing is a game-specific instance of the same
-  named problem.
-- Both of these are fuzzier judgment calls than anything in Tier 1 (there's
-  no computable phrase list for "does this line have subtext"), which is
-  exactly why the TRD scopes them as model-assisted, one named rubric item
-  at a time, rather than deterministic pattern matching.
+Four rubric items exist:
+
+- **`self-justifying-explanation`** — found through direct dogfooding, not
+  external research: a line explains or justifies its own word choice or
+  design decision instead of just stating the fact, or states not just what
+  something IS but exhaustively what it ISN'T. **Validated against real
+  production text**: applied to all 9 messages on Kurogane Saga's "Support
+  the game" screen, 3 failed and 4 warned — a concrete, non-hypothetical
+  catch, not a guess.
+- **`on-the-nose-dialogue`** — well-documented screenwriting-craft term: a
+  character states their own emotion/intent directly instead of it coming
+  through subtext. [No Film School](https://nofilmschool.com/on-the-nose-dialogue).
+- **`exposition-dump`** — the Turkey City Lexicon's "As You Know, Bob":
+  characters explaining things to each other they'd both already know.
+- **`voice-consistency`** — depends on FR18 (below); a line that reads
+  interchangeably with any other character's, checked against that
+  character's style profile via `get_style_profile`.
+
+**Honest validation status for `on-the-nose-dialogue` and
+`exposition-dump`**: applied to ~55 real lines (40 random NPC ambient
+lines from `npcArchetypes.json`, 15 quest-board bodies from
+`questTemplates.json`) — zero violations found in either. That is _not_
+the same as "these items are proven useful." Kurogane Saga has no
+multi-character scripted dialogue (checked — no cutscene/story-dialogue
+files exist in the project); both rubric items are specifically about
+character-to-character exchanges, and ambient one-liners addressed to the
+player structurally can't exhibit either failure mode (there's no second
+character to over-explain to, and the player isn't a character who
+"already knows" the quest brief). These two items are confirmed not to
+false-positive on real content, but remain unvalidated on a genuine
+positive case — that would need this game (or another project) to actually
+have scripted multi-character dialogue to check them against.
+
+## FR18 — Style/voice profiles (now built)
+
+Per-character voice targets, project-supplied — no bundled default (the
+TRD is explicit: don't push every project toward one generic register).
+`resolveStyleProfile()`/`applyStyleProfileToOptions()` in
+`style-profile.ts`; `get_style_profile` MCP tool; `detectVoiceVocabulary()`
+adds a Tier 1, deterministic check (a character's `vocabulary.avoid` list,
+flagged literally) alongside the Tier 2 `voice-consistency` judgment call.
+See `data/example-style-profiles.json` for the documented shape — copy it
+into your own project and edit it to match your actual cast.
+
+## Connecting Tier 1 and Tier 2
+
+`iterate_prose` now accepts an optional `craftFindings` array — the
+`Finding`(s) `grade_prose_craft` returned for the same draft — and folds
+them into that iteration's grade and status. One session, one status,
+instead of two disconnected tool flows.

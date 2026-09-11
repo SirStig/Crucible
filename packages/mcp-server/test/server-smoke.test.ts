@@ -4,6 +4,7 @@ import { registerGradeProsePatternTool } from "../src/tools/grade-prose-pattern.
 import { registerIterateProseTool } from "../src/tools/iterate-prose.js";
 import { registerGetProseCraftRubricTool } from "../src/tools/get-prose-craft-rubric.js";
 import { registerGradeProseCraftTool } from "../src/tools/grade-prose-craft.js";
+import { registerGetStyleProfileTool } from "../src/tools/get-style-profile.js";
 import { createServer } from "../src/index.js";
 
 describe("MCP server tool registration", () => {
@@ -35,7 +36,14 @@ describe("MCP server tool registration", () => {
     expect(tool.description).toContain("get_prose_craft_rubric");
   });
 
-  it("createServer wires up all four tools without throwing or connecting a transport", () => {
+  it("registers get_style_profile as an enabled tool with a description", () => {
+    const server = new McpServer({ name: "test", version: "0.0.0" });
+    const tool = registerGetStyleProfileTool(server);
+    expect(tool.enabled).toBe(true);
+    expect(tool.description).toContain("FR18");
+  });
+
+  it("createServer wires up all five tools without throwing or connecting a transport", () => {
     expect(() => createServer()).not.toThrow();
     const server = createServer();
     expect(server.isConnected()).toBe(false);

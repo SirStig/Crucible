@@ -8,15 +8,21 @@ export type Severity = "info" | "warn" | "fail";
 
 export type GradeStatus = "pass" | "warn" | "fail";
 
+// Fields explicitly include `| undefined` (rather than just being optional)
+// so a value built from parsed/validated input (e.g. a zod-inferred
+// `.optional()` shape, as MCP tools pass across the wire) can flow through
+// without `exactOptionalPropertyTypes` rejecting an explicit `undefined` on
+// an otherwise-optional field. Same reasoning as GradeOptions in the prose
+// package.
 export interface FindingLocation {
   /** 1-based line number in the original input, when the finding is line-scoped. */
-  line?: number;
+  line?: number | undefined;
   /** 0-based index into the sentence pool, when the finding is sentence-scoped. */
-  sentenceIndex?: number;
-  charStart?: number;
-  charEnd?: number;
+  sentenceIndex?: number | undefined;
+  charStart?: number | undefined;
+  charEnd?: number | undefined;
   /** Short surrounding text, for a human-readable report. */
-  excerpt?: string;
+  excerpt?: string | undefined;
 }
 
 export interface Finding {
@@ -26,9 +32,9 @@ export interface Finding {
   ruleId: string;
   severity: Severity;
   message: string;
-  location?: FindingLocation;
+  location?: FindingLocation | undefined;
   /** Structured detail (matched text, similarity score, counts) for programmatic consumers. */
-  data?: Record<string, unknown>;
+  data?: Record<string, unknown> | undefined;
   fixHint: string;
 }
 

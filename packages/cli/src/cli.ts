@@ -77,6 +77,14 @@ export function createProgram(): Command {
       "a word must appear in at least this fraction of lines to be flagged (default 0.35)",
       parsePositiveFloat,
     )
+    .option(
+      "--style-profiles-file <path>",
+      "FR18: path to a project's own style-profile file (no bundled default — see data/example-style-profiles.json)",
+    )
+    .option(
+      "--style-profile-id <id>",
+      "which profile in --style-profiles-file to grade against (falls back to that file's defaultProfile)",
+    )
     .action((file: string, options: GradeCommandOptions) => {
       const { exitCode, output } = runGradeCommand(file, options);
       console.log(output);

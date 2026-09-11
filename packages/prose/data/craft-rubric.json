@@ -64,6 +64,21 @@
         "name": "Turkey City Lexicon: A Primer for SF Workshops (SFWA)",
         "url": "https://sfwa.org/2009/06/18/turkey-city-lexicon-a-primer-for-sf-workshops/"
       }
+    },
+    {
+      "id": "voice-consistency",
+      "name": "Voice consistency",
+      "definition": "This character's line reads interchangeably with another character's — nothing in word choice, rhythm, or register marks it as specifically theirs.",
+      "howToCheck": "Fetch this character's style profile first via get_style_profile (register, verbosity, vocabulary to favor/avoid, free-form notes). Read the line: does it match that profile, or could it be swapped into any other character's mouth without anyone noticing? A formal court scribe and a gruff blacksmith should never sound alike. If no style profile exists for this character yet, this item can't be meaningfully applied — say so rather than guessing at a voice nobody defined.",
+      "examples": {
+        "bad": [
+          "A gruff blacksmith saying: \"I would be delighted to assist you with that, certainly.\""
+        ],
+        "good": ["A gruff blacksmith saying: \"Fine. Sit. Don't touch the anvil.\""]
+      },
+      "fixHint": "Adjust vocabulary and rhythm to match this character's style profile — check get_style_profile for the specifics, or run grade_prose_pattern with styleProfilesFile/styleProfileId set to catch vocabulary mismatches deterministically.",
+      "note": "Depends on FR18 (style profiles) existing for the character — without one, this item is not applicable.",
+      "source": { "name": "CanvasLoop PRD/TRD, Section 8 (Track B rubric table)" }
     }
   ]
 }

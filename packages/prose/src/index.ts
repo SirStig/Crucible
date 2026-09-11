@@ -2,7 +2,12 @@ export type { DialogueLine, GradeOptions, ProseGradeResult, ProseGradeSummary } 
 export { parseDialogueFile } from "./parse.js";
 export { splitSentences } from "./sentence-split.js";
 export { gradeProsePattern } from "./pattern-grader.js";
-export { loadAiTellData, loadSaidBookismData, loadCraftRubricData } from "./data-loader.js";
+export {
+  loadAiTellData,
+  loadSaidBookismData,
+  loadCraftRubricData,
+  loadStyleProfileData,
+} from "./data-loader.js";
 export type {
   AiTellData,
   SaidBookismData,
@@ -12,13 +17,17 @@ export type {
   CraftRubricData,
   CraftRubricEntry,
   SourceCitation,
+  StyleProfileData,
+  StyleProfileEntry,
 } from "./data-loader.js";
+export { resolveStyleProfile, applyStyleProfileToOptions } from "./style-profile.js";
 export { detectAiTellPhrases } from "./detectors/ai-tell-phrases.js";
 export { detectBalancedConstruction } from "./detectors/balanced-construction.js";
 export { detectSentenceRhythm } from "./detectors/sentence-rhythm.js";
 export { detectSaidBookisms } from "./detectors/said-bookism.js";
 export { detectRedundantRestating } from "./detectors/redundant-restating.js";
 export { detectWordRepetition } from "./detectors/word-repetition.js";
+export { detectVoiceVocabulary } from "./detectors/voice-vocabulary.js";
 export {
   exportLines,
   toInk,

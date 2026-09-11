@@ -86,6 +86,39 @@ const craftRubricDataSchema = z.object({
   rubric: z.array(craftRubricEntrySchema),
 });
 
+// FR18: per-character/per-project voice targets. Deliberately has NO
+// bundled default and no default file path (unlike the other loaders below)
+// — the whole point is not pushing every project toward one generic
+// "human-sounding" register, so a profile only takes effect when a caller
+// explicitly points at their own project's file.
+const rhythmOverridesSchema = z.object({
+  targetCv: z.number().positive().optional(),
+  minSentencesForRhythm: z.number().int().positive().optional(),
+});
+
+const styleProfileEntrySchema = z.object({
+  id: z.string().min(1),
+  displayName: z.string().min(1),
+  register: z.string().optional(),
+  verbosity: z.string().optional(),
+  vocabulary: z
+    .object({
+      favor: z.array(z.string()).optional(),
+      avoid: z.array(z.string()).optional(),
+    })
+    .optional(),
+  notes: z.string().optional(),
+  rhythmOverrides: rhythmOverridesSchema.optional(),
+});
+
+const styleProfileDataSchema = z.object({
+  version: z.string(),
+  updated: z.string(),
+  notes: z.string().optional(),
+  defaultProfile: z.string().optional(),
+  profiles: z.array(styleProfileEntrySchema),
+});
+
 export type SourceCitation = z.infer<typeof sourceSchema>;
 export type PhraseEntry = z.infer<typeof phraseEntrySchema>;
 export type TemplateEntry = z.infer<typeof templateEntrySchema>;
@@ -94,6 +127,8 @@ export type BookismEntry = z.infer<typeof bookismEntrySchema>;
 export type SaidBookismData = z.infer<typeof saidBookismDataSchema>;
 export type CraftRubricEntry = z.infer<typeof craftRubricEntrySchema>;
 export type CraftRubricData = z.infer<typeof craftRubricDataSchema>;
+export type StyleProfileEntry = z.infer<typeof styleProfileEntrySchema>;
+export type StyleProfileData = z.infer<typeof styleProfileDataSchema>;
 
 // Both `src/data-loader.ts` and its compiled `dist/data-loader.js` sit one
 // directory below the package root, so "../data" resolves correctly whether
@@ -150,6 +185,11 @@ export function loadSaidBookismData(customPath?: string): SaidBookismData {
 export function loadCraftRubricData(customPath?: string): CraftRubricData {
   const path = customPath ?? `${PACKAGE_DATA_DIR}/craft-rubric.json`;
   return loadJsonFile(path, craftRubricDataSchema);
+}
+
+/** No default path (see the schema's own comment) — `path` is required, always the caller's own project file. */
+export function loadStyleProfileData(path: string): StyleProfileData {
+  return loadJsonFile(path, styleProfileDataSchema);
 }
 
 /** Test-only escape hatch: clears the module-level data cache between cases that use custom fixture paths. */

@@ -76,4 +76,25 @@ describe("runGradeCommand", () => {
     expect(result.output).toContain("totally-custom");
     expect(result.exitCode).toBe(1);
   });
+
+  it("uses a style profile to flag out-of-voice vocabulary", () => {
+    const profiles = writeFixture(
+      "profiles.json",
+      JSON.stringify({
+        version: "test",
+        updated: "2026-01-01",
+        defaultProfile: "gruff",
+        profiles: [
+          {
+            id: "gruff",
+            displayName: "Marta",
+            vocabulary: { avoid: ["please"] },
+          },
+        ],
+      }),
+    );
+    const path = writeFixture("polite.txt", "Marta: Please, won't you reconsider?");
+    const result = runGradeCommand(path, { styleProfilesFile: profiles });
+    expect(result.output).toContain("voice-vocabulary-mismatch");
+  });
 });

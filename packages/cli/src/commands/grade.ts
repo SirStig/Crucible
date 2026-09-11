@@ -14,6 +14,8 @@ export interface GradeCommandOptions {
   minLinesForRepetition?: number;
   minOccurrenceLines?: number;
   repetitionLineRatio?: number;
+  styleProfilesFile?: string;
+  styleProfileId?: string;
 }
 
 export interface GradeCommandResult {
@@ -44,6 +46,9 @@ function toGradeOptions(options: GradeCommandOptions): GradeOptions {
   if (options.repetitionLineRatio !== undefined) {
     gradeOptions.repetitionLineRatio = options.repetitionLineRatio;
   }
+  if (options.styleProfilesFile !== undefined)
+    gradeOptions.styleProfilesFile = options.styleProfilesFile;
+  if (options.styleProfileId !== undefined) gradeOptions.styleProfileId = options.styleProfileId;
   return gradeOptions;
 }
 

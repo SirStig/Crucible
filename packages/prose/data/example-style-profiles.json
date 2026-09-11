@@ -1,0 +1,32 @@
+{
+  "version": "2026.1",
+  "updated": "2026-09-10",
+  "notes": "FR18 example file — NOT loaded automatically by anything in CanvasLoop. Style profiles are project-specific by design (see the TRD's own point: don't push every project toward one generic 'human-sounding' register). Copy this file into your own project, edit the profiles to match your actual cast, and pass its path via --style-profiles-file (CLI) or options.styleProfilesFile (MCP tools).",
+  "defaultProfile": "gruff-terse",
+  "profiles": [
+    {
+      "id": "gruff-terse",
+      "displayName": "Gruff & terse (e.g. a blacksmith, an innkeeper)",
+      "register": "gruff, terse, no wasted words",
+      "verbosity": "short sentences, few adjectives, imperative mood",
+      "vocabulary": {
+        "avoid": ["please", "certainly", "delighted", "wonderful", "absolutely", "furthermore"],
+        "favor": ["short imperatives", "concrete nouns", "one clause per sentence"]
+      },
+      "notes": "Doesn't explain itself. Suspicious of strangers. Would rather grunt than elaborate.",
+      "rhythmOverrides": { "targetCv": 0.25, "minSentencesForRhythm": 4 }
+    },
+    {
+      "id": "formal-scribe",
+      "displayName": "Formal court scribe",
+      "register": "formal, precise, mildly archaic",
+      "verbosity": "complete sentences, subordinate clauses, no contractions",
+      "vocabulary": {
+        "avoid": ["yeah", "gonna", "kinda", "stuff", "guy"],
+        "favor": ["shall", "hereby", "precise titles and dates"]
+      },
+      "notes": "Never drops a formal register, even under pressure — that restraint is the character.",
+      "rhythmOverrides": { "targetCv": 0.3, "minSentencesForRhythm": 5 }
+    }
+  ]
+}

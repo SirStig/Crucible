@@ -59,4 +59,39 @@ describe("iterateProseHandler", () => {
     expect(a.structuredContent.iteration).toBe(1);
     expect(b.structuredContent.iteration).toBe(1);
   });
+
+  it("folds Tier 2 craftFindings into this iteration's grade and status", () => {
+    const clean = iterateProseHandler({ sessionId: "session-craft-pass", text: "Marta: Fine." });
+    expect(clean.structuredContent.status).toBe("pass");
+    expect(clean.structuredContent.grade.findings).toEqual([]);
+
+    const withCraft = iterateProseHandler({
+      sessionId: "session-craft-fail",
+      text: "Marta: Fine.",
+      craftFindings: [
+        {
+          id: "prose.craft-rubric",
+          ruleId: "self-justifying-explanation",
+          severity: "fail",
+          message:
+            "Self-justifying / over-explaining: explains itself instead of stating the fact.",
+          fixHint: "Cut the justification clause.",
+        },
+      ],
+    });
+    expect(withCraft.structuredContent.status).toBe("fail");
+    expect(withCraft.structuredContent.grade.findings).toHaveLength(1);
+    expect(withCraft.structuredContent.grade.findings[0]?.ruleId).toBe(
+      "self-justifying-explanation",
+    );
+  });
+
+  it("does not force a fail from craftFindings that are all pass-level (no findings supplied)", () => {
+    const result = iterateProseHandler({
+      sessionId: "session-craft-empty",
+      text: "Marta: Fine.",
+      craftFindings: [],
+    });
+    expect(result.structuredContent.status).toBe("pass");
+  });
 });

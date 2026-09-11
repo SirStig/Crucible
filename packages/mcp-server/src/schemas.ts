@@ -45,6 +45,8 @@ export const gradeOptionsSchema = z.object({
   minLinesForRepetition: z.number().int().positive().optional(),
   minOccurrenceLines: z.number().int().positive().optional(),
   repetitionLineRatio: z.number().min(0).max(1).optional(),
+  styleProfilesFile: z.string().optional(),
+  styleProfileId: z.string().optional(),
 });
 
 export type GradeOptionsInput = z.infer<typeof gradeOptionsSchema>;
@@ -65,3 +67,23 @@ export const craftRubricEntrySchema = z.object({
 });
 
 export const craftVerdictSchema = z.enum(["pass", "warn", "fail"]);
+
+export const styleProfileEntrySchema = z.object({
+  id: z.string(),
+  displayName: z.string(),
+  register: z.string().optional(),
+  verbosity: z.string().optional(),
+  vocabulary: z
+    .object({
+      favor: z.array(z.string()).optional(),
+      avoid: z.array(z.string()).optional(),
+    })
+    .optional(),
+  notes: z.string().optional(),
+  rhythmOverrides: z
+    .object({
+      targetCv: z.number().positive().optional(),
+      minSentencesForRhythm: z.number().int().positive().optional(),
+    })
+    .optional(),
+});
