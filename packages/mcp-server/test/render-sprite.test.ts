@@ -13,7 +13,9 @@ describe("renderSpriteHandler", () => {
     expect(image).toBeDefined();
     expect(image?.mimeType).toBe("image/png");
     expect(typeof image?.data).toBe("string");
-    expect(Buffer.from(image!.data, "base64").subarray(0, 8).toString("hex")).toBe("89504e470d0a1a0a");
+    expect(Buffer.from(image!.data, "base64").subarray(0, 8).toString("hex")).toBe(
+      "89504e470d0a1a0a",
+    );
   });
 
   it("throws a clear error for invalid SVG", () => {

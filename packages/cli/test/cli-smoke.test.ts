@@ -11,6 +11,15 @@ describe.skipIf(!existsSync(BIN_PATH))("canvasloop CLI binary (built)", () => {
     expect(result.status).toBe(0);
     expect(result.stdout).toContain("canvasloop");
     expect(result.stdout).toContain("prose");
+    expect(result.stdout).toContain("visual");
+  });
+
+  it("prints visual grade help and exits 0", () => {
+    const result = spawnSync(process.execPath, [BIN_PATH, "visual", "grade", "--help"], {
+      encoding: "utf-8",
+    });
+    expect(result.status).toBe(0);
+    expect(result.stdout).toContain("--grid-width");
   });
 
   it("prints prose grade help and exits 0", () => {

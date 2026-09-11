@@ -9,22 +9,44 @@ const BANDING_SVG = `<svg xmlns="http://www.w3.org/2000/svg">
 
 describe("iterateSpriteHandler", () => {
   it("starts a session at iteration 1 with an empty diff", () => {
-    const result = iterateSpriteHandler({ sessionId: "sprite-session-start", svg: CLEAN_SVG, gridWidth: 4, gridHeight: 4 });
+    const result = iterateSpriteHandler({
+      sessionId: "sprite-session-start",
+      svg: CLEAN_SVG,
+      gridWidth: 4,
+      gridHeight: 4,
+    });
     expect(result.structuredContent.iteration).toBe(1);
     expect(result.structuredContent.diff).toEqual([]);
     expect(result.structuredContent.status).toBe("pass");
   });
 
   it("diffs the SVG source between calls", () => {
-    const before = '<svg xmlns="http://www.w3.org/2000/svg">\n<rect x="0" y="0" width="1" height="1" fill="#f00"/>\n</svg>';
-    const after = '<svg xmlns="http://www.w3.org/2000/svg">\n<rect x="0" y="0" width="1" height="1" fill="#0f0"/>\n</svg>';
+    const before =
+      '<svg xmlns="http://www.w3.org/2000/svg">\n<rect x="0" y="0" width="1" height="1" fill="#f00"/>\n</svg>';
+    const after =
+      '<svg xmlns="http://www.w3.org/2000/svg">\n<rect x="0" y="0" width="1" height="1" fill="#0f0"/>\n</svg>';
 
-    iterateSpriteHandler({ sessionId: "sprite-session-diff", svg: before, gridWidth: 4, gridHeight: 4 });
-    const second = iterateSpriteHandler({ sessionId: "sprite-session-diff", svg: after, gridWidth: 4, gridHeight: 4 });
+    iterateSpriteHandler({
+      sessionId: "sprite-session-diff",
+      svg: before,
+      gridWidth: 4,
+      gridHeight: 4,
+    });
+    const second = iterateSpriteHandler({
+      sessionId: "sprite-session-diff",
+      svg: after,
+      gridWidth: 4,
+      gridHeight: 4,
+    });
 
     expect(second.structuredContent.iteration).toBe(2);
     expect(second.structuredContent.diff).toEqual([
-      { type: "unchanged", lineIndex: 0, before: '<svg xmlns="http://www.w3.org/2000/svg">', after: '<svg xmlns="http://www.w3.org/2000/svg">' },
+      {
+        type: "unchanged",
+        lineIndex: 0,
+        before: '<svg xmlns="http://www.w3.org/2000/svg">',
+        after: '<svg xmlns="http://www.w3.org/2000/svg">',
+      },
       {
         type: "changed",
         lineIndex: 1,
@@ -47,18 +69,40 @@ describe("iterateSpriteHandler", () => {
     expect(first.structuredContent.status).toBe("fail");
     expect(first.structuredContent.iterationsRemaining).toBe(1);
 
-    const second = iterateSpriteHandler({ sessionId, svg: BANDING_SVG, gridWidth: 20, gridHeight: 6, maxIterations: 2 });
+    const second = iterateSpriteHandler({
+      sessionId,
+      svg: BANDING_SVG,
+      gridWidth: 20,
+      gridHeight: 6,
+      maxIterations: 2,
+    });
     expect(second.structuredContent.status).toBe("fail");
     expect(second.structuredContent.iterationsRemaining).toBe(0);
 
-    const third = iterateSpriteHandler({ sessionId, svg: BANDING_SVG, gridWidth: 20, gridHeight: 6, maxIterations: 2 });
+    const third = iterateSpriteHandler({
+      sessionId,
+      svg: BANDING_SVG,
+      gridWidth: 20,
+      gridHeight: 6,
+      maxIterations: 2,
+    });
     expect(third.structuredContent.status).toBe("exceeded");
     expect(third.structuredContent.iteration).toBe(3);
   });
 
   it("keeps independent sessions from interfering, and does not collide with a prose session of the same id", () => {
-    const a = iterateSpriteHandler({ sessionId: "shared-id", svg: CLEAN_SVG, gridWidth: 4, gridHeight: 4 });
-    const b = iterateSpriteHandler({ sessionId: "shared-id-2", svg: CLEAN_SVG, gridWidth: 4, gridHeight: 4 });
+    const a = iterateSpriteHandler({
+      sessionId: "shared-id",
+      svg: CLEAN_SVG,
+      gridWidth: 4,
+      gridHeight: 4,
+    });
+    const b = iterateSpriteHandler({
+      sessionId: "shared-id-2",
+      svg: CLEAN_SVG,
+      gridWidth: 4,
+      gridHeight: 4,
+    });
     expect(a.structuredContent.iteration).toBe(1);
     expect(b.structuredContent.iteration).toBe(1);
   });

@@ -1,6 +1,11 @@
 import { z } from "zod";
 import type { McpServer, RegisteredTool } from "@modelcontextprotocol/sdk/server/mcp.js";
-import { generateFoliagePreset, generateFoliageSvg, renderSprite, FOLIAGE_PRESETS } from "@canvasloop/visual";
+import {
+  generateFoliagePreset,
+  generateFoliageSvg,
+  renderSprite,
+  FOLIAGE_PRESETS,
+} from "@canvasloop/visual";
 import type { LSystemSpec } from "@canvasloop/visual";
 
 const lSystemSpecSchema = z.object({
@@ -29,8 +34,7 @@ export interface GenerateFoliageInput {
 }
 
 type ContentBlock =
-  | { type: "text"; text: string }
-  | { type: "image"; data: string; mimeType: string };
+  { type: "text"; text: string } | { type: "image"; data: string; mimeType: string };
 
 /**
  * The tool's actual logic, exported standalone so tests can call it
@@ -41,12 +45,19 @@ export function generateFoliageHandler(input: GenerateFoliageInput) {
     throw new Error("CanvasLoop: generate_foliage needs either `preset` or `spec`.");
   }
 
-  const result = input.spec !== undefined ? generateFoliageSvg(input.spec) : generateFoliagePreset(input.preset!);
+  const result =
+    input.spec !== undefined
+      ? generateFoliageSvg(input.spec)
+      : generateFoliagePreset(input.preset!);
   const output = { svg: result.svg, width: result.width, height: result.height };
   const content: ContentBlock[] = [{ type: "text", text: JSON.stringify(output, null, 2) }];
 
   if (input.includePreview) {
-    const rendered = renderSprite({ svg: result.svg, gridWidth: result.width, gridHeight: result.height });
+    const rendered = renderSprite({
+      svg: result.svg,
+      gridWidth: result.width,
+      gridHeight: result.height,
+    });
     content.push({ type: "image", data: rendered.png.toString("base64"), mimeType: "image/png" });
   }
 

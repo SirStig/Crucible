@@ -1,6 +1,17 @@
 import { Command, InvalidArgumentError, Option } from "commander";
 import { runGradeCommand, type GradeCommandOptions } from "./commands/grade.js";
 import { runExportCommand, type ExportCommandOptions } from "./commands/export.js";
+import {
+  runVisualRenderCommand,
+  type VisualRenderCommandOptions,
+} from "./commands/visual-render.js";
+import { runVisualGradeCommand, type VisualGradeCommandOptions } from "./commands/visual-grade.js";
+import {
+  runVisualFoliageCommand,
+  type VisualFoliageCommandOptions,
+} from "./commands/visual-foliage.js";
+import { runVisualSheetCommand, type VisualSheetCommandOptions } from "./commands/visual-sheet.js";
+import { FOLIAGE_PRESETS } from "@canvasloop/visual";
 
 const CLI_VERSION = "0.1.0";
 const EXPORT_FORMATS = ["ink", "yarn", "json", "strings"] as const;
@@ -109,6 +120,111 @@ export function createProgram(): Command {
     .option("--node <name>", "Yarn node title, yarn format only (default CanvasLoopExport)")
     .action((file: string, options: ExportCommandOptions) => {
       runExportCommand(file, options);
+      console.log(`Wrote ${options.out}`);
+    });
+
+  const visual = program
+    .command("visual")
+    .description("Track A: Visual Craft Loop (Tier 1, no model calls)");
+
+  visual
+    .command("render")
+    .description("Render a sprite's SVG to a PNG at an exact pixel grid size")
+    .argument("<file>", "path to an SVG file")
+    .requiredOption(
+      "--grid-width <n>",
+      "declared pixel-grid width (becomes the render width)",
+      parsePositiveInt,
+    )
+    .requiredOption(
+      "--grid-height <n>",
+      "declared pixel-grid height (becomes the render height)",
+      parsePositiveInt,
+    )
+    .requiredOption("--out <path>", "output PNG file path")
+    .action((file: string, options: VisualRenderCommandOptions) => {
+      runVisualRenderCommand(file, options);
+      console.log(`Wrote ${options.out}`);
+    });
+
+  visual
+    .command("grade")
+    .description("Grade a sprite's SVG against the Tier 1 pixel-art rubric")
+    .argument("<file>", "path to an SVG file")
+    .requiredOption("--grid-width <n>", "declared pixel-grid width", parsePositiveInt)
+    .requiredOption("--grid-height <n>", "declared pixel-grid height", parsePositiveInt)
+    .option("--json", "print machine-readable JSON instead of a human-readable report")
+    .option(
+      "--min-region-size-for-banding <n>",
+      "same-color regions smaller than this (px) are ignored by the banding check (default 4)",
+      parsePositiveInt,
+    )
+    .option(
+      "--banding-elongation-threshold <n>",
+      "bounding-box aspect ratio a region must clear to count as strip-like (default 3)",
+      parsePositiveFloat,
+    )
+    .option(
+      "--min-diagonal-run-for-jaggies <n>",
+      "a diagonal run shorter than this (columns) isn't judged for jaggies (default 4)",
+      parsePositiveInt,
+    )
+    .option(
+      "--jaggies-tread-cv <n>",
+      "coefficient-of-variation floor for tread lengths within a diagonal run (default 0.35)",
+      parsePositiveFloat,
+    )
+    .option(
+      "--dither-max-transition-width <n>",
+      "a dither region's narrow-dimension width (px) above this reads as covering a field (default 3)",
+      parsePositiveFloat,
+    )
+    .option(
+      "--outline-inconsistency-ratio <n>",
+      "fraction of the contour allowed to deviate from the dominant border color (default 0.15)",
+      parsePositiveFloat,
+    )
+    .option(
+      "--color-cluster-distance <n>",
+      "redmean perceptual distance below which two colors merge into one cluster (default 24)",
+      parsePositiveFloat,
+    )
+    .option(
+      "--color-count-ratio <n>",
+      "unique/effective palette-size ratio above which too-many-similar-colors fires (default 1.5)",
+      parsePositiveFloat,
+    )
+    .action((file: string, options: VisualGradeCommandOptions) => {
+      const { exitCode, output } = runVisualGradeCommand(file, options);
+      console.log(output);
+      process.exitCode = exitCode;
+    });
+
+  visual
+    .command("foliage")
+    .description("Generate procedural foliage SVG from a named L-system preset")
+    .addOption(
+      new Option("--preset <name>", "foliage preset")
+        .choices(Object.keys(FOLIAGE_PRESETS))
+        .makeOptionMandatory(),
+    )
+    .requiredOption("--out <path>", "output SVG file path")
+    .option("--iterations <n>", "override the preset's L-system iteration count", parsePositiveInt)
+    .option("--angle-degrees <n>", "override the preset's turtle turn angle", parsePositiveFloat)
+    .option("--step-length <n>", "override the preset's turtle step length", parsePositiveFloat)
+    .action((options: VisualFoliageCommandOptions) => {
+      runVisualFoliageCommand(options);
+      console.log(`Wrote ${options.out}`);
+    });
+
+  visual
+    .command("sheet")
+    .description("Pack multiple sprite frames (listed in a JSON manifest) into one sprite sheet")
+    .argument("<manifest>", 'JSON file: [{ "file", "gridWidth", "gridHeight", "name"? }, ...]')
+    .requiredOption("--out <path>", "output sheet PNG file path")
+    .requiredOption("--columns <n>", "number of columns in the packed sheet", parsePositiveInt)
+    .action((manifest: string, options: VisualSheetCommandOptions) => {
+      runVisualSheetCommand(manifest, options);
       console.log(`Wrote ${options.out}`);
     });
 

@@ -21,8 +21,8 @@ describe("packSpriteSheetHandler", () => {
 
   it("throws a clear error for mismatched frame sizes", () => {
     const mismatched = { svg: frame("#00f").svg, gridWidth: 8, gridHeight: 8 };
-    expect(() => packSpriteSheetHandler({ frames: [frame("#f00"), mismatched], columns: 2 })).toThrow(
-      /must share the same grid size/,
-    );
+    expect(() =>
+      packSpriteSheetHandler({ frames: [frame("#f00"), mismatched], columns: 2 }),
+    ).toThrow(/must share the same grid size/);
   });
 });
