@@ -1,0 +1,23 @@
+{
+  "name": "@canvasloop/visual",
+  "version": "0.1.0",
+  "description": "Track A (Visual Craft Loop) Tier 1 rubric engine: SVG rendering, structural grading, and deterministic pixel-art craft detectors — banding, jaggies, dithering overuse, outline inconsistency, too-many-similar-colors.",
+  "author": "Joshua Kac <joshua@houseofkac.com>",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsc -b",
+    "clean": "rm -rf dist *.tsbuildinfo",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@canvasloop/core": "0.1.0",
+    "@resvg/resvg-js": "^2.6.2"
+  }
+}
