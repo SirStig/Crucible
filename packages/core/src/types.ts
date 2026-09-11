@@ -23,6 +23,10 @@ export interface FindingLocation {
   charEnd?: number | undefined;
   /** Short surrounding text, for a human-readable report. */
   excerpt?: string | undefined;
+  /** 0-based pixel column, when the finding is pixel-scoped (Track A). */
+  x?: number | undefined;
+  /** 0-based pixel row, when the finding is pixel-scoped (Track A). */
+  y?: number | undefined;
 }
 
 export interface Finding {

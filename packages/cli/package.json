@@ -1,7 +1,7 @@
 {
   "name": "@canvasloop/cli",
   "version": "0.1.0",
-  "description": "canvasloop CLI: grade and export dialogue/prose from the command line using the Track B Tier 1 rubric.",
+  "description": "canvasloop CLI: grade/export prose (Track B) and render/grade pixel-art sprites (Track A) from the command line.",
   "author": "Joshua Kac <joshua@houseofkac.com>",
   "license": "MIT",
   "type": "module",
@@ -19,6 +19,7 @@
   "dependencies": {
     "@canvasloop/core": "0.1.0",
     "@canvasloop/prose": "0.1.0",
+    "@canvasloop/visual": "0.1.0",
     "commander": "^15.0.0"
   }
 }

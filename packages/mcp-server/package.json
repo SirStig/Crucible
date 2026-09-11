@@ -1,7 +1,7 @@
 {
   "name": "@canvasloop/mcp-server",
   "version": "0.1.0",
-  "description": "CanvasLoop MCP server: exposes the Track B Tier 1 prose rubric (grade_prose_pattern, iterate_prose) as MCP tools over stdio.",
+  "description": "CanvasLoop MCP server: exposes both tracks' tools over stdio — Track B prose grading and Track A pixel-art sprite grading.",
   "author": "Joshua Kac <joshua@houseofkac.com>",
   "license": "MIT",
   "type": "module",
@@ -21,6 +21,7 @@
   "dependencies": {
     "@canvasloop/core": "0.1.0",
     "@canvasloop/prose": "0.1.0",
+    "@canvasloop/visual": "0.1.0",
     "@modelcontextprotocol/sdk": "^1.30.0",
     "zod": "^4.6.2"
   }

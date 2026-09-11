@@ -3,6 +3,7 @@
   "references": [
     { "path": "packages/core" },
     { "path": "packages/prose" },
+    { "path": "packages/visual" },
     { "path": "packages/mcp-server" },
     { "path": "packages/cli" }
   ]
