@@ -1,0 +1,69 @@
+{
+  "version": "2026.1",
+  "updated": "2026-09-10",
+  "notes": "Tier 2 narrative-craft rubric. Unlike Tier 1 (deterministic pattern matching, no model call), these items are genuinely judgment calls — the MCP tools here don't grade text themselves. get_prose_craft_rubric hands the calling agent one named rubric item's definition; the agent applies it using its own judgment and reports a verdict back through grade_prose_craft, which structures that verdict into a Finding. This keeps CanvasLoop free and self-hostable (no model API call embedded in the server) and matches the TRD's own framing: 'one named rubric item checked at a time, definition supplied in-context — not an open does-this-sound-natural prompt.'",
+  "sources": [
+    {
+      "name": "Turkey City Lexicon: A Primer for SF Workshops (SFWA)",
+      "url": "https://sfwa.org/2009/06/18/turkey-city-lexicon-a-primer-for-sf-workshops/"
+    },
+    {
+      "name": "No Film School: What is 'On the Nose' Dialogue?",
+      "url": "https://nofilmschool.com/on-the-nose-dialogue"
+    }
+  ],
+  "rubric": [
+    {
+      "id": "self-justifying-explanation",
+      "name": "Self-justifying / over-explaining",
+      "definition": "The line explains or justifies its own word choice, design decision, or boundary instead of simply stating the fact — as if pre-answering a question the reader never asked, or narrating the writer's reasoning process instead of just the conclusion. A frequent tell: stating not just what something IS, but also, at length, everything it ISN'T.",
+      "howToCheck": "Read the line and ask: does it do more than state what's true? Does it also explain WHY it's phrased that way, defend against a possible misreading, or exhaustively rule out alternatives nobody proposed? If you cut the justification/caveat clause, does the line still say everything the reader actually needs? If yes, the justification is padding — flag it.",
+      "examples": {
+        "bad": [
+          "Named for coffee on purpose — there is no way to write \"a cup of coffee\" that could pass for an in-game reward.",
+          "Nothing that helps you. No coin, no heroes, no gear, no shortcuts, no second chances — there is nowhere in this game to put money down and come out ahead of where you were."
+        ],
+        "good": [
+          "Buy someone a coffee. It doesn't do anything in the game.",
+          "This is a tip jar. It's not a shop."
+        ]
+      },
+      "fixHint": "Cut the justification clause. State the fact once, plainly, and trust the reader not to need the reasoning spelled out.",
+      "note": "Found through direct dogfooding on a real project's IAP/settings screen, not derived from external craft literature — the source here is the failure mode itself, observed firsthand.",
+      "source": { "name": "Direct dogfooding (Kurogane Saga 'Support the game' screen)" }
+    },
+    {
+      "id": "on-the-nose-dialogue",
+      "name": "On-the-nose dialogue",
+      "definition": "A character states their own emotion, intent, or thought directly instead of it coming through indirectly — tone, subtext, a non-answer, an action, a deflection. The audience is told the feeling rather than shown it.",
+      "howToCheck": "Does the line name the emotion or intent as a fact about the speaker (\"I'm angry,\" \"I don't trust you\") rather than letting it show through word choice, what's left unsaid, or how the character acts? Would a real person in this moment actually say the plain version out loud, or would they more likely deflect, joke, go quiet, or answer a different question?",
+      "examples": {
+        "bad": ["I'm angry because you betrayed me.", "I don't trust you anymore."],
+        "good": ["Sure. Take your time.", "You always did know how to make an entrance."]
+      },
+      "fixHint": "Cut the direct statement of feeling/intent. Let it show through tone, a deflection, an action, or a non-answer instead.",
+      "source": {
+        "name": "No Film School: What is 'On the Nose' Dialogue?",
+        "url": "https://nofilmschool.com/on-the-nose-dialogue"
+      }
+    },
+    {
+      "id": "exposition-dump",
+      "name": "Exposition dump / \"As You Know, Bob\"",
+      "definition": "A character explains something to another character that both of them would already know, purely so the reader/player learns it — the Turkey City Lexicon's named example of this exact failure, also called 'maid and butler dialogue.'",
+      "howToCheck": "Would the character receiving this line plausibly already know what's being said to them? If a real conversation between these two people would never include this explanation — because they'd both already have this information — it's an exposition dump written for the audience's benefit, not the character's.",
+      "examples": {
+        "bad": [
+          "As you know, the kingdom has been at war with the northern clans for a decade.",
+          "You remember how the guild only accepts bounties over rank three, right?"
+        ],
+        "good": ["Another northern-clan bounty. Ten years and they still haven't learned."]
+      },
+      "fixHint": "Cut the explanation from the dialogue. If the player genuinely needs the information, move it to something that has a reason to state it plainly — an item description, a journal entry, an environmental detail — rather than a character saying it aloud.",
+      "source": {
+        "name": "Turkey City Lexicon: A Primer for SF Workshops (SFWA)",
+        "url": "https://sfwa.org/2009/06/18/turkey-city-lexicon-a-primer-for-sf-workshops/"
+      }
+    }
+  ]
+}

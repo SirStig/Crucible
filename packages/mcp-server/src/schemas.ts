@@ -42,6 +42,26 @@ export const gradeOptionsSchema = z.object({
   redundancyThreshold: z.number().min(0).max(1).optional(),
   phrasesFile: z.string().optional(),
   bookismsFile: z.string().optional(),
+  minLinesForRepetition: z.number().int().positive().optional(),
+  minOccurrenceLines: z.number().int().positive().optional(),
+  repetitionLineRatio: z.number().min(0).max(1).optional(),
 });
 
 export type GradeOptionsInput = z.infer<typeof gradeOptionsSchema>;
+
+export const craftRubricEntrySchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  definition: z.string(),
+  howToCheck: z.string(),
+  examples: z
+    .object({
+      bad: z.array(z.string()).optional(),
+      good: z.array(z.string()).optional(),
+    })
+    .optional(),
+  fixHint: z.string(),
+  note: z.string().optional(),
+});
+
+export const craftVerdictSchema = z.enum(["pass", "warn", "fail"]);

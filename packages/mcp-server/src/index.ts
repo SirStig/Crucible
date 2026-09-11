@@ -2,11 +2,14 @@ import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { registerGradeProsePatternTool } from "./tools/grade-prose-pattern.js";
 import { registerIterateProseTool } from "./tools/iterate-prose.js";
+import { registerGetProseCraftRubricTool } from "./tools/get-prose-craft-rubric.js";
+import { registerGradeProseCraftTool } from "./tools/grade-prose-craft.js";
 
-// TODO(v0.2): grade_prose_craft — Tier 2 narrative rubric (on-the-nose
-// dialogue, exposition-dump, voice consistency), model-assisted, one named
-// rubric item checked at a time. Not implemented in v0.1: Tier 1 is the
-// fully free/local slice and stands on its own.
+// Voice-consistency (per-character style profiles, FR18) isn't in the Tier 2
+// rubric yet — it needs a style-profile store that doesn't exist in v0.1.
+// The other three Tier 2 items (self-justifying-explanation, on-the-nose
+// dialogue, exposition-dump) are live via get_prose_craft_rubric /
+// grade_prose_craft below.
 
 export function createServer(): McpServer {
   const server = new McpServer({
@@ -14,11 +17,13 @@ export function createServer(): McpServer {
     version: "0.1.0",
     title: "CanvasLoop — Prose Craft Loop",
     description:
-      "Tier 1 (deterministic, no model calls) grading for game dialogue and UI prose: AI-tell phrases, templated constructions, sentence rhythm, said-bookisms, and adjacent-line redundancy.",
+      "Tier 1 (deterministic, no model calls) grading for game dialogue and UI prose — AI-tell phrases, templated constructions, sentence rhythm, said-bookisms, adjacent-line redundancy, and document-wide word repetition — plus Tier 2 narrative-craft rubric items the calling agent applies with its own judgment.",
   });
 
   registerGradeProsePatternTool(server);
   registerIterateProseTool(server);
+  registerGetProseCraftRubricTool(server);
+  registerGradeProseCraftTool(server);
 
   return server;
 }

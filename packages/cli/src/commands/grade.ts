@@ -11,6 +11,9 @@ export interface GradeCommandOptions {
   redundancyThreshold?: number;
   phrasesFile?: string;
   bookismsFile?: string;
+  minLinesForRepetition?: number;
+  minOccurrenceLines?: number;
+  repetitionLineRatio?: number;
 }
 
 export interface GradeCommandResult {
@@ -33,6 +36,14 @@ function toGradeOptions(options: GradeCommandOptions): GradeOptions {
   }
   if (options.phrasesFile !== undefined) gradeOptions.phrasesFile = options.phrasesFile;
   if (options.bookismsFile !== undefined) gradeOptions.bookismsFile = options.bookismsFile;
+  if (options.minLinesForRepetition !== undefined) {
+    gradeOptions.minLinesForRepetition = options.minLinesForRepetition;
+  }
+  if (options.minOccurrenceLines !== undefined)
+    gradeOptions.minOccurrenceLines = options.minOccurrenceLines;
+  if (options.repetitionLineRatio !== undefined) {
+    gradeOptions.repetitionLineRatio = options.repetitionLineRatio;
+  }
   return gradeOptions;
 }
 

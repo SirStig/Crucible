@@ -178,6 +178,17 @@ export function contentTokens(text: string): string[] {
 }
 
 /**
+ * Tokenize -> lowercase -> drop stopwords, deliberately *without* stemming.
+ * Used where the matched word itself gets shown back to a reader (the
+ * word-repetition check): `stem()` is a blunt suffix-stripper that doesn't
+ * know "nothing" isn't a gerund, and reporting "noth" as the overused word
+ * would look like a bug rather than a stemming tradeoff.
+ */
+export function contentWords(text: string): string[] {
+  return tokenize(text).filter((token) => !STOPWORDS.has(token));
+}
+
+/**
  * Builds a short surrounding-context string for a regex match, for a
  * human-readable report. Truncated sides get an ellipsis marker.
  */

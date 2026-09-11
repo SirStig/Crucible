@@ -33,6 +33,12 @@ export interface GradeOptions {
   phrasesFile?: string | undefined;
   /** Path to a replacement said-bookisms.json, overriding the bundled living-data file. */
   bookismsFile?: string | undefined;
+  /** Document must have at least this many non-blank lines before the word-repetition check runs. Default 6. */
+  minLinesForRepetition?: number | undefined;
+  /** A content word must appear in at least this many distinct lines to be flagged. Default 4. */
+  minOccurrenceLines?: number | undefined;
+  /** A content word must appear in at least this fraction of lines to be flagged. Default 0.35. */
+  repetitionLineRatio?: number | undefined;
 }
 
 export interface ProseGradeSummary {

@@ -5,6 +5,7 @@ import { detectBalancedConstruction } from "./detectors/balanced-construction.js
 import { detectSentenceRhythm } from "./detectors/sentence-rhythm.js";
 import { detectSaidBookisms } from "./detectors/said-bookism.js";
 import { detectRedundantRestating } from "./detectors/redundant-restating.js";
+import { detectWordRepetition } from "./detectors/word-repetition.js";
 
 /**
  * FR14 + FR15, orchestrated: runs the full Tier 1 pattern grader (AI-tell
@@ -42,6 +43,7 @@ export function gradeProsePattern(
     ...rhythm.findings,
     ...bookisms.findings,
     ...detectRedundantRestating(lines, options),
+    ...detectWordRepetition(lines, options),
   ];
 
   return {

@@ -59,12 +59,41 @@ const saidBookismDataSchema = z.object({
   allowed: z.array(z.string()),
 });
 
+// Tier 2: the MCP server doesn't grade these itself (no model call embedded
+// in the server — see craft-rubric.json's own `notes`). This schema just
+// describes the rubric *definitions* an agent fetches before applying one.
+const craftRubricEntrySchema = z.object({
+  id: z.string().min(1),
+  name: z.string().min(1),
+  definition: z.string().min(1),
+  howToCheck: z.string().min(1),
+  examples: z
+    .object({
+      bad: z.array(z.string()).optional(),
+      good: z.array(z.string()).optional(),
+    })
+    .optional(),
+  fixHint: z.string().min(1),
+  note: z.string().optional(),
+  source: sourceSchema.optional(),
+});
+
+const craftRubricDataSchema = z.object({
+  version: z.string(),
+  updated: z.string(),
+  notes: z.string().optional(),
+  sources: z.array(sourceSchema).optional(),
+  rubric: z.array(craftRubricEntrySchema),
+});
+
 export type SourceCitation = z.infer<typeof sourceSchema>;
 export type PhraseEntry = z.infer<typeof phraseEntrySchema>;
 export type TemplateEntry = z.infer<typeof templateEntrySchema>;
 export type AiTellData = z.infer<typeof aiTellDataSchema>;
 export type BookismEntry = z.infer<typeof bookismEntrySchema>;
 export type SaidBookismData = z.infer<typeof saidBookismDataSchema>;
+export type CraftRubricEntry = z.infer<typeof craftRubricEntrySchema>;
+export type CraftRubricData = z.infer<typeof craftRubricDataSchema>;
 
 // Both `src/data-loader.ts` and its compiled `dist/data-loader.js` sit one
 // directory below the package root, so "../data" resolves correctly whether
@@ -116,6 +145,11 @@ export function loadAiTellData(customPath?: string): AiTellData {
 export function loadSaidBookismData(customPath?: string): SaidBookismData {
   const path = customPath ?? `${PACKAGE_DATA_DIR}/said-bookisms.json`;
   return loadJsonFile(path, saidBookismDataSchema);
+}
+
+export function loadCraftRubricData(customPath?: string): CraftRubricData {
+  const path = customPath ?? `${PACKAGE_DATA_DIR}/craft-rubric.json`;
+  return loadJsonFile(path, craftRubricDataSchema);
 }
 
 /** Test-only escape hatch: clears the module-level data cache between cases that use custom fixture paths. */

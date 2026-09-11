@@ -62,6 +62,21 @@ export function createProgram(): Command {
     )
     .option("--phrases-file <path>", "override the bundled ai-tell-phrases.json living-data file")
     .option("--bookisms-file <path>", "override the bundled said-bookisms.json living-data file")
+    .option(
+      "--min-lines-for-repetition <n>",
+      "document must have at least this many lines before the word-repetition check runs (default 6)",
+      parsePositiveInt,
+    )
+    .option(
+      "--min-occurrence-lines <n>",
+      "a word must appear in at least this many distinct lines to be flagged (default 4)",
+      parsePositiveInt,
+    )
+    .option(
+      "--repetition-line-ratio <n>",
+      "a word must appear in at least this fraction of lines to be flagged (default 0.35)",
+      parsePositiveFloat,
+    )
     .action((file: string, options: GradeCommandOptions) => {
       const { exitCode, output } = runGradeCommand(file, options);
       console.log(output);
