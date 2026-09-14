@@ -1,8 +1,7 @@
 {
-  "name": "crucible",
-  "private": true,
-  "version": "0.1.0",
-  "description": "Grounded generate-check-fix loops for AI-agent-produced game craft: prose and pixel art.",
+  "name": "crucible-loop",
+  "version": "0.2.0",
+  "description": "Grounded generate-check-fix loops for AI-agent game content. Grades dialogue and pixel art against named craft knowledge, over MCP or from the command line.",
   "author": "Joshua Kac <joshua@houseofkac.com>",
   "license": "MIT",
   "keywords": [
@@ -10,8 +9,11 @@
     "game-development",
     "ai-agents",
     "mcp",
+    "model-context-protocol",
+    "claude-code",
     "pixel-art",
-    "game-writing"
+    "game-writing",
+    "linter"
   ],
   "homepage": "https://github.com/SirStig/Crucible#readme",
   "repository": {
@@ -22,21 +24,37 @@
     "url": "https://github.com/SirStig/Crucible/issues"
   },
   "type": "module",
-  "workspaces": [
-    "packages/*"
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "bin": {
+    "crucible": "dist/cli/bin.js"
+  },
+  "files": [
+    "dist",
+    "data",
+    "src"
   ],
   "engines": {
     "node": ">=22.12.0"
   },
   "scripts": {
-    "build": "npm run build --workspaces --if-present",
+    "build": "tsc -b",
+    "clean": "rm -rf dist *.tsbuildinfo",
+    "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
-    "typecheck": "npm run typecheck --workspaces --if-present",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "format:check": "prettier --check .",
-    "clean": "npm run clean --workspaces --if-present"
+    "format:check": "prettier --check ."
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.30.0",
+    "@resvg/resvg-js": "^2.6.2",
+    "commander": "^15.0.0",
+    "zod": "^4.6.2"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",

@@ -63,7 +63,7 @@ it available in:
 
 ```sh
 cd /path/to/your-game
-claude mcp add --scope project crucible -- npx -y crucible-mcp-server
+claude mcp add --scope project crucible -- npx -y crucible-loop mcp
 ```
 
 `--scope project` writes a `.mcp.json` into your game's repo, so it's there for
@@ -75,7 +75,7 @@ Any MCP client can talk to the server over stdio. Claude Code is one option, not
 a requirement:
 
 ```sh
-npx -y crucible-mcp-server
+npx -y crucible-loop mcp
 ```
 
 Registering the server only makes the tools available. It doesn't make an agent
@@ -142,15 +142,20 @@ the point is not pushing every project toward one generic voice. Copy
 your actual cast, and point `--style-profiles-file` or `options.styleProfilesFile`
 at it.
 
-## Packages
+## What's in the box
 
-| Package                                        | What it is                                                                                                   |
-| ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
-| [`crucible-base`](./packages/core)             | Track-agnostic shared types and the generate/check/fix loop controller.                                      |
-| [`crucible-prose`](./packages/prose)           | Track B engine: Tier 1 detectors, Tier 2 rubric, style profiles, export adapters.                            |
-| [`crucible-visual`](./packages/visual)         | Track A engine: SVG renderer, structural grader, Tier 1 detectors, Tier 2 rubric, foliage and sheet helpers. |
-| [`crucible-mcp-server`](./packages/mcp-server) | MCP server exposing both tracks' tools over stdio.                                                           |
-| [`crucible-loop`](./packages/cli)              | The `crucible` command-line tool.                                                                            |
+One package, `crucible-loop`, providing:
+
+- the `crucible` command (Tier 1 grading and export, for CI or spot checks)
+- `crucible mcp`, the MCP server both tracks' tools are exposed through
+- a library entry point, if you want to call the graders directly:
+
+```ts
+import { prose, visual } from "crucible-loop";
+
+prose.gradeProsePattern(prose.parseDialogueFile(text));
+visual.gradeSpritePattern({ svg, gridWidth: 16, gridHeight: 16 });
+```
 
 ## Development
 

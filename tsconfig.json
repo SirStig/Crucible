@@ -1,10 +1,8 @@
 {
-  "files": [],
-  "references": [
-    { "path": "packages/base" },
-    { "path": "packages/prose" },
-    { "path": "packages/visual" },
-    { "path": "packages/mcp-server" },
-    { "path": "packages/cli" }
-  ]
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "outDir": "dist",
+    "rootDir": "src"
+  },
+  "include": ["src"]
 }

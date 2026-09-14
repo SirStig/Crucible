@@ -14,7 +14,7 @@ export default tseslint.config(
     // files at the repo root (this file, vitest.config.ts) stay on the
     // non-type-checked ruleset above since they aren't part of any
     // package's tsconfig.
-    files: ["packages/*/src/**/*.ts", "packages/*/test/**/*.ts"],
+    files: ["src/**/*.ts", "test/**/*.ts"],
     extends: [...tseslint.configs.recommendedTypeChecked],
     languageOptions: {
       parserOptions: {
