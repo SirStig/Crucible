@@ -4,6 +4,28 @@
   "description": "Track B (Prose Craft Loop) Tier 1 rubric engine: deterministic AI-tell/rhythm/redundancy grading and dialogue export, no model calls.",
   "author": "Joshua Kac <joshua@houseofkac.com>",
   "license": "MIT",
+  "keywords": [
+    "canvasloop",
+    "game-development",
+    "ai-agents",
+    "mcp",
+    "dialogue",
+    "game-writing",
+    "ai-detection",
+    "prose"
+  ],
+  "homepage": "https://github.com/SirStig/CanvasLoop/tree/main/packages/prose#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SirStig/CanvasLoop.git",
+    "directory": "packages/prose"
+  },
+  "bugs": {
+    "url": "https://github.com/SirStig/CanvasLoop/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -12,7 +34,8 @@
   },
   "files": [
     "dist",
-    "data"
+    "data",
+    "src"
   ],
   "scripts": {
     "build": "tsc -b",

@@ -5,6 +5,22 @@
   "description": "Grounded generate-check-fix loops for AI-agent-produced game craft. Prose Craft Loop (Track B) v0.1.",
   "author": "Joshua Kac <joshua@houseofkac.com>",
   "license": "MIT",
+  "keywords": [
+    "canvasloop",
+    "game-development",
+    "ai-agents",
+    "mcp",
+    "pixel-art",
+    "game-writing"
+  ],
+  "homepage": "https://github.com/SirStig/CanvasLoop#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SirStig/CanvasLoop.git"
+  },
+  "bugs": {
+    "url": "https://github.com/SirStig/CanvasLoop/issues"
+  },
   "type": "module",
   "workspaces": [
     "packages/*"

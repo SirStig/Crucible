@@ -4,13 +4,35 @@
   "description": "CanvasLoop MCP server: exposes both tracks' tools over stdio — Track B prose grading and Track A pixel-art sprite grading.",
   "author": "Joshua Kac <joshua@houseofkac.com>",
   "license": "MIT",
+  "keywords": [
+    "canvasloop",
+    "game-development",
+    "ai-agents",
+    "mcp",
+    "model-context-protocol",
+    "mcp-server",
+    "claude-code"
+  ],
+  "homepage": "https://github.com/SirStig/CanvasLoop/tree/main/packages/mcp-server#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SirStig/CanvasLoop.git",
+    "directory": "packages/mcp-server"
+  },
+  "bugs": {
+    "url": "https://github.com/SirStig/CanvasLoop/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "type": "module",
   "main": "./dist/index.js",
   "bin": {
     "canvasloop-mcp-server": "./dist/index.js"
   },
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "scripts": {
     "build": "tsc -b",

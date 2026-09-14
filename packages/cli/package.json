@@ -4,12 +4,33 @@
   "description": "canvasloop CLI: grade/export prose (Track B) and render/grade pixel-art sprites (Track A) from the command line.",
   "author": "Joshua Kac <joshua@houseofkac.com>",
   "license": "MIT",
+  "keywords": [
+    "canvasloop",
+    "game-development",
+    "ai-agents",
+    "mcp",
+    "cli",
+    "linter"
+  ],
+  "homepage": "https://github.com/SirStig/CanvasLoop/tree/main/packages/cli#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SirStig/CanvasLoop.git",
+    "directory": "packages/cli"
+  },
+  "bugs": {
+    "url": "https://github.com/SirStig/CanvasLoop/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "type": "module",
   "bin": {
     "canvasloop": "./dist/bin.js"
   },
   "files": [
-    "dist"
+    "dist",
+    "src"
   ],
   "scripts": {
     "build": "tsc -b",

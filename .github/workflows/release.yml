@@ -1,0 +1,35 @@
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: read
+  id-token: write # npm provenance
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: "22.12"
+          registry-url: https://registry.npmjs.org
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - run: npm test
+      # Dependency order matters: cross-package deps are pinned exact, so a
+      # dependent published before its dependency is briefly uninstallable.
+      - name: Publish packages in dependency order
+        run: |
+          set -e
+          for pkg in core prose visual mcp-server cli; do
+            echo "::group::publishing @canvasloop/$pkg"
+            npm publish --workspace "@canvasloop/$pkg" --provenance --access public
+            echo "::endgroup::"
+          done
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
