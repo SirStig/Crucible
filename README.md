@@ -1,7 +1,7 @@
 # Crucible
 
 [![CI](https://github.com/SirStig/Crucible/actions/workflows/ci.yml/badge.svg)](https://github.com/SirStig/Crucible/actions/workflows/ci.yml)
-[![npm](https://img.shields.io/npm/v/crucible-loop)](https://www.npmjs.com/package/crucible-loop)
+[![npm](https://img.shields.io/npm/v/crucible-mcp)](https://www.npmjs.com/package/crucible-mcp)
 [![license](https://img.shields.io/badge/license-MIT-blue)](./LICENSE)
 
 Crucible grades game content an AI agent just produced, and tells it what to
@@ -63,7 +63,7 @@ it available in:
 
 ```sh
 cd /path/to/your-game
-claude mcp add --scope project crucible -- npx -y crucible-loop mcp
+claude mcp add --scope project crucible -- npx -y crucible-mcp
 ```
 
 `--scope project` writes a `.mcp.json` into your game's repo, so it's there for
@@ -75,7 +75,7 @@ Any MCP client can talk to the server over stdio. Claude Code is one option, not
 a requirement:
 
 ```sh
-npx -y crucible-loop mcp
+npx -y crucible-mcp
 ```
 
 Registering the server only makes the tools available. It doesn't make an agent
@@ -91,7 +91,7 @@ CI, or a quick spot-check without starting an agent. `grade` exits non-zero on a
 failing grade, so it drops straight into a CI step.
 
 ```sh
-npx crucible-loop prose grade scene.txt
+npx crucible-mcp prose grade scene.txt
 ```
 
 ```sh
@@ -144,14 +144,14 @@ at it.
 
 ## What's in the box
 
-One package, `crucible-loop`, providing:
+One package, `crucible-mcp`, providing:
 
+- `crucible-mcp`, the MCP server both tracks' tools are exposed through
 - the `crucible` command (Tier 1 grading and export, for CI or spot checks)
-- `crucible mcp`, the MCP server both tracks' tools are exposed through
 - a library entry point, if you want to call the graders directly:
 
 ```ts
-import { prose, visual } from "crucible-loop";
+import { prose, visual } from "crucible-mcp";
 
 prose.gradeProsePattern(prose.parseDialogueFile(text));
 visual.gradeSpritePattern({ svg, gridWidth: 16, gridHeight: 16 });

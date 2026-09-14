@@ -10,20 +10,21 @@ All notable changes to this project are documented here. Versions follow
 
 - **Consolidated into one package.** `crucible-base`, `crucible-prose`,
   `crucible-visual`, `crucible-mcp-server` and `crucible-loop` are now a single
-  `crucible-loop` package. Five packages made it unclear which one to install,
+  `crucible-mcp` package. Five packages made it unclear which one to install,
   and only two were ever meant to be installed directly. The `packages/*` split
   remains as internal source organization under `src/`.
-- **The MCP server is now `crucible mcp`** rather than a separate
-  `crucible-mcp-server` binary. One command to install, one to remember.
+- **The MCP server ships as the `crucible-mcp` binary** in the same package,
+  so clients spawn `npx -y crucible-mcp` with no extra subcommand. `crucible mcp`
+  does the same thing from the CLI.
 - Library consumers import namespaced tracks: `import { prose, visual } from
-"crucible-loop"`. The two tracks each defined a `SourceCitation`, so a flat
+"crucible-mcp"`. The two tracks each defined a `SourceCitation`, so a flat
   re-export would have silently dropped it.
 
 ### Removed
 
-- The `crucible-base`, `crucible-prose`, `crucible-visual` and
-  `crucible-mcp-server` packages. They were published briefly and unpublished
-  within npm's 72-hour window; nothing depended on them.
+- The `crucible-base`, `crucible-prose`, `crucible-visual`,
+  `crucible-mcp-server` and `crucible-loop` packages. All were published briefly
+  and unpublished within npm's 72-hour window; nothing depended on them.
 
 ## [0.1.0] - 2026-09-14
 

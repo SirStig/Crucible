@@ -1,7 +1,7 @@
 {
-  "name": "crucible-loop",
+  "name": "crucible-mcp",
   "version": "0.2.1",
-  "description": "Grounded generate-check-fix loops for AI-agent game content. Grades dialogue and pixel art against named craft knowledge, over MCP or from the command line.",
+  "description": "MCP server and CLI that grade AI-agent game content against named craft knowledge: dialogue and UI text (Track B) and pixel-art sprites (Track A).",
   "author": "Joshua Kac <joshua@houseofkac.com>",
   "license": "MIT",
   "keywords": [
@@ -30,7 +30,8 @@
     ".": "./dist/index.js"
   },
   "bin": {
-    "crucible": "dist/cli/bin.js"
+    "crucible": "dist/cli/bin.js",
+    "crucible-mcp": "dist/mcp/bin.js"
   },
   "files": [
     "dist",
