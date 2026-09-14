@@ -7,7 +7,7 @@ import { runVisualRenderCommand } from "../src/commands/visual-render.js";
 let dir: string;
 
 beforeEach(() => {
-  dir = mkdtempSync(join(tmpdir(), "canvasloop-visual-render-"));
+  dir = mkdtempSync(join(tmpdir(), "crucible-visual-render-"));
 });
 
 afterEach(() => {

@@ -1,5 +1,5 @@
 import type { McpServer, RegisteredTool } from "@modelcontextprotocol/sdk/server/mcp.js";
-import { renderSprite, gradeRenderedSprite } from "canvasloop-visual";
+import { renderSprite, gradeRenderedSprite } from "crucible-visual";
 import {
   spriteInputShape,
   visualGradeOptionsSchema,

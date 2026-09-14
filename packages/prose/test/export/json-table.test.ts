@@ -18,7 +18,7 @@ describe("toJsonTable", () => {
       version: number;
       entries: Array<{ key: string; speaker: string | null; text: string }>;
     };
-    expect(parsed.format).toBe("canvasloop-strings");
+    expect(parsed.format).toBe("crucible-strings");
     expect(parsed.version).toBe(1);
     expect(parsed.entries).toEqual([
       { key: "line_0003", speaker: "Marta", text: "Real coin, or don't waste my time." },

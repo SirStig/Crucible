@@ -7,7 +7,7 @@ import { runVisualFoliageCommand } from "../src/commands/visual-foliage.js";
 let dir: string;
 
 beforeEach(() => {
-  dir = mkdtempSync(join(tmpdir(), "canvasloop-visual-foliage-"));
+  dir = mkdtempSync(join(tmpdir(), "crucible-visual-foliage-"));
 });
 
 afterEach(() => {

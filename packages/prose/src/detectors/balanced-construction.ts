@@ -1,4 +1,4 @@
-import type { Finding, Severity } from "canvasloop-core";
+import type { Finding, Severity } from "crucible-base";
 import type { DialogueLine } from "../types.js";
 import { loadAiTellData } from "../data-loader.js";
 import { excerpt } from "../text-normalize.js";

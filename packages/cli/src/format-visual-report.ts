@@ -1,5 +1,5 @@
-import type { Finding } from "canvasloop-core";
-import type { VisualGradeResult } from "canvasloop-visual";
+import type { Finding } from "crucible-base";
+import type { VisualGradeResult } from "crucible-visual";
 
 const SEVERITY_LABEL: Record<Finding["severity"], string> = {
   fail: "[FAIL]",
@@ -19,7 +19,7 @@ function locationLabel(finding: Finding): string {
 
 /** Renders a visual grade result as a plain-text report grouped by severity, most severe first. */
 export function formatVisualReport(result: VisualGradeResult, sourceLabel: string): string {
-  const header = `CanvasLoop sprite grade: ${sourceLabel} — ${result.status.toUpperCase()}`;
+  const header = `Crucible sprite grade: ${sourceLabel} — ${result.status.toUpperCase()}`;
 
   if (result.summary.empty) {
     return `${header}\n  (nothing was drawn)`;

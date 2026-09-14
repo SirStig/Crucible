@@ -7,7 +7,7 @@ import { runVisualSheetCommand } from "../src/commands/visual-sheet.js";
 let dir: string;
 
 beforeEach(() => {
-  dir = mkdtempSync(join(tmpdir(), "canvasloop-visual-sheet-"));
+  dir = mkdtempSync(join(tmpdir(), "crucible-visual-sheet-"));
 });
 
 afterEach(() => {

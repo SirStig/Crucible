@@ -13,10 +13,10 @@ import { normalizeSvgRoot } from "./svg-utils.js";
  */
 export function renderSprite(input: SpriteInput): RenderedSprite {
   if (!Number.isInteger(input.gridWidth) || input.gridWidth <= 0) {
-    throw new RangeError("CanvasLoop: gridWidth must be a positive integer.");
+    throw new RangeError("Crucible: gridWidth must be a positive integer.");
   }
   if (!Number.isInteger(input.gridHeight) || input.gridHeight <= 0) {
-    throw new RangeError("CanvasLoop: gridHeight must be a positive integer.");
+    throw new RangeError("Crucible: gridHeight must be a positive integer.");
   }
 
   const normalized = normalizeSvgRoot(input.svg, input.gridWidth, input.gridHeight);
@@ -28,7 +28,7 @@ export function renderSprite(input: SpriteInput): RenderedSprite {
       shapeRendering: 1,
     });
   } catch (error) {
-    throw new Error(`CanvasLoop: could not parse SVG: ${(error as Error).message}`, {
+    throw new Error(`Crucible: could not parse SVG: ${(error as Error).message}`, {
       cause: error,
     });
   }

@@ -1,11 +1,11 @@
 {
-  "name": "canvasloop-prose",
+  "name": "crucible-prose",
   "version": "0.1.0",
   "description": "Track B (Prose Craft Loop) Tier 1 rubric engine: deterministic AI-tell/rhythm/redundancy grading and dialogue export, no model calls.",
   "author": "Joshua Kac <joshua@houseofkac.com>",
   "license": "MIT",
   "keywords": [
-    "canvasloop",
+    "crucible",
     "game-development",
     "ai-agents",
     "mcp",
@@ -14,14 +14,14 @@
     "ai-detection",
     "prose"
   ],
-  "homepage": "https://github.com/SirStig/CanvasLoop/tree/main/packages/prose#readme",
+  "homepage": "https://github.com/SirStig/Crucible/tree/main/packages/prose#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SirStig/CanvasLoop.git",
+    "url": "git+https://github.com/SirStig/Crucible.git",
     "directory": "packages/prose"
   },
   "bugs": {
-    "url": "https://github.com/SirStig/CanvasLoop/issues"
+    "url": "https://github.com/SirStig/Crucible/issues"
   },
   "type": "module",
   "main": "./dist/index.js",
@@ -40,7 +40,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "canvasloop-core": "0.1.0",
+    "crucible-base": "0.1.0",
     "zod": "^4.6.2"
   }
 }

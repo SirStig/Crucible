@@ -1,29 +1,29 @@
 {
-  "name": "canvasloop",
+  "name": "crucible",
   "version": "0.1.0",
-  "description": "canvasloop CLI: grade/export prose (Track B) and render/grade pixel-art sprites (Track A) from the command line.",
+  "description": "crucible CLI: grade/export prose (Track B) and render/grade pixel-art sprites (Track A) from the command line.",
   "author": "Joshua Kac <joshua@houseofkac.com>",
   "license": "MIT",
   "keywords": [
-    "canvasloop",
+    "crucible",
     "game-development",
     "ai-agents",
     "mcp",
     "cli",
     "linter"
   ],
-  "homepage": "https://github.com/SirStig/CanvasLoop/tree/main/packages/cli#readme",
+  "homepage": "https://github.com/SirStig/Crucible/tree/main/packages/cli#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SirStig/CanvasLoop.git",
+    "url": "git+https://github.com/SirStig/Crucible.git",
     "directory": "packages/cli"
   },
   "bugs": {
-    "url": "https://github.com/SirStig/CanvasLoop/issues"
+    "url": "https://github.com/SirStig/Crucible/issues"
   },
   "type": "module",
   "bin": {
-    "canvasloop": "./dist/bin.js"
+    "crucible": "dist/bin.js"
   },
   "files": [
     "dist",
@@ -35,9 +35,9 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "canvasloop-core": "0.1.0",
-    "canvasloop-prose": "0.1.0",
-    "canvasloop-visual": "0.1.0",
+    "crucible-base": "0.1.0",
+    "crucible-prose": "0.1.0",
+    "crucible-visual": "0.1.0",
     "commander": "^15.0.0"
   }
 }

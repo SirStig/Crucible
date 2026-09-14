@@ -5,8 +5,8 @@ import {
   generateFoliageSvg,
   renderSprite,
   FOLIAGE_PRESETS,
-} from "canvasloop-visual";
-import type { LSystemSpec } from "canvasloop-visual";
+} from "crucible-visual";
+import type { LSystemSpec } from "crucible-visual";
 
 const lSystemSpecSchema = z.object({
   axiom: z.string().min(1),
@@ -42,7 +42,7 @@ type ContentBlock =
  */
 export function generateFoliageHandler(input: GenerateFoliageInput) {
   if (input.spec === undefined && input.preset === undefined) {
-    throw new Error("CanvasLoop: generate_foliage needs either `preset` or `spec`.");
+    throw new Error("Crucible: generate_foliage needs either `preset` or `spec`.");
   }
 
   const result =

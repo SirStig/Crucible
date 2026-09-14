@@ -1,4 +1,4 @@
-import type { Finding } from "canvasloop-core";
+import type { Finding } from "crucible-base";
 import type { PixelGrid } from "./pixel-grid.js";
 
 const DEFAULT_PARTIAL_ALPHA_WARN_RATIO = 0.1;

@@ -44,11 +44,11 @@ describe("bin entrypoint", () => {
   // npm installs `bin` as a symlink, so argv[1] is the link path while
   // import.meta.url is the resolved target. A main-module check that compares
   // the two without realpath silently never starts the server, which is the
-  // exact path `npx canvasloop-mcp-server` takes.
+  // exact path `npx crucible-mcp-server` takes.
   it("auto-starts when invoked through a symlink, as an installed bin is", async () => {
-    const dir = mkdtempSync(join(tmpdir(), "canvasloop-bin-"));
+    const dir = mkdtempSync(join(tmpdir(), "crucible-bin-"));
     tempDirs.push(dir);
-    const link = join(dir, "canvasloop-mcp-server");
+    const link = join(dir, "crucible-mcp-server");
     symlinkSync(entry, link);
     expect(await handshake(link)).toContain('"protocolVersion"');
   }, 10000);

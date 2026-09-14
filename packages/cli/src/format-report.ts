@@ -1,5 +1,5 @@
-import type { Finding } from "canvasloop-core";
-import type { ProseGradeResult } from "canvasloop-prose";
+import type { Finding } from "crucible-base";
+import type { ProseGradeResult } from "crucible-prose";
 
 const SEVERITY_LABEL: Record<Finding["severity"], string> = {
   fail: "[FAIL]",
@@ -11,7 +11,7 @@ const SEVERITY_ORDER: Record<Finding["severity"], number> = { fail: 0, warn: 1, 
 
 /** Renders a grade result as a plain-text report grouped by severity, most severe first. */
 export function formatReport(result: ProseGradeResult, sourceLabel: string): string {
-  const header = `CanvasLoop prose grade: ${sourceLabel} — ${result.status.toUpperCase()}`;
+  const header = `Crucible prose grade: ${sourceLabel} — ${result.status.toUpperCase()}`;
 
   if (result.summary.empty) {
     return `${header}\n  (no content to grade)`;

@@ -7,7 +7,7 @@ import { runVisualGradeCommand } from "../src/commands/visual-grade.js";
 let dir: string;
 
 beforeEach(() => {
-  dir = mkdtempSync(join(tmpdir(), "canvasloop-visual-grade-"));
+  dir = mkdtempSync(join(tmpdir(), "crucible-visual-grade-"));
 });
 
 afterEach(() => {

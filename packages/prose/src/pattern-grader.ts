@@ -1,4 +1,4 @@
-import type { Finding, GradeStatus } from "canvasloop-core";
+import type { Finding, GradeStatus } from "crucible-base";
 import type { DialogueLine, GradeOptions, ProseGradeResult } from "./types.js";
 import { detectAiTellPhrases } from "./detectors/ai-tell-phrases.js";
 import { detectBalancedConstruction } from "./detectors/balanced-construction.js";
@@ -48,7 +48,7 @@ export function gradeProsePattern(
       const label =
         options.styleProfileId ?? "(no styleProfileId given, and the file sets no defaultProfile)";
       throw new Error(
-        `CanvasLoop: could not resolve style profile "${label}" from ${options.styleProfilesFile}.`,
+        `Crucible: could not resolve style profile "${label}" from ${options.styleProfilesFile}.`,
       );
     }
     resolvedOptions = applyStyleProfileToOptions(options, styleProfile);

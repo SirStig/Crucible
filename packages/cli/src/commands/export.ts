@@ -1,6 +1,6 @@
 import { readFileSync, writeFileSync } from "node:fs";
-import type { ExportFormat } from "canvasloop-prose";
-import { parseDialogueFile, exportLines } from "canvasloop-prose";
+import type { ExportFormat } from "crucible-prose";
+import { parseDialogueFile, exportLines } from "crucible-prose";
 
 export interface ExportCommandOptions {
   format: ExportFormat;

@@ -1,4 +1,4 @@
-import type { Finding } from "canvasloop-core";
+import type { Finding } from "crucible-base";
 import type { DialogueLine } from "../types.js";
 import type { PhraseEntry } from "../data-loader.js";
 import { loadAiTellData } from "../data-loader.js";

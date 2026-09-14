@@ -1,4 +1,4 @@
-import type { GradeResult } from "canvasloop-core";
+import type { GradeResult } from "crucible-base";
 
 /**
  * What the agent authors: arbitrary SVG markup plus a declared pixel grid.
@@ -23,7 +23,7 @@ export interface RenderedSprite {
 }
 
 // Fields explicitly include `| undefined` for the same exactOptionalPropertyTypes
-// reason as canvasloop-prose's GradeOptions; see that file's comment.
+// reason as crucible-prose's GradeOptions; see that file's comment.
 export interface VisualGradeOptions {
   /** Same-color regions smaller than this (px) are ignored by the banding check. Default 4. */
   minRegionSizeForBanding?: number | undefined;

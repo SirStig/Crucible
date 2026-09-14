@@ -11,7 +11,7 @@ import {
   type VisualFoliageCommandOptions,
 } from "./commands/visual-foliage.js";
 import { runVisualSheetCommand, type VisualSheetCommandOptions } from "./commands/visual-sheet.js";
-import { FOLIAGE_PRESETS } from "canvasloop-visual";
+import { FOLIAGE_PRESETS } from "crucible-visual";
 
 const CLI_VERSION = "0.1.0";
 const EXPORT_FORMATS = ["ink", "yarn", "json", "strings"] as const;
@@ -35,8 +35,8 @@ function parsePositiveFloat(value: string): number {
 export function createProgram(): Command {
   const program = new Command();
   program
-    .name("canvasloop")
-    .description("CanvasLoop: grounded generate-check-fix loops for AI-agent game content.")
+    .name("crucible")
+    .description("Crucible: grounded generate-check-fix loops for AI-agent game content.")
     .version(CLI_VERSION);
 
   const prose = program
@@ -117,7 +117,7 @@ export function createProgram(): Command {
         .makeOptionMandatory(),
     )
     .requiredOption("--out <path>", "output file path")
-    .option("--node <name>", "Yarn node title, yarn format only (default CanvasLoopExport)")
+    .option("--node <name>", "Yarn node title, yarn format only (default CrucibleExport)")
     .action((file: string, options: ExportCommandOptions) => {
       runExportCommand(file, options);
       console.log(`Wrote ${options.out}`);

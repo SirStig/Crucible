@@ -4,7 +4,7 @@ export interface YarnExportOptions {
   node?: string;
 }
 
-const DEFAULT_NODE = "CanvasLoopExport";
+const DEFAULT_NODE = "CrucibleExport";
 
 function sanitizeNodeTitle(title: string): string {
   const cleaned = title.trim().replace(/[^A-Za-z0-9_]+/g, "_");

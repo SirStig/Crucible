@@ -1,7 +1,7 @@
 {
   "version": "2026.1",
   "updated": "2026-09-10",
-  "notes": "Tier 2 narrative-craft rubric. Unlike Tier 1 (deterministic pattern matching, no model call), these items are genuinely judgment calls, and the MCP tools here don't grade text themselves. get_prose_craft_rubric hands the calling agent one named rubric item's definition; the agent applies it using its own judgment and reports a verdict back through grade_prose_craft, which structures that verdict into a Finding. This keeps CanvasLoop free and self-hostable (no model API call embedded in the server) The framing is deliberate: one named rubric item checked at a time, with its definition supplied in context, rather than an open 'does this sound natural' prompt.",
+  "notes": "Tier 2 narrative-craft rubric. Unlike Tier 1 (deterministic pattern matching, no model call), these items are genuinely judgment calls, and the MCP tools here don't grade text themselves. get_prose_craft_rubric hands the calling agent one named rubric item's definition; the agent applies it using its own judgment and reports a verdict back through grade_prose_craft, which structures that verdict into a Finding. This keeps Crucible free and self-hostable (no model API call embedded in the server) The framing is deliberate: one named rubric item checked at a time, with its definition supplied in context, rather than an open 'does this sound natural' prompt.",
   "sources": [
     {
       "name": "Turkey City Lexicon: A Primer for SF Workshops (SFWA)",
@@ -79,7 +79,7 @@
       "fixHint": "Adjust vocabulary and rhythm to match this character's style profile. Check get_style_profile for the specifics, or run grade_prose_pattern with styleProfilesFile/styleProfileId set to catch vocabulary mismatches deterministically.",
       "note": "Requires a style profile to exist for the character. Without one, this item is not applicable.",
       "source": {
-        "name": "CanvasLoop project convention: per-character voice defined by a project-supplied style profile"
+        "name": "Crucible project convention: per-character voice defined by a project-supplied style profile"
       }
     }
   ]

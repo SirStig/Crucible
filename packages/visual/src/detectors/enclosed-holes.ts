@@ -1,4 +1,4 @@
-import type { Finding } from "canvasloop-core";
+import type { Finding } from "crucible-base";
 import type { PixelGrid } from "../pixel-grid.js";
 import type { VisualGradeOptions } from "../types.js";
 

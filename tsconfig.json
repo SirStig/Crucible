@@ -1,7 +1,7 @@
 {
   "files": [],
   "references": [
-    { "path": "packages/core" },
+    { "path": "packages/base" },
     { "path": "packages/prose" },
     { "path": "packages/visual" },
     { "path": "packages/mcp-server" },

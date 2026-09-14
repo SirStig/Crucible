@@ -6,7 +6,7 @@ describe("toYarn", () => {
   it("wraps lines in a titled node with the default title", () => {
     const output = toYarn([makeLine("Get out.", 1, "Marta")]);
     const lines = output.split("\n");
-    expect(lines[0]).toBe("title: CanvasLoopExport");
+    expect(lines[0]).toBe("title: CrucibleExport");
     expect(lines[1]).toBe("---");
     expect(lines[2]).toBe("Marta: Get out.");
     expect(lines[3]).toBe("===");
@@ -19,7 +19,7 @@ describe("toYarn", () => {
 
   it("falls back to the default title when the custom one is empty after trimming", () => {
     const output = toYarn([makeLine("Get out.", 1)], { node: "   " });
-    expect(output.split("\n")[0]).toBe("title: CanvasLoopExport");
+    expect(output.split("\n")[0]).toBe("title: CrucibleExport");
   });
 
   it("escapes braces and hashtags anywhere in the line", () => {

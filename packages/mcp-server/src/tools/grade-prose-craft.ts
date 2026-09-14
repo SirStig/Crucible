@@ -1,7 +1,7 @@
 import { z } from "zod";
 import type { McpServer, RegisteredTool } from "@modelcontextprotocol/sdk/server/mcp.js";
-import type { Finding } from "canvasloop-core";
-import { loadCraftRubricData } from "canvasloop-prose";
+import type { Finding } from "crucible-base";
+import { loadCraftRubricData } from "crucible-prose";
 import { craftVerdictSchema, findingSchema } from "../schemas.js";
 
 const inputShape = {
@@ -41,7 +41,7 @@ export function gradeProseCraftHandler(input: GradeProseCraftInput) {
   const entry = data.rubric.find((item) => item.id === input.ruleId);
   if (!entry) {
     throw new Error(
-      `CanvasLoop: no Tier 2 rubric item named "${input.ruleId}". Call get_prose_craft_rubric first to see available items.`,
+      `Crucible: no Tier 2 rubric item named "${input.ruleId}". Call get_prose_craft_rubric first to see available items.`,
     );
   }
 

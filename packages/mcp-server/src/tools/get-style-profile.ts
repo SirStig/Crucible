@@ -1,6 +1,6 @@
 import { z } from "zod";
 import type { McpServer, RegisteredTool } from "@modelcontextprotocol/sdk/server/mcp.js";
-import { loadStyleProfileData } from "canvasloop-prose";
+import { loadStyleProfileData } from "crucible-prose";
 import { styleProfileEntrySchema } from "../schemas.js";
 
 const inputShape = {
@@ -26,7 +26,7 @@ export function getStyleProfileHandler(input: GetStyleProfileInput) {
     const match = data.profiles.filter((profile) => profile.id === input.profileId);
     if (match.length === 0) {
       throw new Error(
-        `CanvasLoop: no style profile named "${input.profileId}" in ${input.profilesFile}. Call get_style_profile with no profileId to list what's available.`,
+        `Crucible: no style profile named "${input.profileId}" in ${input.profilesFile}. Call get_style_profile with no profileId to list what's available.`,
       );
     }
     const output = { profiles: match, defaultProfile: data.defaultProfile ?? null };

@@ -1,6 +1,6 @@
 import { writeFileSync } from "node:fs";
-import type { LSystemSpec } from "canvasloop-visual";
-import { generateFoliagePreset } from "canvasloop-visual";
+import type { LSystemSpec } from "crucible-visual";
+import { generateFoliagePreset } from "crucible-visual";
 
 export interface VisualFoliageCommandOptions {
   preset: string;

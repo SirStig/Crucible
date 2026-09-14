@@ -5,5 +5,5 @@
     "rootDir": "src"
   },
   "include": ["src"],
-  "references": [{ "path": "../core" }, { "path": "../prose" }, { "path": "../visual" }]
+  "references": [{ "path": "../base" }, { "path": "../prose" }, { "path": "../visual" }]
 }

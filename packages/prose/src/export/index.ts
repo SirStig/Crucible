@@ -9,7 +9,7 @@ export type ExportFormat = "ink" | "yarn" | "json" | "strings";
 export interface ExportOptions {
   /** Ink export only: overrides the generated-file header comment. */
   header?: string;
-  /** Yarn export only: overrides the node title (default "CanvasLoopExport"). */
+  /** Yarn export only: overrides the node title (default "CrucibleExport"). */
   node?: string;
 }
 

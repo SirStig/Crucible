@@ -22,9 +22,9 @@ import { pathToFileURL } from "node:url";
  */
 export function createServer(): McpServer {
   const server = new McpServer({
-    name: "canvasloop",
+    name: "crucible",
     version: "0.1.0",
-    title: "CanvasLoop",
+    title: "Crucible",
     description:
       "Grounded generate-check-fix loops for AI-agent game content. Track B (prose): Tier 1 deterministic grading for dialogue/UI text (AI-tell phrases, templated constructions, sentence rhythm, said-bookisms, redundancy, word repetition, style-profile vocabulary) plus Tier 2 narrative-craft rubric items the calling agent applies itself. Track A (visual): renders sprite SVG to an exact pixel grid and grades it against a deterministic pixel-art craft rubric (banding, jaggies, dithering overuse, outline inconsistency, too-many-similar-colors, unattached fragments, unintended holes), plus Tier 2 visual-craft rubric items (pillow shading, light-source consistency, hue shifting, selective outlining, silhouette readability, value contrast, shape/proportion plausibility) the calling agent applies itself against the rendered image, plus an L-system foliage generator and a sprite-sheet layout helper.",
   });
@@ -53,7 +53,7 @@ async function main(): Promise<void> {
 }
 
 // Only auto-start when this file is run directly (`node dist/index.js`, or
-// via the installed `canvasloop-mcp-server` bin), not when `createServer` is
+// via the installed `crucible-mcp-server` bin), not when `createServer` is
 // imported elsewhere, such as from a test, where starting a stdio transport
 // would be an unwanted side effect.
 //
@@ -72,7 +72,7 @@ function isMainModule(): boolean {
 }
 if (isMainModule()) {
   main().catch((error: unknown) => {
-    console.error("CanvasLoop MCP server failed to start:", error);
+    console.error("Crucible MCP server failed to start:", error);
     process.exitCode = 1;
   });
 }

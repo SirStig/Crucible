@@ -1,5 +1,5 @@
 // Optional fields explicitly include `| undefined` for the same
-// exactOptionalPropertyTypes reason documented on canvasloop-prose's
+// exactOptionalPropertyTypes reason documented on crucible-prose's
 // GradeOptions: a zod-parsed MCP tool input includes explicit `undefined`
 // on omitted optional fields, not just an absent key.
 export interface LSystemSpec {
@@ -33,7 +33,7 @@ export function expandLSystem(
 ): string {
   if (!Number.isInteger(iterations) || iterations < 0 || iterations > MAX_ITERATIONS) {
     throw new RangeError(
-      `CanvasLoop: iterations must be an integer between 0 and ${MAX_ITERATIONS}.`,
+      `Crucible: iterations must be an integer between 0 and ${MAX_ITERATIONS}.`,
     );
   }
 
@@ -45,7 +45,7 @@ export function expandLSystem(
     }
     if (next.length > MAX_EXPANDED_LENGTH) {
       throw new RangeError(
-        `CanvasLoop: L-system expansion exceeded ${MAX_EXPANDED_LENGTH} characters at iteration ${i + 1}. Reduce iterations or shorten the rules.`,
+        `Crucible: L-system expansion exceeded ${MAX_EXPANDED_LENGTH} characters at iteration ${i + 1}. Reduce iterations or shorten the rules.`,
       );
     }
     current = next;
@@ -170,7 +170,7 @@ export function generateFoliagePreset(
   const preset = FOLIAGE_PRESETS[name];
   if (!preset) {
     throw new Error(
-      `CanvasLoop: unknown foliage preset "${name}". Available presets: ${Object.keys(FOLIAGE_PRESETS).join(", ")}.`,
+      `Crucible: unknown foliage preset "${name}". Available presets: ${Object.keys(FOLIAGE_PRESETS).join(", ")}.`,
     );
   }
   return generateFoliageSvg({ ...preset, ...overrides });

@@ -1,13 +1,13 @@
-# CanvasLoop
+# Crucible
 
-[![CI](https://github.com/SirStig/CanvasLoop/actions/workflows/ci.yml/badge.svg)](https://github.com/SirStig/CanvasLoop/actions/workflows/ci.yml)
-[![npm](https://img.shields.io/npm/v/canvasloop)](https://www.npmjs.com/package/canvasloop)
+[![CI](https://github.com/SirStig/Crucible/actions/workflows/ci.yml/badge.svg)](https://github.com/SirStig/Crucible/actions/workflows/ci.yml)
+[![npm](https://img.shields.io/npm/v/crucible)](https://www.npmjs.com/package/crucible)
 [![license](https://img.shields.io/badge/license-MIT-blue)](./LICENSE)
 
-CanvasLoop grades game content an AI agent just produced, and tells it what to
+Crucible grades game content an AI agent just produced, and tells it what to
 fix. An agent writes dialogue or draws a sprite, and normally that's where it
 ends, because "make it better" isn't an instruction a model can act on.
-CanvasLoop replaces that with a loop: generate, check against named craft
+Crucible replaces that with a loop: generate, check against named craft
 knowledge, get a specific fix, regenerate.
 
 It never calls a model itself. Tier 1 checks are deterministic pattern matching,
@@ -16,8 +16,8 @@ so they need no API key and run anywhere. Tier 2 checks hand the calling agent
 then record that verdict as a structured finding.
 
 ```console
-$ canvasloop prose grade scene.txt
-CanvasLoop prose grade: scene.txt — WARN
+$ crucible prose grade scene.txt
+Crucible prose grade: scene.txt — WARN
   [WARN] (line 4) testament-to: "a testament to" reads as a stock AI-tell
          phrase (Promotional/editorializing construction.).
          fix: Cut the phrase, restate the connection plainly, or drop it.
@@ -63,7 +63,7 @@ it available in:
 
 ```sh
 cd /path/to/your-game
-claude mcp add --scope project canvasloop -- npx -y canvasloop-mcp-server
+claude mcp add --scope project crucible -- npx -y crucible-mcp-server
 ```
 
 `--scope project` writes a `.mcp.json` into your game's repo, so it's there for
@@ -75,7 +75,7 @@ Any MCP client can talk to the server over stdio. Claude Code is one option, not
 a requirement:
 
 ```sh
-npx -y canvasloop-mcp-server
+npx -y crucible-mcp-server
 ```
 
 Registering the server only makes the tools available. It doesn't make an agent
@@ -91,18 +91,18 @@ CI, or a quick spot-check without starting an agent. `grade` exits non-zero on a
 failing grade, so it drops straight into a CI step.
 
 ```sh
-npx canvasloop prose grade scene.txt
+npx crucible prose grade scene.txt
 ```
 
 ```sh
-canvasloop prose grade scene.txt --json
-canvasloop prose grade scene.txt --style-profiles-file profiles.json --style-profile-id marta
-canvasloop prose export scene.txt --format yarn --out scene.yarn
+crucible prose grade scene.txt --json
+crucible prose grade scene.txt --style-profiles-file profiles.json --style-profile-id marta
+crucible prose export scene.txt --format yarn --out scene.yarn
 
-canvasloop visual render sprite.svg --grid-width 16 --grid-height 16 --out sprite.png
-canvasloop visual grade sprite.svg --grid-width 16 --grid-height 16
-canvasloop visual foliage --preset fern --iterations 4 --out foliage.svg
-canvasloop visual sheet manifest.json --out sheet.png
+crucible visual render sprite.svg --grid-width 16 --grid-height 16 --out sprite.png
+crucible visual grade sprite.svg --grid-width 16 --grid-height 16
+crucible visual foliage --preset fern --iterations 4 --out foliage.svg
+crucible visual sheet manifest.json --out sheet.png
 ```
 
 ## MCP tools
@@ -144,13 +144,13 @@ at it.
 
 ## Packages
 
-| Package                                          | What it is                                                                                                   |
-| ------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
-| [`canvasloop-core`](./packages/core)             | Track-agnostic shared types and the generate/check/fix loop controller.                                      |
-| [`canvasloop-prose`](./packages/prose)           | Track B engine: Tier 1 detectors, Tier 2 rubric, style profiles, export adapters.                            |
-| [`canvasloop-visual`](./packages/visual)         | Track A engine: SVG renderer, structural grader, Tier 1 detectors, Tier 2 rubric, foliage and sheet helpers. |
-| [`canvasloop-mcp-server`](./packages/mcp-server) | MCP server exposing both tracks' tools over stdio.                                                           |
-| [`canvasloop`](./packages/cli)                   | The `canvasloop` command-line tool.                                                                          |
+| Package                                        | What it is                                                                                                   |
+| ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| [`crucible-base`](./packages/core)             | Track-agnostic shared types and the generate/check/fix loop controller.                                      |
+| [`crucible-prose`](./packages/prose)           | Track B engine: Tier 1 detectors, Tier 2 rubric, style profiles, export adapters.                            |
+| [`crucible-visual`](./packages/visual)         | Track A engine: SVG renderer, structural grader, Tier 1 detectors, Tier 2 rubric, foliage and sheet helpers. |
+| [`crucible-mcp-server`](./packages/mcp-server) | MCP server exposing both tracks' tools over stdio.                                                           |
+| [`crucible`](./packages/cli)                   | The `crucible` command-line tool.                                                                            |
 
 ## Development
 

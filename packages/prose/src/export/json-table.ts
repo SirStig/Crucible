@@ -7,7 +7,7 @@ export interface JsonTableEntry {
 }
 
 export interface JsonTableExport {
-  format: "canvasloop-strings";
+  format: "crucible-strings";
   version: 1;
   generatedAt: string;
   entries: JsonTableEntry[];
@@ -26,7 +26,7 @@ export function lineKey(sourceLine: number): string {
  */
 export function toJsonTable(lines: DialogueLine[]): string {
   const payload: JsonTableExport = {
-    format: "canvasloop-strings",
+    format: "crucible-strings",
     version: 1,
     generatedAt: new Date().toISOString(),
     entries: lines.map((line) => ({

@@ -1,5 +1,5 @@
 /**
- * Shared, track-agnostic types for the CanvasLoop generate -> check -> fix loop.
+ * Shared, track-agnostic types for the Crucible generate -> check -> fix loop.
  * Any craft track (prose today, visual craft later) grades its own domain object
  * into a `GradeResult` and hands it to a `LoopController` for iteration bookkeeping.
  */

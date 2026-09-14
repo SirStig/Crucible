@@ -7,8 +7,8 @@ Thanks for taking a look. Bug reports and rubric additions are both welcome.
 Requires Node 22.12 or newer.
 
 ```sh
-git clone https://github.com/SirStig/CanvasLoop.git
-cd CanvasLoop
+git clone https://github.com/SirStig/Crucible.git
+cd Crucible
 npm install
 npm run build
 ```

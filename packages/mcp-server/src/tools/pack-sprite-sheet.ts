@@ -1,6 +1,6 @@
 import { z } from "zod";
 import type { McpServer, RegisteredTool } from "@modelcontextprotocol/sdk/server/mcp.js";
-import { packSpriteSheet } from "canvasloop-visual";
+import { packSpriteSheet } from "crucible-visual";
 
 const frameSchema = z.object({
   svg: z.string().min(1),

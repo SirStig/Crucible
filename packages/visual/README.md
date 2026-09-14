@@ -1,14 +1,14 @@
-# canvasloop-visual
+# crucible-visual
 
-Track A of [CanvasLoop](https://github.com/SirStig/CanvasLoop): pixel-exact SVG
+Track A of [Crucible](https://github.com/SirStig/Crucible): pixel-exact SVG
 rendering plus deterministic craft grading for pixel-art sprites and tiles.
 
 ```sh
-npm install canvasloop-visual
+npm install crucible-visual
 ```
 
 ```ts
-import { renderSprite, gradeSpritePattern } from "canvasloop-visual";
+import { renderSprite, gradeSpritePattern } from "crucible-visual";
 
 const rendered = renderSprite({ svg, gridWidth: 16, gridHeight: 16 });
 rendered.png; // PNG-encoded Buffer, exactly 16x16

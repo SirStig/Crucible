@@ -1,7 +1,7 @@
 import { z } from "zod";
 import type { McpServer, RegisteredTool } from "@modelcontextprotocol/sdk/server/mcp.js";
-import type { Finding, FindingLocation } from "canvasloop-core";
-import { loadVisualCraftRubricData } from "canvasloop-visual";
+import type { Finding, FindingLocation } from "crucible-base";
+import { loadVisualCraftRubricData } from "crucible-visual";
 import { craftVerdictSchema, findingSchema } from "../schemas.js";
 
 const inputShape = {
@@ -44,7 +44,7 @@ export function gradeSpriteCraftHandler(input: GradeSpriteCraftInput) {
   const entry = data.rubric.find((item) => item.id === input.ruleId);
   if (!entry) {
     throw new Error(
-      `CanvasLoop: no Tier 2 rubric item named "${input.ruleId}". Call get_sprite_craft_rubric first to see available items.`,
+      `Crucible: no Tier 2 rubric item named "${input.ruleId}". Call get_sprite_craft_rubric first to see available items.`,
     );
   }
 

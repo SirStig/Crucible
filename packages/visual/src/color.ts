@@ -40,7 +40,7 @@ const HEX_PATTERN = /^#?([0-9a-f]{6}|[0-9a-f]{3})$/i;
 export function hexToRgba(hex: string): RGBA {
   const match = HEX_PATTERN.exec(hex.trim());
   if (!match) {
-    throw new Error(`CanvasLoop: "${hex}" is not a valid #rgb or #rrggbb hex color.`);
+    throw new Error(`Crucible: "${hex}" is not a valid #rgb or #rrggbb hex color.`);
   }
   const raw = match[1]!;
   const full = raw.length === 3 ? raw.replace(/(.)/g, "$1$1") : raw;

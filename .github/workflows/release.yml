@@ -26,7 +26,7 @@ jobs:
       - name: Publish packages in dependency order
         run: |
           set -e
-          for pkg in canvasloop-core canvasloop-prose canvasloop-visual canvasloop-mcp-server canvasloop; do
+          for pkg in crucible-base crucible-prose crucible-visual crucible-mcp-server crucible; do
             echo "::group::publishing $pkg"
             npm publish --workspace "$pkg" --provenance
             echo "::endgroup::"

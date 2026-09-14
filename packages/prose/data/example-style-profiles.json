@@ -1,7 +1,7 @@
 {
   "version": "2026.1",
   "updated": "2026-09-10",
-  "notes": "Example file. Nothing in CanvasLoop loads this automatically. Style profiles are project-specific by design, because the goal is not pushing every project toward one generic 'human-sounding' register. Copy this file into your own project, edit the profiles to match your actual cast, and pass its path via --style-profiles-file (CLI) or options.styleProfilesFile (MCP tools).",
+  "notes": "Example file. Nothing in Crucible loads this automatically. Style profiles are project-specific by design, because the goal is not pushing every project toward one generic 'human-sounding' register. Copy this file into your own project, edit the profiles to match your actual cast, and pass its path via --style-profiles-file (CLI) or options.styleProfilesFile (MCP tools).",
   "defaultProfile": "gruff-terse",
   "profiles": [
     {

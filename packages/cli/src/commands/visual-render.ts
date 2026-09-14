@@ -1,5 +1,5 @@
 import { readFileSync, writeFileSync } from "node:fs";
-import { renderSprite } from "canvasloop-visual";
+import { renderSprite } from "crucible-visual";
 
 export interface VisualRenderCommandOptions {
   gridWidth: number;

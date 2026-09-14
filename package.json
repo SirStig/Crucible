@@ -1,25 +1,25 @@
 {
-  "name": "canvasloop",
+  "name": "crucible",
   "private": true,
   "version": "0.1.0",
   "description": "Grounded generate-check-fix loops for AI-agent-produced game craft: prose and pixel art.",
   "author": "Joshua Kac <joshua@houseofkac.com>",
   "license": "MIT",
   "keywords": [
-    "canvasloop",
+    "crucible",
     "game-development",
     "ai-agents",
     "mcp",
     "pixel-art",
     "game-writing"
   ],
-  "homepage": "https://github.com/SirStig/CanvasLoop#readme",
+  "homepage": "https://github.com/SirStig/Crucible#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/SirStig/CanvasLoop.git"
+    "url": "git+https://github.com/SirStig/Crucible.git"
   },
   "bugs": {
-    "url": "https://github.com/SirStig/CanvasLoop/issues"
+    "url": "https://github.com/SirStig/Crucible/issues"
   },
   "type": "module",
   "workspaces": [

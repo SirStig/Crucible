@@ -1,7 +1,7 @@
 import { readFileSync, writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
-import type { SpriteSheetFrame } from "canvasloop-visual";
-import { packSpriteSheet } from "canvasloop-visual";
+import type { SpriteSheetFrame } from "crucible-visual";
+import { packSpriteSheet } from "crucible-visual";
 
 interface ManifestEntry {
   file: string;
@@ -28,7 +28,7 @@ export function runVisualSheetCommand(
   try {
     manifest = JSON.parse(manifestRaw) as ManifestEntry[];
   } catch (error) {
-    throw new Error(`CanvasLoop: ${manifestPath} is not valid JSON: ${(error as Error).message}`, {
+    throw new Error(`Crucible: ${manifestPath} is not valid JSON: ${(error as Error).message}`, {
       cause: error,
     });
   }

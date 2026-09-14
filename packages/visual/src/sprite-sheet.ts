@@ -34,10 +34,10 @@ export interface SpriteSheetResult {
  */
 export function packSpriteSheet(frames: SpriteSheetFrame[], columns: number): SpriteSheetResult {
   if (frames.length === 0) {
-    throw new RangeError("CanvasLoop: packSpriteSheet needs at least one frame.");
+    throw new RangeError("Crucible: packSpriteSheet needs at least one frame.");
   }
   if (!Number.isInteger(columns) || columns <= 0) {
-    throw new RangeError("CanvasLoop: columns must be a positive integer.");
+    throw new RangeError("Crucible: columns must be a positive integer.");
   }
 
   const cellWidth = frames[0]!.gridWidth;
@@ -45,7 +45,7 @@ export function packSpriteSheet(frames: SpriteSheetFrame[], columns: number): Sp
   const mismatched = frames.find((f) => f.gridWidth !== cellWidth || f.gridHeight !== cellHeight);
   if (mismatched) {
     throw new Error(
-      `CanvasLoop: all frames must share the same grid size to pack into a sheet: frame 0 is ${cellWidth}x${cellHeight}, but "${mismatched.name ?? "a later frame"}" is ${mismatched.gridWidth}x${mismatched.gridHeight}.`,
+      `Crucible: all frames must share the same grid size to pack into a sheet: frame 0 is ${cellWidth}x${cellHeight}, but "${mismatched.name ?? "a later frame"}" is ${mismatched.gridWidth}x${mismatched.gridHeight}.`,
     );
   }
 

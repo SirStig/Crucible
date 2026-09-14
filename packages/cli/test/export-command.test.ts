@@ -7,7 +7,7 @@ import { runExportCommand } from "../src/commands/export.js";
 let dir: string;
 
 beforeEach(() => {
-  dir = mkdtempSync(join(tmpdir(), "canvasloop-export-"));
+  dir = mkdtempSync(join(tmpdir(), "crucible-export-"));
 });
 
 afterEach(() => {

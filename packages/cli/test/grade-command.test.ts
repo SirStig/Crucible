@@ -7,7 +7,7 @@ import { runGradeCommand } from "../src/commands/grade.js";
 let dir: string;
 
 beforeEach(() => {
-  dir = mkdtempSync(join(tmpdir(), "canvasloop-grade-"));
+  dir = mkdtempSync(join(tmpdir(), "crucible-grade-"));
 });
 
 afterEach(() => {

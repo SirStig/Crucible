@@ -1,8 +1,8 @@
 import { z } from "zod";
 import type { McpServer, RegisteredTool } from "@modelcontextprotocol/sdk/server/mcp.js";
-import type { Finding, GradeStatus } from "canvasloop-core";
-import { diffLines } from "canvasloop-core";
-import { parseDialogueFile, gradeProsePattern } from "canvasloop-prose";
+import type { Finding, GradeStatus } from "crucible-base";
+import { diffLines } from "crucible-base";
+import { parseDialogueFile, gradeProsePattern } from "crucible-prose";
 import {
   gradeOptionsSchema,
   gradeResultSchema,

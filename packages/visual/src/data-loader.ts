@@ -55,7 +55,7 @@ function loadJsonFile<T>(absolutePath: string, schema: z.ZodType<T>): T {
     raw = readFileSync(absolutePath, "utf-8");
   } catch (error) {
     throw new Error(
-      `CanvasLoop: could not read data file at ${absolutePath}: ${(error as Error).message}`,
+      `Crucible: could not read data file at ${absolutePath}: ${(error as Error).message}`,
       { cause: error },
     );
   }
@@ -64,7 +64,7 @@ function loadJsonFile<T>(absolutePath: string, schema: z.ZodType<T>): T {
   try {
     parsed = JSON.parse(raw);
   } catch (error) {
-    throw new Error(`CanvasLoop: ${absolutePath} is not valid JSON: ${(error as Error).message}`, {
+    throw new Error(`Crucible: ${absolutePath} is not valid JSON: ${(error as Error).message}`, {
       cause: error,
     });
   }
@@ -74,7 +74,7 @@ function loadJsonFile<T>(absolutePath: string, schema: z.ZodType<T>): T {
     const issues = result.error.issues
       .map((issue) => `  - ${issue.path.join(".") || "(root)"}: ${issue.message}`)
       .join("\n");
-    throw new Error(`CanvasLoop: ${absolutePath} failed validation:\n${issues}`);
+    throw new Error(`Crucible: ${absolutePath} failed validation:\n${issues}`);
   }
 
   cache.set(absolutePath, result.data);

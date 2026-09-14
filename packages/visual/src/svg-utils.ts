@@ -4,13 +4,13 @@ const QUOTED_ATTR = (name: string): RegExp => new RegExp(`\\s${name}=(?:"[^"]*"|
 /**
  * Forces the SVG's declared size to exactly `width`x`height` regardless of
  * whatever width, height or viewBox the root element already has (or omits),
- * CanvasLoop is authoritative on pixel-grid size, not the SVG source, so
+ * Crucible is authoritative on pixel-grid size, not the SVG source, so
  * `gridWidth`/`gridHeight` always wins rather than silently depending on
  * the caller getting matching attributes right.
  */
 export function normalizeSvgRoot(svg: string, width: number, height: number): string {
   if (!SVG_ROOT_TAG.test(svg)) {
-    throw new Error("CanvasLoop: input does not contain an <svg> root element.");
+    throw new Error("Crucible: input does not contain an <svg> root element.");
   }
   return svg.replace(SVG_ROOT_TAG, (_match, attrs: string) => {
     let cleaned = attrs

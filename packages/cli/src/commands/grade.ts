@@ -1,6 +1,6 @@
 import { readFileSync } from "node:fs";
-import type { GradeOptions } from "canvasloop-prose";
-import { parseDialogueFile, gradeProsePattern } from "canvasloop-prose";
+import type { GradeOptions } from "crucible-prose";
+import { parseDialogueFile, gradeProsePattern } from "crucible-prose";
 import { formatReport } from "../format-report.js";
 
 export interface GradeCommandOptions {
