@@ -1,7 +1,7 @@
 # Crucible
 
 [![CI](https://github.com/SirStig/Crucible/actions/workflows/ci.yml/badge.svg)](https://github.com/SirStig/Crucible/actions/workflows/ci.yml)
-[![npm](https://img.shields.io/npm/v/crucible)](https://www.npmjs.com/package/crucible)
+[![npm](https://img.shields.io/npm/v/crucible-loop)](https://www.npmjs.com/package/crucible-loop)
 [![license](https://img.shields.io/badge/license-MIT-blue)](./LICENSE)
 
 Crucible grades game content an AI agent just produced, and tells it what to
@@ -91,7 +91,7 @@ CI, or a quick spot-check without starting an agent. `grade` exits non-zero on a
 failing grade, so it drops straight into a CI step.
 
 ```sh
-npx crucible prose grade scene.txt
+npx crucible-loop prose grade scene.txt
 ```
 
 ```sh
@@ -150,7 +150,7 @@ at it.
 | [`crucible-prose`](./packages/prose)           | Track B engine: Tier 1 detectors, Tier 2 rubric, style profiles, export adapters.                            |
 | [`crucible-visual`](./packages/visual)         | Track A engine: SVG renderer, structural grader, Tier 1 detectors, Tier 2 rubric, foliage and sheet helpers. |
 | [`crucible-mcp-server`](./packages/mcp-server) | MCP server exposing both tracks' tools over stdio.                                                           |
-| [`crucible`](./packages/cli)                   | The `crucible` command-line tool.                                                                            |
+| [`crucible-loop`](./packages/cli)              | The `crucible` command-line tool.                                                                            |
 
 ## Development
 

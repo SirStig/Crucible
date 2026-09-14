@@ -1,7 +1,7 @@
 {
-  "name": "crucible",
+  "name": "crucible-loop",
   "version": "0.1.0",
-  "description": "crucible CLI: grade/export prose (Track B) and render/grade pixel-art sprites (Track A) from the command line.",
+  "description": "Command-line interface for Crucible: grade and export prose (Track B) and render/grade pixel-art sprites (Track A). Installs the `crucible` command.",
   "author": "Joshua Kac <joshua@houseofkac.com>",
   "license": "MIT",
   "keywords": [

@@ -1,11 +1,13 @@
-# crucible
+# crucible-loop
 
 Command-line access to [Crucible](https://github.com/SirStig/Crucible)'s
 Tier 1 craft checks. Useful in CI, or for a quick spot-check without starting
 an agent.
 
+The package is `crucible-loop`; the command it installs is `crucible`.
+
 ```sh
-npx crucible prose grade scene.txt
+npx crucible-loop prose grade scene.txt
 ```
 
 ```sh
