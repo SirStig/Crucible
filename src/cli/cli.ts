@@ -13,8 +13,8 @@ import {
 import { runVisualSheetCommand, type VisualSheetCommandOptions } from "./commands/visual-sheet.js";
 import { FOLIAGE_PRESETS } from "../visual/index.js";
 import { startServer } from "../mcp/index.js";
+import { VERSION } from "../version.js";
 
-const CLI_VERSION = "0.2.0";
 const EXPORT_FORMATS = ["ink", "yarn", "json", "strings"] as const;
 
 function parsePositiveInt(value: string): number {
@@ -38,7 +38,7 @@ export function createProgram(): Command {
   program
     .name("crucible")
     .description("Crucible: grounded generate-check-fix loops for AI-agent game content.")
-    .version(CLI_VERSION);
+    .version(VERSION);
 
   program
     .command("mcp")

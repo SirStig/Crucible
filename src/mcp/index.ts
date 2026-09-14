@@ -1,4 +1,5 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import { VERSION } from "../version.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { registerGradeProsePatternTool } from "./tools/grade-prose-pattern.js";
 import { registerIterateProseTool } from "./tools/iterate-prose.js";
@@ -20,7 +21,7 @@ import { registerPackSpriteSheetTool } from "./tools/pack-sprite-sheet.js";
 export function createServer(): McpServer {
   const server = new McpServer({
     name: "crucible",
-    version: "0.1.0",
+    version: VERSION,
     title: "Crucible",
     description:
       "Grounded generate-check-fix loops for AI-agent game content. Track B (prose): Tier 1 deterministic grading for dialogue/UI text (AI-tell phrases, templated constructions, sentence rhythm, said-bookisms, redundancy, word repetition, style-profile vocabulary) plus Tier 2 narrative-craft rubric items the calling agent applies itself. Track A (visual): renders sprite SVG to an exact pixel grid and grades it against a deterministic pixel-art craft rubric (banding, jaggies, dithering overuse, outline inconsistency, too-many-similar-colors, unattached fragments, unintended holes), plus Tier 2 visual-craft rubric items (pillow shading, light-source consistency, hue shifting, selective outlining, silhouette readability, value contrast, shape/proportion plausibility) the calling agent applies itself against the rendered image, plus an L-system foliage generator and a sprite-sheet layout helper.",
