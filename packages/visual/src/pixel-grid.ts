@@ -17,7 +17,7 @@ export interface Region {
 
 /**
  * A color-agnostic connected blob of opaque pixels (or, for
- * `enclosedTransparentRegions`, of enclosed transparent pixels) — unlike
+ * `enclosedTransparentRegions`, of enclosed transparent pixels). Unlike
  * `Region`, this deliberately has no `color` field, since it can span many
  * colors. Used for structural "does this look like one attached object"
  * checks rather than shading-pattern checks.
@@ -69,7 +69,7 @@ export class PixelGrid {
     return this.colorAt(x, y).a;
   }
 
-  /** Any non-zero alpha counts as "drawn" — crisp rendering keeps this a clean binary in practice. */
+  /** Any non-zero alpha counts as "drawn"; crisp rendering keeps this a clean binary in practice. */
   isOpaque(x: number, y: number): boolean {
     return this.alphaAt(x, y) > 0;
   }
@@ -100,7 +100,7 @@ export class PixelGrid {
 
   /**
    * 4-connected flood fill over opaque pixels, grouped by exact color
-   * match — the shared segmentation step for the banding and dithering
+   * match. The shared segmentation step for the banding and dithering
    * detectors (which need contiguous same-color/same-pattern blobs, not
    * just per-pixel reads).
    */
@@ -160,11 +160,11 @@ export class PixelGrid {
 
   /**
    * Color-agnostic connected blobs of opaque pixels, 8-connectivity (a
-   * corner touch counts as attached — the more permissive choice, since the
+   * corner touch counts as attached, the more permissive choice, since the
    * point is catching pieces that clearly aren't touching at all, not
    * penalizing legitimate thin diagonal joins). Used by the
    * disconnected-fragment ("attachment") detector; unlike `floodFillRegions`,
-   * a single component can span many colors — this is about physical
+   * a single component can span many colors. This is about physical
    * touching, not shading segmentation.
    */
   connectedComponents(): Component[] {
@@ -226,11 +226,11 @@ export class PixelGrid {
   }
 
   /**
-   * Transparent pixels fully enclosed by opaque ones — reachable neither
+   * Transparent pixels fully enclosed by opaque ones, reachable neither
    * from the canvas border nor from off-canvas, via 4-connected transparent
    * flood fill. A single stray fully-surrounded pixel is a common
    * "accidental gap" signature; a large enclosed region is more likely an
-   * intentional design feature (a window, a hole in a ring shape) — the
+   * intentional design feature (a window, a hole in a ring shape), so the
    * caller decides the size cutoff, this just finds every enclosed blob.
    */
   enclosedTransparentRegions(): Component[] {
@@ -314,7 +314,7 @@ export class PixelGrid {
     return components;
   }
 
-  /** Opaque pixels 4-adjacent to a transparent (or off-canvas) neighbor — the sprite's outer contour. */
+  /** Opaque pixels 4-adjacent to a transparent (or off-canvas) neighbor: the sprite's outer contour. */
   contourPixels(): Point[] {
     const result: Point[] = [];
     for (let y = 0; y < this.height; y++) {

@@ -39,9 +39,9 @@ export interface GradeOptions {
   minOccurrenceLines?: number | undefined;
   /** A content word must appear in at least this fraction of lines to be flagged. Default 0.35. */
   repetitionLineRatio?: number | undefined;
-  /** FR18: path to a project's own style-profile file. No bundled default — see style-profile.ts. */
+  /** Path to a project's own style-profile file. No bundled default; see style-profile.ts. */
   styleProfilesFile?: string | undefined;
-  /** FR18: which profile in `styleProfilesFile` to grade against. Falls back to that file's `defaultProfile` if omitted. */
+  /** Which profile in `styleProfilesFile` to grade against. Falls back to that file's `defaultProfile` if omitted. */
   styleProfileId?: string | undefined;
 }
 
@@ -56,7 +56,7 @@ export interface ProseGradeSummary {
   saidBookismApplicable: boolean;
   /** True when the input was empty or entirely blank. */
   empty: boolean;
-  /** The style-profile id actually applied (FR18), or null when no profile was supplied/resolved. */
+  /** The style-profile id actually applied, or null when no profile was supplied or resolved. */
   styleProfileApplied: string | null;
   // Index signature so a ProseGradeSummary value can flow through code that
   // is typed against GradeResult's default `Record<string, unknown>`

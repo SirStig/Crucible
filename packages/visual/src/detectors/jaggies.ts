@@ -6,7 +6,7 @@ const DEFAULT_MIN_RUN = 4;
 const DEFAULT_TREAD_CV = 0.35;
 const FAIL_CV_MULTIPLIER = 2;
 // A run needs at least this many tread-length samples before its CV means
-// anything — same small-sample-instability lesson as the prose rhythm
+// anything. Same small-sample-instability lesson as the prose rhythm
 // check (a CV computed from one or two gaps is noise, not a verdict).
 const MIN_TREADS_FOR_JUDGMENT = 3;
 
@@ -44,7 +44,7 @@ function buildProfile(grid: PixelGrid, edge: EdgeName): (number | undefined)[] {
 /**
  * Segments a profile into maximal monotonic-diagonal sub-runs (consistent
  * step direction, ignoring flat treads) and returns each run's sequence of
- * tread lengths (columns/rows between direction changes) — a regular
+ * tread lengths (columns or rows between direction changes). A regular
  * staircase has near-equal treads; jaggies don't.
  */
 function findDiagonalRuns(
@@ -104,11 +104,11 @@ function coefficientOfVariation(values: number[]): number {
 }
 
 /**
- * "Irregular pixel-step sequence on diagonals" — traces the silhouette's
+ * "Irregular pixel-step sequence on diagonals". Traces the silhouette's
  * top/bottom/left/right edge profiles, isolates each maximal diagonal run,
  * and flags a run whose tread-length coefficient of variation is too high
  * (an irregular staircase) rather than too low (which would be the
- * *opposite* problem — this is deliberately the mirror image of the prose
+ * *opposite* problem, so this is deliberately the mirror image of the prose
  * rhythm check's threshold direction: there, uniform is the AI-tell;
  * here, uniform is the craft goal).
  */
@@ -134,7 +134,7 @@ export function detectJaggies(grid: PixelGrid, options: VisualGradeOptions = {})
         id: "visual.jaggies",
         ruleId: "jaggies",
         severity,
-        message: `The ${edge} edge's diagonal step pattern is irregular (tread-length CV ${cv.toFixed(2)}, target < ${cvThreshold}) — reads as jaggy rather than a clean staircase.`,
+        message: `The ${edge} edge's diagonal step pattern is irregular (tread-length CV ${cv.toFixed(2)}, target < ${cvThreshold}), reading as jaggy rather than a clean staircase.`,
         location,
         data: {
           edge,
@@ -142,7 +142,7 @@ export function detectJaggies(grid: PixelGrid, options: VisualGradeOptions = {})
           coefficientOfVariation: Number(cv.toFixed(3)),
         },
         fixHint:
-          "Regularize the step pattern — pick one over/up ratio for this diagonal and hold it.",
+          "Regularize the step pattern: pick one over-and-up ratio for this diagonal and hold it.",
       });
     }
   }

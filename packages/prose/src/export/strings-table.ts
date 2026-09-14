@@ -7,7 +7,7 @@ function escapeStringsValue(text: string): string {
 
 /**
  * Exports accepted lines in an iOS-`.strings`-style `"key" = "value";`
- * format — a plain UI-string target with no native metadata slot, so the
+ * format: a plain UI-string target with no native metadata slot, so the
  * speaker (when present) is kept as a trailing comment rather than folded
  * into the value.
  */

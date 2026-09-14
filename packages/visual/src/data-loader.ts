@@ -8,7 +8,7 @@ const sourceSchema = z.object({
 });
 
 // Tier 2: the MCP server doesn't grade these itself (no model call embedded
-// in the server — see craft-rubric.json's own `notes`). This schema just
+// in the server; see craft-rubric.json's own `notes`). This schema just
 // describes the rubric *definitions* an agent fetches before applying one,
 // same shape as Track B's prose craft rubric entries.
 const craftRubricEntrySchema = z.object({

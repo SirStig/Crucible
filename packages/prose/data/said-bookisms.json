@@ -1,7 +1,7 @@
 {
   "version": "2026.2",
   "updated": "2026-09-10",
-  "notes": "Living data file for the said-bookism dialogue-tag check. Each entry lists exact surface forms deliberately (no stemming) since tag verbs are a small, curatable, closed set — grow this list as new offenders show up in your own drafts rather than relying on a suffix rule to catch them. Grounded in the Turkey City Lexicon (a science-fiction-workshop craft glossary in continuous use since the 1980s, still the standard reference for this exact term): its own \"'Said' Bookism\" entry names \"retorted,\" \"inquired,\" and \"ejaculated\" as its canonical bad examples, all three included below. The Lexicon also names a distinct, related problem, \"Tom Swifty\" (\"said\" followed by a colorful adverb, e.g. \"she said icily\") — that's checked separately in code (adjacent to this data, not driven by it, since it's a structural pattern on the *allowed* verbs rather than a lexicon of banned ones).",
+  "notes": "Living data file for the said-bookism dialogue-tag check. Each entry lists exact surface forms deliberately (no stemming) since tag verbs are a small, curatable, closed set. Grow this list as new offenders show up in your own drafts rather than relying on a suffix rule to catch them. Grounded in the Turkey City Lexicon (a science-fiction-workshop craft glossary in continuous use since the 1980s, still the standard reference for this exact term): its own \"'Said' Bookism\" entry names \"retorted,\" \"inquired,\" and \"ejaculated\" as its canonical bad examples, all three included below. The Lexicon also names a distinct, related problem, \"Tom Swifty\" (\"said\" followed by a colorful adverb, e.g. \"she said icily\"); that's checked separately in code (adjacent to this data, not driven by it, since it's a structural pattern on the *allowed* verbs rather than a lexicon of banned ones).",
   "sources": [
     {
       "name": "Turkey City Lexicon: A Primer for SF Workshops (SFWA)",
@@ -27,7 +27,7 @@
       "id": "announce",
       "forms": ["announced", "announces", "announcing"],
       "severity": "info",
-      "note": "Sometimes legitimate for a literal public announcement — low severity, not a hard ban."
+      "note": "Sometimes legitimate for a literal public announcement, so low severity rather than a hard ban."
     },
     { "id": "state", "forms": ["stated", "states", "stating"], "severity": "warn" },
     { "id": "remark", "forms": ["remarked", "remarks", "remarking"], "severity": "warn" },
@@ -62,7 +62,7 @@
       "id": "ejaculate",
       "forms": ["ejaculated", "ejaculates", "ejaculating"],
       "severity": "fail",
-      "note": "The Lexicon's own headline example — a classic pulp-era bookism, essentially never intentional in 2026 prose.",
+      "note": "The Lexicon's own headline example, a classic pulp-era bookism, essentially never intentional in 2026 prose.",
       "source": {
         "name": "Turkey City Lexicon: A Primer for SF Workshops (SFWA)",
         "url": "https://sfwa.org/2009/06/18/turkey-city-lexicon-a-primer-for-sf-workshops/"
@@ -81,7 +81,7 @@
       "id": "chuckle",
       "forms": ["chuckled", "chuckles", "chuckling"],
       "severity": "fail",
-      "note": "Physically impossible to speak words by chuckling — a laugh belongs in an action beat, not a dialogue tag."
+      "note": "Physically impossible to speak words by chuckling. A laugh belongs in an action beat, not a dialogue tag."
     },
     {
       "id": "grin",
@@ -93,7 +93,7 @@
       "id": "smile",
       "forms": ["smiled", "smiles", "smiling"],
       "severity": "fail",
-      "note": "You can't smile words — belongs in an action beat instead."
+      "note": "You can't smile words; this belongs in an action beat instead."
     },
     {
       "id": "sigh",

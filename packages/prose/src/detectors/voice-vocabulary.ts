@@ -4,9 +4,9 @@ import type { StyleProfileEntry } from "../data-loader.js";
 import { excerpt } from "../text-normalize.js";
 
 /**
- * FR18: flags vocabulary a character's style profile has explicitly marked
+ * Flags vocabulary a character's style profile has explicitly marked
  * as not fitting their voice. Only runs when a profile is actually
- * supplied and has a non-empty `vocabulary.avoid` list — a document graded
+ * supplied and has a non-empty `vocabulary.avoid` list. A document graded
  * with no profile gets none of these findings, deliberately, since there's
  * no universal "wrong word" without a target voice to be wrong for.
  */
@@ -33,7 +33,7 @@ export function detectVoiceVocabulary(
           id: "prose.voice-vocabulary",
           ruleId: "voice-vocabulary-mismatch",
           severity: "warn",
-          message: `"${matched}" doesn't fit ${profile.displayName}'s voice${registerNote} — it's listed as a word to avoid for this character.`,
+          message: `"${matched}" doesn't fit ${profile.displayName}'s voice${registerNote}; it's listed as a word to avoid for this character.`,
           location: {
             line: line.sourceLine,
             charStart: match.index,

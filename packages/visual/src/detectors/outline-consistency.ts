@@ -6,14 +6,14 @@ import { rgbaKey, rgbaToHex } from "../color.js";
 const DEFAULT_RATIO = 0.15;
 
 /**
- * "Outline width/presence varies with no reason" — samples the sprite's
+ * "Outline width or presence varies with no reason". Samples the sprite's
  * outer contour (opaque pixels adjacent to transparent), takes the single
  * most common contour color as the "dominant border color," and flags
  * when a large-enough fraction of the contour doesn't match it. This is a
  * presence/color-consistency check, not a full thickness profile: it
  * catches an outline that drops out or changes color partway around the
  * silhouette, which is the concrete complaint in the rubric ("varies with
- * no reason") — it does not attempt to measure outline thickness in
+ * no reason"). It does not attempt to measure outline thickness in
  * pixels, which would need normal-direction walking and is a documented
  * gap, not an oversight.
  */
@@ -59,7 +59,7 @@ export function detectOutlineConsistency(
       id: "visual.outline-consistency",
       ruleId: "outline-inconsistency",
       severity: mismatchRatio >= ratioThreshold * 2 ? "fail" : "warn",
-      message: `${Math.round(mismatchRatio * 100)}% of the outline contour doesn't match the dominant border color (${dominantHex}) — the outline reads as dropping out or changing without an apparent reason.`,
+      message: `${Math.round(mismatchRatio * 100)}% of the outline contour doesn't match the dominant border color (${dominantHex}), so the outline reads as dropping out or changing without an apparent reason.`,
       location: { x: sample.x, y: sample.y },
       data: {
         dominantColor: dominantHex,

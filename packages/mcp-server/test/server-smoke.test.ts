@@ -47,7 +47,7 @@ describe("MCP server tool registration", () => {
     const server = new McpServer({ name: "test", version: "0.0.0" });
     const tool = registerGetStyleProfileTool(server);
     expect(tool.enabled).toBe(true);
-    expect(tool.description).toContain("FR18");
+    expect(tool.description).toContain("voice profile");
   });
 
   it("registers render_sprite as an enabled tool with a description", () => {

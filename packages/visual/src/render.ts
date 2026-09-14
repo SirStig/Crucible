@@ -4,9 +4,9 @@ import { normalizeSvgRoot } from "./svg-utils.js";
 
 /**
  * Renders a sprite to an exact-size RGBA pixel buffer via `@resvg/resvg-js`
- * (prebuilt native binaries, no system deps — matters for staying
+ * (prebuilt native binaries, no system deps, which matters for staying
  * self-hostable). `shapeRendering: crispEdges` disables anti-aliasing on
- * shape edges, which is what makes "1 SVG unit = 1 pixel" actually hold —
+ * shape edges, which is what makes "1 SVG unit = 1 pixel" actually hold:
  * without it, axis-aligned rects still blur at their boundaries and every
  * detector below (which reads exact per-pixel color) would be working
  * against noise instead of a clean grid.

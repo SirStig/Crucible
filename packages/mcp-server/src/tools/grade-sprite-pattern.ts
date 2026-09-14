@@ -43,7 +43,7 @@ export function registerGradeSpritePatternTool(server: McpServer): RegisteredToo
     {
       title: "Grade a sprite against the Tier 1 pixel-art rubric",
       description:
-        "Renders SVG to a gridWidth x gridHeight pixel image and grades it against the deterministic, no-model-call Tier 1 rubric — structural sanity, banding, jaggies, dithering overuse, outline inconsistency, too-many-similar-colors, unattached fragments, unintended holes — returning both the rendered image and the findings in one call.",
+        "Renders SVG to a gridWidth x gridHeight pixel image and grades it against the deterministic, no-model-call Tier 1 rubric (structural sanity, banding, jaggies, dithering overuse, outline inconsistency, too-many-similar-colors, unattached fragments, and unintended holes), returning both the rendered image and the findings in one call.",
       inputSchema: inputShape,
       outputSchema: gradeResultSchema.shape,
     },

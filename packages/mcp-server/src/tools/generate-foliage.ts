@@ -69,7 +69,7 @@ export function registerGenerateFoliageTool(server: McpServer): RegisteredTool {
     "generate_foliage",
     {
       title: "Generate procedural foliage via an L-system",
-      description: `Expands a Lindenmayer-system grammar into turtle-graphics SVG output. Pass a named preset (${Object.keys(FOLIAGE_PRESETS).join(", ")}) or a full custom spec (axiom, rules, iterations, angleDegrees, stepLength). Set includePreview to also get a rendered PNG image back — otherwise this only returns SVG text. The output is plain SVG, meant to be fed into grade_sprite_pattern/render_sprite like any other sprite if you want it graded.`,
+      description: `Expands a Lindenmayer-system grammar into turtle-graphics SVG output. Pass a named preset (${Object.keys(FOLIAGE_PRESETS).join(", ")}) or a full custom spec (axiom, rules, iterations, angleDegrees, stepLength). Set includePreview to also get a rendered PNG image back; otherwise this only returns SVG text. The output is plain SVG, meant to be fed into grade_sprite_pattern/render_sprite like any other sprite if you want it graded.`,
       inputSchema: inputShape,
       outputSchema: { svg: z.string(), width: z.number().int(), height: z.number().int() },
     },

@@ -31,7 +31,7 @@ export function registerRenderSpriteTool(server: McpServer): RegisteredTool {
     {
       title: "Render a sprite's SVG to a pixel-grid image",
       description:
-        "Renders SVG markup to an exact gridWidth x gridHeight pixel image and returns it as an actual picture, not just numbers — this closes the render/see loop the agent otherwise doesn't have while drawing code blind. No grading; use grade_sprite_pattern for that. gridWidth/gridHeight are authoritative: any width/height/viewBox already on the SVG root is overridden to match.",
+        "Renders SVG markup to an exact gridWidth x gridHeight pixel image and returns it as an actual picture rather than just numbers, closing the render-and-see loop an agent otherwise doesn't have while drawing code blind. No grading; use grade_sprite_pattern for that. gridWidth/gridHeight are authoritative: any width/height/viewBox already on the SVG root is overridden to match.",
       inputSchema: spriteInputShape,
       outputSchema: { width: z.number().int(), height: z.number().int() },
     },

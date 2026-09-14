@@ -32,7 +32,7 @@ export interface GradeSpriteCraftOutput {
 }
 
 /**
- * Records the calling agent's own Tier 2 judgment call — the agent has
+ * Records the calling agent's own Tier 2 judgment call. The agent has
  * already fetched the rubric item via get_sprite_craft_rubric, looked at
  * the rendered sprite, and applied the rubric itself; this tool validates
  * the ruleId, structures a non-passing verdict into a Finding shaped like
@@ -79,7 +79,7 @@ export function registerGradeSpriteCraftTool(server: McpServer): RegisteredTool 
     {
       title: "Record a Tier 2 visual-craft verdict",
       description:
-        "Records your own judgment call on one named Tier 2 rubric item (fetched first via get_sprite_craft_rubric) applied to a rendered sprite, structuring it into a Finding when the verdict isn't a clean pass. This tool does not evaluate the image itself — look at the rendered sprite yourself, apply the rubric definition, and supply the verdict, your reasoning, and optionally the x/y pixel coordinates of the region the finding is about.",
+        "Records your own judgment call on one named Tier 2 rubric item (fetched first via get_sprite_craft_rubric) applied to a rendered sprite, structuring it into a Finding when the verdict isn't a clean pass. This tool does not evaluate the image itself: look at the rendered sprite yourself, apply the rubric definition, and supply the verdict, your reasoning, and optionally the x/y pixel coordinates of the region the finding is about.",
       inputSchema: inputShape,
       outputSchema: {
         ruleId: z.string(),

@@ -1,7 +1,7 @@
 {
   "version": "2026.1",
   "updated": "2026-09-10",
-  "notes": "Tier 2 narrative-craft rubric. Unlike Tier 1 (deterministic pattern matching, no model call), these items are genuinely judgment calls — the MCP tools here don't grade text themselves. get_prose_craft_rubric hands the calling agent one named rubric item's definition; the agent applies it using its own judgment and reports a verdict back through grade_prose_craft, which structures that verdict into a Finding. This keeps CanvasLoop free and self-hostable (no model API call embedded in the server) and matches the TRD's own framing: 'one named rubric item checked at a time, definition supplied in-context — not an open does-this-sound-natural prompt.'",
+  "notes": "Tier 2 narrative-craft rubric. Unlike Tier 1 (deterministic pattern matching, no model call), these items are genuinely judgment calls, and the MCP tools here don't grade text themselves. get_prose_craft_rubric hands the calling agent one named rubric item's definition; the agent applies it using its own judgment and reports a verdict back through grade_prose_craft, which structures that verdict into a Finding. This keeps CanvasLoop free and self-hostable (no model API call embedded in the server) The framing is deliberate: one named rubric item checked at a time, with its definition supplied in context, rather than an open 'does this sound natural' prompt.",
   "sources": [
     {
       "name": "Turkey City Lexicon: A Primer for SF Workshops (SFWA)",
@@ -16,8 +16,8 @@
     {
       "id": "self-justifying-explanation",
       "name": "Self-justifying / over-explaining",
-      "definition": "The line explains or justifies its own word choice, design decision, or boundary instead of simply stating the fact — as if pre-answering a question the reader never asked, or narrating the writer's reasoning process instead of just the conclusion. A frequent tell: stating not just what something IS, but also, at length, everything it ISN'T.",
-      "howToCheck": "Read the line and ask: does it do more than state what's true? Does it also explain WHY it's phrased that way, defend against a possible misreading, or exhaustively rule out alternatives nobody proposed? If you cut the justification/caveat clause, does the line still say everything the reader actually needs? If yes, the justification is padding — flag it.",
+      "definition": "The line explains or justifies its own word choice, design decision, or boundary instead of simply stating the fact, as if pre-answering a question the reader never asked, or narrating the writer's reasoning process instead of just the conclusion. A frequent tell: stating not just what something IS, but also, at length, everything it ISN'T.",
+      "howToCheck": "Read the line and ask: does it do more than state what's true? Does it also explain WHY it's phrased that way, defend against a possible misreading, or exhaustively rule out alternatives nobody proposed? If you cut the justification/caveat clause, does the line still say everything the reader actually needs? If yes, the justification is padding; flag it.",
       "examples": {
         "bad": [
           "Named for coffee on purpose — there is no way to write \"a cup of coffee\" that could pass for an in-game reward.",
@@ -29,13 +29,13 @@
         ]
       },
       "fixHint": "Cut the justification clause. State the fact once, plainly, and trust the reader not to need the reasoning spelled out.",
-      "note": "Found through direct dogfooding on a real project's IAP/settings screen, not derived from external craft literature — the source here is the failure mode itself, observed firsthand.",
+      "note": "Found through direct dogfooding on a real project's IAP/settings screen, not derived from external craft literature. The source here is the failure mode itself, observed firsthand.",
       "source": { "name": "Direct dogfooding (Kurogane Saga 'Support the game' screen)" }
     },
     {
       "id": "on-the-nose-dialogue",
       "name": "On-the-nose dialogue",
-      "definition": "A character states their own emotion, intent, or thought directly instead of it coming through indirectly — tone, subtext, a non-answer, an action, a deflection. The audience is told the feeling rather than shown it.",
+      "definition": "A character states their own emotion, intent, or thought directly instead of it coming through indirectly via tone, subtext, a non-answer, an action, or a deflection. The audience is told the feeling rather than shown it.",
       "howToCheck": "Does the line name the emotion or intent as a fact about the speaker (\"I'm angry,\" \"I don't trust you\") rather than letting it show through word choice, what's left unsaid, or how the character acts? Would a real person in this moment actually say the plain version out loud, or would they more likely deflect, joke, go quiet, or answer a different question?",
       "examples": {
         "bad": ["I'm angry because you betrayed me.", "I don't trust you anymore."],
@@ -50,8 +50,8 @@
     {
       "id": "exposition-dump",
       "name": "Exposition dump / \"As You Know, Bob\"",
-      "definition": "A character explains something to another character that both of them would already know, purely so the reader/player learns it — the Turkey City Lexicon's named example of this exact failure, also called 'maid and butler dialogue.'",
-      "howToCheck": "Would the character receiving this line plausibly already know what's being said to them? If a real conversation between these two people would never include this explanation — because they'd both already have this information — it's an exposition dump written for the audience's benefit, not the character's.",
+      "definition": "A character explains something to another character that both of them would already know, purely so the reader or player learns it. This is the Turkey City Lexicon's named example of this exact failure, also called 'maid and butler dialogue.'",
+      "howToCheck": "Would the character receiving this line plausibly already know what's being said to them? If a real conversation between these two people would never include this explanation, because they'd both already have this information, it's an exposition dump written for the audience's benefit, not the character's.",
       "examples": {
         "bad": [
           "As you know, the kingdom has been at war with the northern clans for a decade.",
@@ -59,7 +59,7 @@
         ],
         "good": ["Another northern-clan bounty. Ten years and they still haven't learned."]
       },
-      "fixHint": "Cut the explanation from the dialogue. If the player genuinely needs the information, move it to something that has a reason to state it plainly — an item description, a journal entry, an environmental detail — rather than a character saying it aloud.",
+      "fixHint": "Cut the explanation from the dialogue. If the player genuinely needs the information, move it to something that has a reason to state it plainly: an item description, a journal entry, or an environmental detail, rather than a character saying it aloud.",
       "source": {
         "name": "Turkey City Lexicon: A Primer for SF Workshops (SFWA)",
         "url": "https://sfwa.org/2009/06/18/turkey-city-lexicon-a-primer-for-sf-workshops/"
@@ -68,17 +68,19 @@
     {
       "id": "voice-consistency",
       "name": "Voice consistency",
-      "definition": "This character's line reads interchangeably with another character's — nothing in word choice, rhythm, or register marks it as specifically theirs.",
-      "howToCheck": "Fetch this character's style profile first via get_style_profile (register, verbosity, vocabulary to favor/avoid, free-form notes). Read the line: does it match that profile, or could it be swapped into any other character's mouth without anyone noticing? A formal court scribe and a gruff blacksmith should never sound alike. If no style profile exists for this character yet, this item can't be meaningfully applied — say so rather than guessing at a voice nobody defined.",
+      "definition": "This character's line reads interchangeably with another character's, and nothing in word choice, rhythm, or register marks it as specifically theirs.",
+      "howToCheck": "Fetch this character's style profile first via get_style_profile (register, verbosity, vocabulary to favor/avoid, free-form notes). Read the line: does it match that profile, or could it be swapped into any other character's mouth without anyone noticing? A formal court scribe and a gruff blacksmith should never sound alike. If no style profile exists for this character yet, this item can't be meaningfully applied; say so rather than guessing at a voice nobody defined.",
       "examples": {
         "bad": [
           "A gruff blacksmith saying: \"I would be delighted to assist you with that, certainly.\""
         ],
         "good": ["A gruff blacksmith saying: \"Fine. Sit. Don't touch the anvil.\""]
       },
-      "fixHint": "Adjust vocabulary and rhythm to match this character's style profile — check get_style_profile for the specifics, or run grade_prose_pattern with styleProfilesFile/styleProfileId set to catch vocabulary mismatches deterministically.",
-      "note": "Depends on FR18 (style profiles) existing for the character — without one, this item is not applicable.",
-      "source": { "name": "CanvasLoop PRD/TRD, Section 8 (Track B rubric table)" }
+      "fixHint": "Adjust vocabulary and rhythm to match this character's style profile. Check get_style_profile for the specifics, or run grade_prose_pattern with styleProfilesFile/styleProfileId set to catch vocabulary mismatches deterministically.",
+      "note": "Requires a style profile to exist for the character. Without one, this item is not applicable.",
+      "source": {
+        "name": "CanvasLoop project convention: per-character voice defined by a project-supplied style profile"
+      }
     }
   ]
 }

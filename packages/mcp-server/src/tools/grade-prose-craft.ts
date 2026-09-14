@@ -30,7 +30,7 @@ export interface GradeProseCraftOutput {
 }
 
 /**
- * Records the calling agent's own Tier 2 judgment call — the agent has
+ * Records the calling agent's own Tier 2 judgment call. The agent has
  * already fetched the rubric item via get_prose_craft_rubric and applied it
  * itself; this tool validates the ruleId, structures a non-passing verdict
  * into a Finding shaped like the Tier 1 ones, and hands it back. It does
@@ -75,7 +75,7 @@ export function registerGradeProseCraftTool(server: McpServer): RegisteredTool {
     {
       title: "Record a Tier 2 narrative-craft verdict",
       description:
-        "Records your own judgment call on one named Tier 2 rubric item (fetched first via get_prose_craft_rubric) applied to a piece of text, structuring it into a Finding when the verdict isn't a clean pass. This tool does not evaluate the text itself — apply the rubric definition yourself and supply the verdict and your reasoning.",
+        "Records your own judgment call on one named Tier 2 rubric item (fetched first via get_prose_craft_rubric) applied to a piece of text, structuring it into a Finding when the verdict isn't a clean pass. This tool does not evaluate the text itself: apply the rubric definition yourself and supply the verdict and your reasoning.",
       inputSchema: inputShape,
       outputSchema: {
         ruleId: z.string(),

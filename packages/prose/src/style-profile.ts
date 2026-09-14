@@ -2,7 +2,7 @@ import type { GradeOptions } from "./types.js";
 import { loadStyleProfileData, type StyleProfileEntry } from "./data-loader.js";
 
 /**
- * FR18: resolves one named profile from a project's own style-profile file.
+ * Resolves one named profile from a project's own style-profile file.
  * `profileId` omitted falls back to the file's own `defaultProfile`; if
  * neither is set, returns undefined rather than guessing.
  */
@@ -18,7 +18,7 @@ export function resolveStyleProfile(
 
 /**
  * Merges a profile's rhythm overrides into grading options. Explicit
- * options always win — a profile sets a *default* target for a character's
+ * options always win. A profile sets a *default* target for a character's
  * voice, not a hard override of something the caller already specified.
  */
 export function applyStyleProfileToOptions(

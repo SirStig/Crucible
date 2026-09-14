@@ -39,7 +39,7 @@ function collectDitheredPixels(grid: PixelGrid): Set<string> {
   return dithered;
 }
 
-/** 4-connected flood fill over dithered-pixel membership (not color equality — a dither cell alternates two colors). */
+/** 4-connected flood fill over dithered-pixel membership (not color equality, since a dither cell alternates two colors). */
 function floodFillDitherRegions(
   dithered: Set<string>,
   width: number,
@@ -92,11 +92,11 @@ function floodFillDitherRegions(
 }
 
 /**
- * "Dither covering a solid field instead of buffering a transition" —
+ * "Dither covering a solid field instead of buffering a transition".
  * finds contiguous checkerboard-dithered regions and measures each one's
  * *narrow-dimension* width (the shorter of its bounding-box width/height,
  * a simple proxy for "thickness of the transition band" rather than a true
- * perpendicular-to-longest-axis measurement — documented simplification,
+ * perpendicular-to-longest-axis measurement, a documented simplification,
  * not an oversight). A real transition dither is a thin band; anything
  * wider in both dimensions is filling an open area instead.
  */
@@ -121,7 +121,7 @@ export function detectDithering(grid: PixelGrid, options: VisualGradeOptions = {
       id: "visual.dithering",
       ruleId: "dithering-overuse",
       severity,
-      message: `A dithered checkerboard region is ${narrowWidth}px thick in its narrow dimension (target ≤ ${maxTransitionWidth}px) — reads as covering a solid field rather than buffering a transition.`,
+      message: `A dithered checkerboard region is ${narrowWidth}px thick in its narrow dimension (target ≤ ${maxTransitionWidth}px), reading as covering a solid field rather than buffering a transition.`,
       location: { x: region.minX, y: region.minY },
       data: { width, height, area: region.size },
       fixHint:

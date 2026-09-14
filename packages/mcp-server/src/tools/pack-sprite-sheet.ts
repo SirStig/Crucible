@@ -56,7 +56,7 @@ export function registerPackSpriteSheetTool(server: McpServer): RegisteredTool {
     {
       title: "Lay out multiple sprite frames into one grid-aligned sheet",
       description:
-        "Renders each frame and packs them into one sheet image at uniform cell size, returning the sheet PNG and per-frame layout metadata (for later engine-specific export). Every frame must share the same gridWidth/gridHeight — mismatched frames are a clear input error, not silently stretched to fit.",
+        "Renders each frame and packs them into one sheet image at uniform cell size, returning the sheet PNG and per-frame layout metadata (for later engine-specific export). Every frame must share the same gridWidth and gridHeight. Mismatched frames are a clear input error rather than being silently stretched to fit.",
       inputSchema: inputShape,
       outputSchema: {
         columns: z.number().int(),

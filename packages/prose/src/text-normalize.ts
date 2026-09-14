@@ -154,7 +154,7 @@ const STEM_SUFFIXES: ReadonlyArray<{ suffix: string; replacement: string }> = [
 ];
 
 /**
- * Deliberately light, English-only suffix stripper — not a full Porter
+ * Deliberately light, English-only suffix stripper, not a full Porter
  * stemmer. Only applied to lowercase-alphabetic tokens (non-Latin-script
  * tokens pass through untouched), and only strips a suffix when at least 3
  * characters of stem remain, to avoid mangling short words.

@@ -14,7 +14,7 @@ export interface SentenceRhythmResult {
 }
 
 /**
- * FR14c: flags uniform sentence-length rhythm — every sentence taking about
+ * Flags uniform sentence-length rhythm, where every sentence takes about
  * the same beat to read, a hallmark of machine-generated prose. Measured as
  * the coefficient of variation (stddev / mean) of word counts across every
  * sentence pooled from the input. Skipped outright below `minSentences`
@@ -46,14 +46,14 @@ export function detectSentenceRhythm(
     id: "prose.sentence-rhythm",
     ruleId: "uniform-sentence-rhythm",
     severity,
-    message: `Sentence lengths barely vary across this document (coefficient of variation ${coefficientOfVariation.toFixed(2)}, target ≥ ${targetCv}) — every line takes about the same beat to read.`,
+    message: `Sentence lengths barely vary across this document (coefficient of variation ${coefficientOfVariation.toFixed(2)}, target ≥ ${targetCv}). Every line takes about the same beat to read.`,
     data: {
       coefficientOfVariation: Number(coefficientOfVariation.toFixed(3)),
       sentenceCount: sentences.length,
       wordCounts,
     },
     fixHint:
-      "Split one sentence, shorten another — vary the beat instead of keeping every line the same length.",
+      "Split one sentence and shorten another. Vary the beat instead of keeping every line the same length.",
   };
 
   return { findings: [finding], sentenceCount: sentences.length, skipped: false };

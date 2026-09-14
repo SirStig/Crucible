@@ -10,12 +10,12 @@ const WORD_PATTERN = /[A-Za-z']+/g;
 
 export interface SaidBookismResult {
   findings: Finding[];
-  /** False when the input had no quoted spans at all — the check is then a documented no-op, not an error. */
+  /** False when the input had no quoted spans at all. The check is then a documented no-op, not an error. */
   applicable: boolean;
 }
 
 /**
- * FR14d: flags said-bookisms — dialogue tags like "exclaimed" or "asserted"
+ * Flags said-bookisms: dialogue tags like "exclaimed" or "asserted"
  * standing in for a plain "said"/"asked" or an action beat. Looks at up to
  * `CONTEXT_WORDS` words immediately before and after each quoted span on a
  * line for a verb form listed in the living said-bookisms.json data.
@@ -111,7 +111,7 @@ function findBannedVerb(
 }
 
 // Common English adjectives/nouns that end in "-ly" but aren't manner
-// adverbs — excluded to keep the Tom Swifty check from false-positiving on
+// adverbs, excluded to keep the Tom Swifty check from false-positiving on
 // ordinary words like "she said only that much." This is a known,
 // deliberately unsophisticated heuristic (no real part-of-speech tagging),
 // documented rather than silently wrong.

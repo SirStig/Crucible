@@ -18,7 +18,7 @@ export function lineKey(sourceLine: number): string {
 }
 
 /**
- * Exports accepted lines as a keyed JSON string table — a plain, engine-
+ * Exports accepted lines as a keyed JSON string table: a plain, engine-
  * agnostic format for UI text with no native place for narrative structure.
  * Keys are deterministic, sortable, and collision-free: they're derived
  * from the original source line number, which parseDialogueFile guarantees

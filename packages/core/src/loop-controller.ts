@@ -7,7 +7,7 @@ export interface LoopControllerOptions {
 
 export interface RecordOptions {
   /**
-   * Only honored on a session's first `record()` call — a session's iteration
+   * Only honored on a session's first `record()` call. A session's iteration
    * budget is fixed at creation so a caller can't quietly raise the ceiling
    * mid-loop by passing a different value on a later call.
    */

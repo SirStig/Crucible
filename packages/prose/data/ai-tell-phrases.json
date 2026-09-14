@@ -1,7 +1,7 @@
 {
   "version": "2026.2",
   "updated": "2026-09-10",
-  "notes": "Living data file — the list of phrases that read as machine-generated drifts as models change. Update this file directly (or point at your own copy via --phrases-file / options.phrasesFile) rather than forking the package. Entries are matched case-insensitively with word boundaries for \"literal\" type, or as a raw regex for \"regex\" type. Grounded in the cited sources below, adapted for game dialogue/prose rather than transplanted verbatim: Wikipedia's list was written for detecting AI-written *encyclopedia articles*, a different register from terse dialogue, so several documented categories were deliberately excluded or down-weighted here rather than imported wholesale — see each entry's own `source`/`note`, and packages/prose/RESEARCH.md for the full reasoning, including what was left out and why (bare \"landscape\"/\"robust\"/\"valuable\"/\"key\"/\"crucial\" all have ordinary, legitimate meanings in fantasy-RPG prose specifically, so they're excluded as standalone words to avoid drowning real findings in false positives).",
+  "notes": "Living data file. The list of phrases that read as machine-generated drifts as models change. Update this file directly (or point at your own copy via --phrases-file / options.phrasesFile) rather than forking the package. Entries are matched case-insensitively with word boundaries for \"literal\" type, or as a raw regex for \"regex\" type. Grounded in the cited sources below, adapted for game dialogue/prose rather than transplanted verbatim: Wikipedia's list was written for detecting AI-written *encyclopedia articles*, a different register from terse dialogue, so several documented categories were deliberately excluded or down-weighted here rather than imported wholesale. See each entry's own `source` and `note` for the reasoning (bare \"landscape\"/\"robust\"/\"valuable\"/\"key\"/\"crucial\" all have ordinary, legitimate meanings in fantasy-RPG prose specifically, so they're excluded as standalone words to avoid drowning real findings in false positives).",
   "sources": [
     {
       "name": "Wikipedia:Signs of AI writing",
@@ -482,7 +482,7 @@
       "pattern": "not\\s+[^,.!?]{1,60},?\\s+but\\s+[^,.!?]{1,60}",
       "severity": "info",
       "minOccurrencesForFail": 3,
-      "note": "Broad \"not X, but Y\" contrast — a normal rhetorical device on its own, only flagged as fail once it recurs often enough to read as a tic.",
+      "note": "Broad \"not X, but Y\" contrast, a normal rhetorical device on its own, only flagged as fail once it recurs often enough to read as a tic.",
       "source": {
         "name": "Wikipedia:Signs of AI writing",
         "url": "https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing"
@@ -493,7 +493,7 @@
       "pattern": ",\\s+(?:fostering|underscoring|highlighting|reflecting|emphasizing|ensuring|cultivating|encompassing|contributing to)\\b[^.!?]{1,100}[.!?]",
       "severity": "warn",
       "minOccurrencesForFail": 2,
-      "note": "A sentence that caps itself with a dangling present-participle clause (\"..., underscoring its importance.\") — a distinct, documented AI habit from the plain word list above.",
+      "note": "A sentence that caps itself with a dangling present-participle clause (\"..., underscoring its importance.\"): a distinct, documented AI habit from the plain word list above.",
       "source": {
         "name": "Wikipedia:Signs of AI writing",
         "url": "https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing"

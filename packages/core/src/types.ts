@@ -48,8 +48,8 @@ export interface GradeResult<TSummary = Record<string, unknown>> {
   summary: TSummary;
   /** ISO 8601 timestamp of when this grade was produced. */
   gradedAt: string;
-  // Index signature so a GradeResult value — the shape returned straight
-  // across a protocol boundary (e.g. as an MCP tool's structuredContent) —
+  // Index signature so a GradeResult value, the shape returned straight
+  // across a protocol boundary (e.g. as an MCP tool's structuredContent),
   // is structurally assignable to a Record<string, unknown>-typed target
   // without a manual cast at every call site.
   [key: string]: unknown;

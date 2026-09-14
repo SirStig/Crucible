@@ -7,9 +7,9 @@ const DEFAULT_THRESHOLD = 0.6;
 const FAIL_THRESHOLD = 0.85;
 
 /**
- * FR15: flags a line that restates the immediately preceding line in
+ * Flags a line that restates the immediately preceding line in
  * different words. Similarity is measured with Jaccard overlap on
- * stopword-filtered, lightly stemmed content-token sets — a deliberate
+ * stopword-filtered, lightly stemmed content-token sets, a deliberate
  * local, model-call-free proxy for "semantic similarity" (Tier 1 has to
  * stay free per the NFRs; true embeddings would need a model call). Lines
  * with too few content tokens on either side are skipped, so short
@@ -48,7 +48,7 @@ export function detectRedundantRestating(
         previousText: previous.text,
         currentText: current.text,
       },
-      fixHint: "Cut one of the two — they're saying the same thing.",
+      fixHint: "Cut one of the two; they're saying the same thing.",
     });
   }
 

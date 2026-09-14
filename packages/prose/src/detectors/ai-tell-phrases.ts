@@ -14,7 +14,7 @@ function buildPhraseRegex(phrase: PhraseEntry): RegExp {
 }
 
 /**
- * FR14a: flags matches against the living ai-tell-phrases.json phrase list —
+ * Flags matches against the living ai-tell-phrases.json phrase list:
  * overused transitions, hedges, and marketing-copy cliches that read as
  * machine-generated regardless of subject matter.
  */

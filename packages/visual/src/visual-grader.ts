@@ -17,11 +17,11 @@ import { detectDisconnectedFragments } from "./detectors/attachment.js";
 import { detectEnclosedHoles } from "./detectors/enclosed-holes.js";
 
 /**
- * Grades an already-rendered sprite (no re-render) — the entry point tool
+ * Grades an already-rendered sprite (no re-render). The entry point tool
  * layers should use when they also need the PNG bytes for an image
  * response, since `renderSprite` only needs to run once. A fully
  * transparent canvas is a clean, informative fail ("nothing was drawn"),
- * not a crash — same discipline as `gradeProsePattern`'s empty-input case.
+ * not a crash, the same discipline as `gradeProsePattern`'s empty-input case.
  */
 export function gradeRenderedSprite(
   rendered: RenderedSprite,
@@ -39,7 +39,7 @@ export function gradeRenderedSprite(
           id: "visual.structural",
           ruleId: "empty-canvas",
           severity: "fail",
-          message: "Nothing was drawn — the rendered canvas has no opaque pixels.",
+          message: "Nothing was drawn; the rendered canvas has no opaque pixels.",
           fixHint: "Check that the SVG actually contains visible shapes within the declared grid.",
         },
       ],

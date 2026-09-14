@@ -36,7 +36,7 @@ export function createProgram(): Command {
   const program = new Command();
   program
     .name("canvasloop")
-    .description("CanvasLoop — grounded generate-check-fix loops for AI-agent game content.")
+    .description("CanvasLoop: grounded generate-check-fix loops for AI-agent game content.")
     .version(CLI_VERSION);
 
   const prose = program
@@ -90,7 +90,7 @@ export function createProgram(): Command {
     )
     .option(
       "--style-profiles-file <path>",
-      "FR18: path to a project's own style-profile file (no bundled default — see data/example-style-profiles.json)",
+      "path to a project's own style-profile file (no bundled default; see data/example-style-profiles.json)",
     )
     .option(
       "--style-profile-id <id>",

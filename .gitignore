@@ -4,3 +4,6 @@ coverage/
 *.tsbuildinfo
 .DS_Store
 *.log
+
+# Internal working notes, not shipped or tracked
+RESEARCH.md

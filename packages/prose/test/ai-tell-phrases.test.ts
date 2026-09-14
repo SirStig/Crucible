@@ -67,7 +67,7 @@ describe("detectAiTellPhrases", () => {
     const findings = detectAiTellPhrases(
       makeLines(["This armor is remarkably robust and quite valuable across the landscape."]),
     );
-    // "robust", "valuable", and "landscape" are excluded entirely (see RESEARCH.md);
+    // "robust", "valuable", and "landscape" are excluded entirely;
     // none of them should fire even though they're on Wikipedia's own list.
     expect(findings).toEqual([]);
   });

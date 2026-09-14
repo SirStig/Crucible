@@ -10,7 +10,7 @@ import { detectVoiceVocabulary } from "./detectors/voice-vocabulary.js";
 import { resolveStyleProfile, applyStyleProfileToOptions } from "./style-profile.js";
 
 /**
- * FR14 + FR15 + FR18, orchestrated: runs the full Tier 1 pattern grader
+ * Runs the full Tier 1 pattern grader
  * (AI-tell phrases, balanced-construction templates, sentence rhythm,
  * said-bookisms, adjacent-line redundancy, word-repetition-overuse) and,
  * when a style profile is supplied, layers on voice-vocabulary checking and

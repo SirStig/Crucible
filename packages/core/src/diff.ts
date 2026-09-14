@@ -29,7 +29,7 @@ interface MergedOp {
  *
  * `lineIndex` on the result is the index in the "after" sequence for
  * added/changed/unchanged entries, and the index in the "before" sequence
- * for removed entries — matching how a caller would want to locate each
+ * for removed entries, matching how a caller would want to locate each
  * kind of change in the sequence it actually appears in.
  */
 export function diffLines(before: readonly string[], after: readonly string[]): LineDiff[] {

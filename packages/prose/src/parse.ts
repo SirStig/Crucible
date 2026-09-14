@@ -1,7 +1,7 @@
 import type { DialogueLine } from "./types.js";
 
 /**
- * "Speaker: line text" convention — a bare word/short phrase followed by a
+ * "Speaker: line text" convention: a bare word or short phrase followed by a
  * colon and at least one non-space character. Deliberately requires the
  * speaker to start with a letter so numeric/timestamp-looking lines
  * ("3:00 the bell rings") are never mistaken for a speaker prefix.

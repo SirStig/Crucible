@@ -14,8 +14,8 @@ export interface GetStyleProfileInput {
 }
 
 /**
- * FR18: reads a project's own style-profile file (no bundled default — see
- * data/example-style-profiles.json for the documented shape). Mainly meant
+ * Reads a project's own style-profile file. There is no bundled default; see
+ * data/example-style-profiles.json for the documented shape. Mainly meant
  * for the voice-consistency Tier 2 rubric item: an agent fetches the target
  * character's profile here before judging whether a line matches it.
  */
@@ -47,9 +47,9 @@ export function registerGetStyleProfileTool(server: McpServer): RegisteredTool {
   return server.registerTool(
     "get_style_profile",
     {
-      title: "Fetch a project's style/voice profile (FR18)",
+      title: "Fetch a project's style/voice profile",
       description:
-        "FR18: reads a character/project voice profile from a project-supplied file (register, verbosity, vocabulary to favor/avoid, free-form voice notes) — used mainly to ground the voice-consistency Tier 2 rubric item before judging whether a line matches a character's established voice. There is no bundled default profile; profilesFile must point at the calling project's own file.",
+        "Reads a character or project voice profile from a project-supplied file (register, verbosity, vocabulary to favor or avoid, free-form voice notes). It is used mainly to ground the voice-consistency Tier 2 rubric item before judging whether a line matches a character's established voice. There is no bundled default profile; profilesFile must point at the calling project's own file.",
       inputSchema: inputShape,
       outputSchema: {
         profiles: z.array(styleProfileEntrySchema),

@@ -5,7 +5,7 @@ import type { Severity } from "@canvasloop/core";
 
 const severitySchema: z.ZodType<Severity> = z.enum(["info", "warn", "fail"]);
 
-// A named source this entry's inclusion is grounded in — a citation, not
+// A named source this entry's inclusion is grounded in: a citation, not
 // free-form commentary. Keep `note` for the entry-specific rationale (why
 // *this* pattern, why this severity) and `source` for where the underlying
 // claim comes from.
@@ -60,7 +60,7 @@ const saidBookismDataSchema = z.object({
 });
 
 // Tier 2: the MCP server doesn't grade these itself (no model call embedded
-// in the server — see craft-rubric.json's own `notes`). This schema just
+// in the server; see craft-rubric.json's own `notes`). This schema just
 // describes the rubric *definitions* an agent fetches before applying one.
 const craftRubricEntrySchema = z.object({
   id: z.string().min(1),
@@ -86,9 +86,9 @@ const craftRubricDataSchema = z.object({
   rubric: z.array(craftRubricEntrySchema),
 });
 
-// FR18: per-character/per-project voice targets. Deliberately has NO
+// Per-character and per-project voice targets. Deliberately has NO
 // bundled default and no default file path (unlike the other loaders below)
-// — the whole point is not pushing every project toward one generic
+// The whole point is not pushing every project toward one generic
 // "human-sounding" register, so a profile only takes effect when a caller
 // explicitly points at their own project's file.
 const rhythmOverridesSchema = z.object({
@@ -187,7 +187,7 @@ export function loadCraftRubricData(customPath?: string): CraftRubricData {
   return loadJsonFile(path, craftRubricDataSchema);
 }
 
-/** No default path (see the schema's own comment) — `path` is required, always the caller's own project file. */
+/** No default path (see the schema's own comment). `path` is required, and is always the caller's own project file. */
 export function loadStyleProfileData(path: string): StyleProfileData {
   return loadJsonFile(path, styleProfileDataSchema);
 }

@@ -13,7 +13,7 @@ export interface GetSpriteCraftRubricInput {
 
 /**
  * Tier 2 has no model call embedded in the server (see craft-rubric.json's
- * own `notes`) — this tool's only job is handing the calling agent a named
+ * own `notes`). This tool's only job is handing the calling agent a named
  * visual-craft rubric definition to apply with its own judgment against the
  * rendered sprite (fetch that first via render_sprite or grade_sprite_pattern,
  * both of which return an image content block). Grading itself happens via
@@ -49,7 +49,7 @@ export function registerGetSpriteCraftRubricTool(server: McpServer): RegisteredT
     {
       title: "Fetch a Tier 2 visual-craft rubric definition",
       description:
-        "Returns one named visual-craft rubric item (pass a ruleId), or every available item (omit it) — pillow shading, cross-sprite light-source consistency, hue shifting, selective outlining, silhouette readability, value contrast/range. This tool does not grade anything itself: render the sprite first (render_sprite or grade_sprite_pattern, both return the rendered image), read the rubric definition and examples here, apply it to the image using your own visual judgment, then report your verdict through grade_sprite_craft.",
+        "Returns one named visual-craft rubric item (pass a ruleId), or every available item (omit it): pillow shading, cross-sprite light-source consistency, hue shifting, selective outlining, silhouette readability, and value contrast range. This tool does not grade anything itself: render the sprite first (render_sprite or grade_sprite_pattern, both return the rendered image), read the rubric definition and examples here, apply it to the image using your own visual judgment, then report your verdict through grade_sprite_craft.",
       inputSchema: inputShape,
       outputSchema: { rubric: z.array(craftRubricEntrySchema) },
     },

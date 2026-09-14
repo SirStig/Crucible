@@ -57,7 +57,7 @@ describe("runVisualGradeCommand", () => {
   });
 
   it("passes custom thresholds through to the grader", () => {
-    // Named to avoid the filename itself containing the substring "banding" —
+    // Named to avoid the filename itself containing the substring "banding",
     // the report header echoes the file path, which would defeat the assertion below.
     const path = writeSvg(
       "shading-strips.svg",

@@ -5,7 +5,7 @@ const DEFAULT_PARTIAL_ALPHA_WARN_RATIO = 0.1;
 const DEFAULT_PARTIAL_ALPHA_FAIL_RATIO = 0.3;
 
 /**
- * Cheap, always-first sanity checks — the visual equivalent of Track B's
+ * Cheap, always-first sanity checks: the visual equivalent of Track B's
  * pattern-grader running before anything judgment-heavy. Assumes the
  * caller has already handled the fully-empty-canvas case (see
  * visual-grader.ts): everything here is about a *non-empty* render that
@@ -36,7 +36,7 @@ export function gradeStructure(grid: PixelGrid): Finding[] {
       id: "visual.structural",
       ruleId: "content-touches-canvas-edge",
       severity: "warn",
-      message: `${edgeTouchingPixels.length} pixel(s) touch the canvas edge — verify content wasn't clipped rather than intentionally bleeding to the border (e.g. a seamless tile).`,
+      message: `${edgeTouchingPixels.length} pixel(s) touch the canvas edge. Verify content wasn't clipped rather than intentionally bleeding to the border (e.g. a seamless tile).`,
       location: { x: first.x, y: first.y },
       data: { count: edgeTouchingPixels.length },
       fixHint:
@@ -51,7 +51,7 @@ export function gradeStructure(grid: PixelGrid): Finding[] {
         id: "visual.structural",
         ruleId: "partial-alpha-noise",
         severity: partialRatio >= DEFAULT_PARTIAL_ALPHA_FAIL_RATIO ? "fail" : "warn",
-        message: `${Math.round(partialRatio * 100)}% of drawn pixels have partial transparency (alpha between 1 and 254) — verify this is intentional (a glow, shadow, or soft edge) rather than accidental overlap or anti-aliasing.`,
+        message: `${Math.round(partialRatio * 100)}% of drawn pixels have partial transparency (alpha between 1 and 254). Verify this is intentional (a glow, shadow, or soft edge) rather than accidental overlap or anti-aliasing.`,
         data: { partialAlphaCount, opaqueCount, ratio: Number(partialRatio.toFixed(3)) },
         fixHint:
           "Pixel art is usually either fully opaque or fully transparent per pixel; if this wasn't deliberate, flatten overlapping shapes or disable fill-opacity/gradients.",

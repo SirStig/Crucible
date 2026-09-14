@@ -10,7 +10,7 @@ export default tseslint.config(
   js.configs.recommended,
   ...tseslint.configs.recommended,
   {
-    // Type-aware rules only for the actual package sources/tests — config
+    // Type-aware rules only for the actual package sources and tests. Config
     // files at the repo root (this file, vitest.config.ts) stay on the
     // non-type-checked ruleset above since they aren't part of any
     // package's tsconfig.

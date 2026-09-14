@@ -2,7 +2,7 @@ import type { GradeResult } from "@canvasloop/core";
 
 /**
  * What the agent authors: arbitrary SVG markup plus a declared pixel grid.
- * The grid becomes the render width/height — 1 SVG unit = 1 pixel — so it
+ * The grid becomes the render width and height (1 SVG unit = 1 pixel), so it
  * doesn't matter whether the SVG is one `<rect>` per pixel or paths/curves
  * (the foliage generator needs the latter); every detector analyzes the
  * *rasterized* pixel buffer, never the SVG source.
@@ -16,14 +16,14 @@ export interface SpriteInput {
 export interface RenderedSprite {
   width: number;
   height: number;
-  /** Raw RGBA8, row-major, straight (non-premultiplied) alpha — 4 bytes per pixel. */
+  /** Raw RGBA8, row-major, straight (non-premultiplied) alpha, 4 bytes per pixel. */
   pixels: Buffer;
   /** The same image, PNG-encoded, for export/preview. */
   png: Buffer;
 }
 
 // Fields explicitly include `| undefined` for the same exactOptionalPropertyTypes
-// reason as @canvasloop/prose's GradeOptions — see that file's comment.
+// reason as @canvasloop/prose's GradeOptions; see that file's comment.
 export interface VisualGradeOptions {
   /** Same-color regions smaller than this (px) are ignored by the banding check. Default 4. */
   minRegionSizeForBanding?: number | undefined;
@@ -43,9 +43,9 @@ export interface VisualGradeOptions {
   colorCountRatio?: number | undefined;
   /** A stray component smaller than this fraction of the main body's pixel count is a candidate "unattached fragment." Default 0.15. */
   maxFragmentSizeRatio?: number | undefined;
-  /** A stray component farther than this (Chebyshev distance, px) from the main body isn't flagged — likely an intentional separate effect/decoration. Default 4. */
+  /** A stray component farther than this (Chebyshev distance, px) from the main body isn't flagged, since it is likely an intentional separate effect or decoration. Default 4. */
   maxAttachmentGap?: number | undefined;
-  /** An enclosed transparent region larger than this (px) isn't flagged — likely an intentional feature (a window), not a stray gap. Default 3. */
+  /** An enclosed transparent region larger than this (px) isn't flagged, since it is likely an intentional feature (a window) rather than a stray gap. Default 3. */
   maxUnintendedHoleSize?: number | undefined;
 }
 
@@ -55,10 +55,10 @@ export interface VisualGradeSummary {
   opaquePixelCount: number;
   uniqueColorCount: number;
   effectivePaletteSize: number;
-  /** True when the canvas had no opaque pixels at all — a clean fail, not a crash. */
+  /** True when the canvas had no opaque pixels at all: a clean fail, not a crash. */
   empty: boolean;
   // Index signature so this flows through GradeResult's default
-  // Record<string, unknown> summary type — same reason as ProseGradeSummary.
+  // Record<string, unknown> summary type, same reason as ProseGradeSummary.
   [key: string]: unknown;
 }
 

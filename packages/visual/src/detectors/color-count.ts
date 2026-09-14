@@ -18,7 +18,7 @@ interface ColorCluster {
  * colors in order, join a color to the first existing cluster whose leader
  * is within `distanceThreshold`, otherwise start a new cluster with it as
  * leader. Simpler and fully deterministic compared to iterative
- * agglomerative merging, at the cost of being order-sensitive — a
+ * agglomerative merging, at the cost of being order-sensitive, a
  * documented tradeoff, not an attempt at optimal clustering.
  */
 function clusterColors(colors: RGBA[], distanceThreshold: number): ColorCluster[] {
@@ -43,7 +43,7 @@ export interface ColorCountResult {
 }
 
 /**
- * "Unique colors exceed the effective palette" — clusters opaque colors by
+ * "Unique colors exceed the effective palette". Clusters opaque colors by
  * perceptual (redmean) distance; when the raw unique-color count is well
  * above the cluster count, several colors are reading as the same shade
  * and could be collapsed without losing visible variety.
@@ -72,10 +72,10 @@ export function detectColorCount(
       id: "visual.color-count",
       ruleId: "too-many-similar-colors",
       severity,
-      message: `${uniqueColorCount} unique colors cluster into only ${effectivePaletteSize} perceptually distinct group(s) — several read as near-duplicates.`,
+      message: `${uniqueColorCount} unique colors cluster into only ${effectivePaletteSize} perceptually distinct group(s), so several read as near-duplicates.`,
       data: { uniqueColorCount, effectivePaletteSize, mergedGroups },
       fixHint:
-        "Collapse each group of near-identical colors down to one — the extras aren't adding visible palette variety.",
+        "Collapse each group of near-identical colors down to one. The extras aren't adding visible palette variety.",
     });
   }
 

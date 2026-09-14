@@ -4,7 +4,7 @@ import { gridFromFn } from "../helpers.js";
 
 describe("detectBanding", () => {
   it("flags two elongated, same-hue-different-lightness regions sharing a straight border", () => {
-    // Two 20x3 horizontal strips stacked — well past the default elongation
+    // Two 20x3 horizontal strips stacked, well past the default elongation
     // threshold (3), same red hue at two different lightness steps.
     const grid = gridFromFn(20, 6, (_x, y) => (y < 3 ? "#cc4444" : "#882222"));
     const findings = detectBanding(grid);
@@ -14,13 +14,13 @@ describe("detectBanding", () => {
   });
 
   it("does not flag regions that aren't elongated", () => {
-    // Two roughly-square 6x6 blocks side by side — same hue relationship, but not strip-like.
+    // Two roughly-square 6x6 blocks side by side: same hue relationship, but not strip-like.
     const grid = gridFromFn(12, 6, (x) => (x < 6 ? "#cc4444" : "#882222"));
     expect(detectBanding(grid)).toEqual([]);
   });
 
   it("does not flag elongated regions of unrelated hues", () => {
-    // Elongated strips, but red vs. blue — not a shading step of the same hue.
+    // Elongated strips, but red vs. blue, not a shading step of the same hue.
     const grid = gridFromFn(20, 6, (_x, y) => (y < 3 ? "#ff0000" : "#0000ff"));
     expect(detectBanding(grid)).toEqual([]);
   });

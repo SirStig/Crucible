@@ -10,12 +10,12 @@ First public release.
 
 ### Added
 
-- **Track B (prose)** — Tier 1 deterministic detectors for AI-tell phrasing,
+- **Track B (prose).** Tier 1 deterministic detectors for AI-tell phrasing,
   said-bookisms, balanced-contrast constructions, uniform sentence rhythm,
   adjacent-line redundancy, and word repetition. Tier 2 craft rubric covering
   self-justifying dialogue, on-the-nose lines, exposition dumps, and voice
   consistency. Export adapters for Ink, Yarn, JSON tables, and strings tables.
-- **Track A (visual)** — pixel-exact SVG rendering, structural grading, and
+- **Track A (visual).** Pixel-exact SVG rendering, structural grading, and
   Tier 1 detectors for banding, jaggies, dithering overuse, outline
   inconsistency, too-many-similar-colors, unattached fragments, and unintended
   holes. Tier 2 rubric covering pillow shading, light-source consistency, hue

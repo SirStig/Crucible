@@ -15,9 +15,8 @@ import { registerGenerateFoliageTool } from "./tools/generate-foliage.js";
 import { registerPackSpriteSheetTool } from "./tools/pack-sprite-sheet.js";
 
 /**
- * One shared server for both tracks, per the TRD's own architecture note
- * ("one MCP server... shared shell, track-specific tools") — this used to
- * be named/described as prose-only back when Track A didn't exist yet.
+ * One shared server for both tracks: a common shell with track-specific
+ * tools registered onto it.
  */
 export function createServer(): McpServer {
   const server = new McpServer({
@@ -51,7 +50,7 @@ async function main(): Promise<void> {
   await server.connect(transport);
 }
 
-// Only auto-start when this file is run directly (`node dist/index.js`) —
+// Only auto-start when this file is run directly (`node dist/index.js`),
 // not when `createServer` is imported elsewhere, such as from a test, where
 // starting a stdio transport would be an unwanted side effect.
 const isMainModule =

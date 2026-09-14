@@ -19,7 +19,7 @@ export interface GradeCommandOptions {
 }
 
 export interface GradeCommandResult {
-  /** 0 on pass/warn, 1 on fail — usable directly as a process exit code for CI. */
+  /** 0 on pass or warn, 1 on fail. Usable directly as a process exit code for CI. */
   exitCode: number;
   output: string;
 }

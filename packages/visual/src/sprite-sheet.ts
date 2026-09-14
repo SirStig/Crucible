@@ -28,7 +28,7 @@ export interface SpriteSheetResult {
 
 /**
  * Lays out N independently-rendered frames into one grid-aligned sheet.
- * Every frame must share the same declared grid size — mismatched frames
+ * Every frame must share the same declared grid size. Mismatched frames
  * are a clear, structural-grader-style error (a caller mistake to fix),
  * not something to silently stretch/pad into place.
  */
@@ -45,7 +45,7 @@ export function packSpriteSheet(frames: SpriteSheetFrame[], columns: number): Sp
   const mismatched = frames.find((f) => f.gridWidth !== cellWidth || f.gridHeight !== cellHeight);
   if (mismatched) {
     throw new Error(
-      `CanvasLoop: all frames must share the same grid size to pack into a sheet — frame 0 is ${cellWidth}x${cellHeight}, but "${mismatched.name ?? "a later frame"}" is ${mismatched.gridWidth}x${mismatched.gridHeight}.`,
+      `CanvasLoop: all frames must share the same grid size to pack into a sheet: frame 0 is ${cellWidth}x${cellHeight}, but "${mismatched.name ?? "a later frame"}" is ${mismatched.gridWidth}x${mismatched.gridHeight}.`,
     );
   }
 

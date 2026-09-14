@@ -13,11 +13,11 @@ const DEFAULT_LINE_RATIO = 0.35;
 const FAIL_OCCURRENCE_LINES = 6;
 
 /**
- * FR14 addition, added from real dogfooding rather than external research:
+ * Added from real dogfooding rather than external research:
  * flags a content word that recurs across many separate lines/messages in
- * the same document — e.g. a UI-string set where five different messages
+ * the same document, e.g. a UI-string set where five different messages
  * each separately reassure the reader that "nothing has changed." A single
- * repeated word doesn't reliably show up as adjacent-line redundancy (FR15
+ * repeated word doesn't reliably show up as adjacent-line redundancy (the
  * only compares neighbors), but reads as a tic once it's the throughline of
  * a whole section. Counts distinct *lines* containing the word, not total
  * occurrences, so a word used twice in one long line doesn't count double.
@@ -52,11 +52,11 @@ export function detectWordRepetition(lines: DialogueLine[], options: GradeOption
       id: "prose.word-repetition",
       ruleId: "repeated-word-overuse",
       severity,
-      message: `"${word}" appears in ${lineNumbers.length} of ${lines.length} lines — it's reading as a tic rather than a deliberate refrain.`,
+      message: `"${word}" appears in ${lineNumbers.length} of ${lines.length} lines, reading as a tic rather than a deliberate refrain.`,
       location: { line: lineNumbers[0]! },
       data: { word, lineCount: lineNumbers.length, totalLines: lines.length, lines: lineNumbers },
       fixHint:
-        "Cut most of the repeats — if the point is worth making once for emphasis, it doesn't need saying again in every other line.",
+        "Cut most of the repeats. If the point is worth making once for emphasis, it doesn't need saying again in every other line.",
     });
   }
 

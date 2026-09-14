@@ -52,10 +52,9 @@ the source is one `<rect>` per pixel or paths and curves.
 
 A sprite can pass every Tier 1 check and still be bad art: flat, no light
 source, an unused palette color. Tier 1 only proves content is clean. Tier 2 is
-what catches whether it's any good. Both tracks document a real case where Tier
-1 passed on genuinely weak content and Tier 2 is what caught it, in
-[`packages/prose/RESEARCH.md`](./packages/prose/RESEARCH.md) and
-[`packages/visual/RESEARCH.md`](./packages/visual/RESEARCH.md).
+what catches whether it's any good. Both tracks were built against real cases
+where Tier 1 passed on genuinely weak content and only a Tier 2 item caught
+it.
 
 ## Use it from Claude Code
 

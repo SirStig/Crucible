@@ -55,14 +55,14 @@ function shapeOf(region: Region): RegionShape {
 }
 
 /**
- * "Parallel same-value color bands along a contour" — flood-fills opaque
+ * "Parallel same-value color bands along a contour". Flood-fills opaque
  * pixels into same-color regions, then flags pairs of elongated
  * (strip-like), similarly-oriented, same-hue-different-lightness regions
  * whose shared border is nearly a perfectly straight line. That's the
  * concrete, checkable version of "banding": a shading step that cuts a
  * straight edge instead of following the form. No ground-truth image
  * corpus exists to validate this against, so it's a documented heuristic
- * (see packages/visual/RESEARCH.md-equivalent reasoning in this file),
+ * (see the reasoning in this file),
  * not proven computer vision.
  */
 export function detectBanding(grid: PixelGrid, options: VisualGradeOptions = {}): Finding[] {
@@ -137,11 +137,11 @@ export function detectBanding(grid: PixelGrid, options: VisualGradeOptions = {})
           id: "visual.banding",
           ruleId: "banding",
           severity,
-          message: `Two elongated, similarly-colored regions (${hexA} and ${hexB}) share a nearly straight border — reads as a flat shading band rather than following the form.`,
+          message: `Two elongated, similarly-colored regions (${hexA} and ${hexB}) share a nearly straight border, reading as a flat shading band rather than following the form.`,
           location: { x: shapeA.region.minX, y: shapeA.region.minY },
           data: { colors: [hexA, hexB], borderSpread: spread },
           fixHint:
-            "Break the parallel run — vary the band's edge so it follows the silhouette instead of cutting a straight line.",
+            "Break the parallel run. Vary the band's edge so it follows the silhouette instead of cutting a straight line.",
         });
       }
     }

@@ -21,7 +21,7 @@ const inputShape = {
   // Connects Tier 1 and Tier 2 into one loop: pass the Finding(s) returned
   // by grade_sprite_craft for this same render, and they're folded into
   // this iteration's grade/status/history alongside the Tier 1 pixel-pattern
-  // findings — one session, one status, instead of two disconnected tool flows.
+  // findings into one session and one status, instead of two disconnected tool flows.
   craftFindings: z.array(findingSchema).optional(),
 };
 
@@ -53,7 +53,7 @@ function combinedStatus(findings: readonly Finding[]): GradeStatus {
 /**
  * The tool's actual logic, exported standalone so tests can drive a
  * multi-call session directly without a transport. Diffs the SVG *source*
- * text line-by-line (reusing `diffLines` from `@canvasloop/core` — no new
+ * text line-by-line (reusing `diffLines` from `@canvasloop/core`, so no new
  * diff algorithm needed) rather than diffing pixels, since "what changed"
  * is more useful to an agent as source-level context than a raster delta.
  */
@@ -105,7 +105,7 @@ export function registerIterateSpriteTool(server: McpServer): RegisteredTool {
     {
       title: "Track sprite revision iterations for one editing session",
       description:
-        "Grades a sprite with the same Tier 1 pixel-art rubric as grade_sprite_pattern, tracks iteration count per sessionId (in-memory, for this server process's lifetime only), diffs the current SVG source lines against the previous iteration's, and enforces a max-iteration cutoff (default 5, fixed by the first call for a given session). Optionally accepts craftFindings — the Finding(s) grade_sprite_craft returned for this same render — and folds them into this iteration's grade and status, so Tier 1 and Tier 2 results live in one session instead of two disconnected checks.",
+        "Grades a sprite with the same Tier 1 pixel-art rubric as grade_sprite_pattern, tracks iteration count per sessionId (in-memory, for this server process's lifetime only), diffs the current SVG source lines against the previous iteration's, and enforces a max-iteration cutoff (default 5, fixed by the first call for a given session). Optionally accepts craftFindings, the Finding(s) grade_sprite_craft returned for this same render, and folds them into this iteration's grade and status, so Tier 1 and Tier 2 results live in one session instead of two disconnected checks.",
       inputSchema: inputShape,
       outputSchema: outputShape,
     },

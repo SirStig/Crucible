@@ -11,7 +11,7 @@ interface TemplateMatch {
 }
 
 /**
- * FR14b: flags templated "balanced-contrast" constructions ("it's not just
+ * Flags templated "balanced-contrast" constructions ("it's not just
  * X, it's Y" and its siblings, defined in the living data file's
  * `templates[]`). A single instance is just a rhetorical device; the same
  * template firing repeatedly across the document is a tic, so every match
@@ -48,7 +48,7 @@ export function detectBalancedConstruction(lines: DialogueLine[], phrasesFile?: 
         ruleId: template.id,
         severity,
         message: repeated
-          ? `The "${template.id}" construction shows up ${matches.length} times in this document — it's reading as a verbal tic, not a deliberate rhetorical device.`
+          ? `The "${template.id}" construction shows up ${matches.length} times in this document, reading as a verbal tic rather than a deliberate rhetorical device.`
           : template.note
             ? `"${matched}" is a templated balanced-contrast construction (${template.note}).`
             : `"${matched}" is a templated balanced-contrast construction.`,

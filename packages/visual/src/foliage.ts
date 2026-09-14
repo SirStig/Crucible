@@ -1,6 +1,6 @@
 // Optional fields explicitly include `| undefined` for the same
 // exactOptionalPropertyTypes reason documented on @canvasloop/prose's
-// GradeOptions — a zod-parsed MCP tool input includes explicit `undefined`
+// GradeOptions: a zod-parsed MCP tool input includes explicit `undefined`
 // on omitted optional fields, not just an absent key.
 export interface LSystemSpec {
   axiom: string;
@@ -45,7 +45,7 @@ export function expandLSystem(
     }
     if (next.length > MAX_EXPANDED_LENGTH) {
       throw new RangeError(
-        `CanvasLoop: L-system expansion exceeded ${MAX_EXPANDED_LENGTH} characters at iteration ${i + 1} — reduce iterations or shorten the rules.`,
+        `CanvasLoop: L-system expansion exceeded ${MAX_EXPANDED_LENGTH} characters at iteration ${i + 1}. Reduce iterations or shorten the rules.`,
       );
     }
     current = next;
@@ -62,7 +62,7 @@ interface TurtleState {
 /**
  * Walks an expanded L-system string with a turtle: `F` draws forward and
  * advances, `+`/`-` turn by `angleDegrees`, `[`/`]` push/pop turtle state
- * (branching). Any other symbol is grammar-only (no turtle action) — the
+ * (branching). Any other symbol is grammar-only (no turtle action), so the
  * usual L-system convention where e.g. `X` exists only to drive the rule
  * rewriting, not to draw anything itself.
  */

@@ -2,7 +2,7 @@
   "name": "canvasloop",
   "private": true,
   "version": "0.1.0",
-  "description": "Grounded generate-check-fix loops for AI-agent-produced game craft. Prose Craft Loop (Track B) v0.1.",
+  "description": "Grounded generate-check-fix loops for AI-agent-produced game craft: prose and pixel art.",
   "author": "Joshua Kac <joshua@houseofkac.com>",
   "license": "MIT",
   "keywords": [

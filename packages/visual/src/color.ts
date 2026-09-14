@@ -14,7 +14,7 @@ export function rgbaKey(c: RGBA): string {
 }
 
 /**
- * "Redmean" — a well-known, cheap approximation of perceptual color
+ * "Redmean", a well-known and cheap approximation of perceptual color
  * distance (weights each RGB channel differently depending on the pair's
  * average red value, correcting for human color sensitivity without a full
  * Lab-space conversion). Alpha is ignored: this only ever compares opaque
@@ -28,7 +28,7 @@ export function redmeanDistance(a: RGBA, b: RGBA): number {
   return Math.sqrt((2 + rMean / 256) * dR * dR + 4 * dG * dG + (2 + (255 - rMean) / 256) * dB * dB);
 }
 
-/** Formats opaque RGB as `#rrggbb` for human-readable findings (alpha dropped — findings only ever cover opaque pixels). */
+/** Formats opaque RGB as `#rrggbb` for human-readable findings (alpha dropped, since findings only ever cover opaque pixels). */
 export function rgbaToHex(c: RGBA): string {
   const channel = (n: number): string => n.toString(16).padStart(2, "0");
   return `#${channel(c.r)}${channel(c.g)}${channel(c.b)}`;

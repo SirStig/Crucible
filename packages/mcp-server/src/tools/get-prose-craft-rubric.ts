@@ -13,7 +13,7 @@ export interface GetProseCraftRubricInput {
 
 /**
  * Tier 2 has no model call embedded in the server (see craft-rubric.json's
- * own `notes`) — this tool's only job is handing the calling agent a named
+ * own `notes`). This tool's only job is handing the calling agent a named
  * rubric definition to apply with its own judgment. Grading itself happens
  * via grade_prose_craft, after the agent has read the definition here.
  */
@@ -47,7 +47,7 @@ export function registerGetProseCraftRubricTool(server: McpServer): RegisteredTo
     {
       title: "Fetch a Tier 2 narrative-craft rubric definition",
       description:
-        "Returns one named narrative-craft rubric item (pass a ruleId), or every available item (omit it) — on-the-nose dialogue, exposition dumps, self-justifying/over-explaining prose. This tool does not grade anything itself: read the definition and examples, apply the rubric to your text using your own judgment, then report your verdict through grade_prose_craft.",
+        "Returns one named narrative-craft rubric item (pass a ruleId), or every available item (omit it): on-the-nose dialogue, exposition dumps, self-justifying or over-explaining prose. This tool does not grade anything itself: read the definition and examples, apply the rubric to your text using your own judgment, then report your verdict through grade_prose_craft.",
       inputSchema: inputShape,
       outputSchema: { rubric: z.array(craftRubricEntrySchema) },
     },

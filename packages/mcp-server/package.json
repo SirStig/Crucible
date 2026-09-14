@@ -1,7 +1,7 @@
 {
   "name": "@canvasloop/mcp-server",
   "version": "0.1.0",
-  "description": "CanvasLoop MCP server: exposes both tracks' tools over stdio — Track B prose grading and Track A pixel-art sprite grading.",
+  "description": "CanvasLoop MCP server: exposes both tracks' tools over stdio, covering Track B prose grading and Track A pixel-art sprite grading.",
   "author": "Joshua Kac <joshua@houseofkac.com>",
   "license": "MIT",
   "keywords": [

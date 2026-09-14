@@ -20,7 +20,7 @@ const inputShape = {
   // Connects Tier 1 and Tier 2 into one loop: pass the Finding(s) returned
   // by grade_prose_craft for this same draft, and they're folded into this
   // iteration's grade/status/history alongside the Tier 1 pattern findings
-  // — one session, one status, instead of two disconnected tool flows.
+  // into one session and one status, instead of two disconnected tool flows.
   craftFindings: z.array(findingSchema).optional(),
 };
 
@@ -97,7 +97,7 @@ export function registerIterateProseTool(server: McpServer): RegisteredTool {
     {
       title: "Track prose revision iterations for one editing session",
       description:
-        "Grades text with the same Tier 1 pattern rubric as grade_prose_pattern, tracks iteration count per sessionId (in-memory, for this server process's lifetime only), diffs the current lines against the previous iteration's, and enforces a max-iteration cutoff (default 5, fixed by the first call for a given session). Optionally accepts craftFindings — the Finding(s) grade_prose_craft returned for this same draft — and folds them into this iteration's grade and status, so Tier 1 and Tier 2 results live in one session instead of two disconnected checks.",
+        "Grades text with the same Tier 1 pattern rubric as grade_prose_pattern, tracks iteration count per sessionId (in-memory, for this server process's lifetime only), diffs the current lines against the previous iteration's, and enforces a max-iteration cutoff (default 5, fixed by the first call for a given session). Optionally accepts craftFindings, the Finding(s) grade_prose_craft returned for this same draft, and folds them into this iteration's grade and status, so Tier 1 and Tier 2 results live in one session instead of two disconnected checks.",
       inputSchema: inputShape,
       outputSchema: outputShape,
     },
