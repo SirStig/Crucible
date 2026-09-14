@@ -1,6 +1,6 @@
 import { readFileSync } from "node:fs";
-import type { VisualGradeOptions } from "@canvasloop/visual";
-import { gradeSpritePattern } from "@canvasloop/visual";
+import type { VisualGradeOptions } from "canvasloop-visual";
+import { gradeSpritePattern } from "canvasloop-visual";
 import { formatVisualReport } from "../format-visual-report.js";
 
 export interface VisualGradeCommandOptions {

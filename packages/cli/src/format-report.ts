@@ -1,5 +1,5 @@
-import type { Finding } from "@canvasloop/core";
-import type { ProseGradeResult } from "@canvasloop/prose";
+import type { Finding } from "canvasloop-core";
+import type { ProseGradeResult } from "canvasloop-prose";
 
 const SEVERITY_LABEL: Record<Finding["severity"], string> = {
   fail: "[FAIL]",

@@ -1,5 +1,5 @@
 // Optional fields explicitly include `| undefined` for the same
-// exactOptionalPropertyTypes reason documented on @canvasloop/prose's
+// exactOptionalPropertyTypes reason documented on canvasloop-prose's
 // GradeOptions: a zod-parsed MCP tool input includes explicit `undefined`
 // on omitted optional fields, not just an absent key.
 export interface LSystemSpec {

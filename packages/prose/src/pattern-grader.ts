@@ -1,4 +1,4 @@
-import type { Finding, GradeStatus } from "@canvasloop/core";
+import type { Finding, GradeStatus } from "canvasloop-core";
 import type { DialogueLine, GradeOptions, ProseGradeResult } from "./types.js";
 import { detectAiTellPhrases } from "./detectors/ai-tell-phrases.js";
 import { detectBalancedConstruction } from "./detectors/balanced-construction.js";

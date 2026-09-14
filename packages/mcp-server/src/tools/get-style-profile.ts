@@ -1,6 +1,6 @@
 import { z } from "zod";
 import type { McpServer, RegisteredTool } from "@modelcontextprotocol/sdk/server/mcp.js";
-import { loadStyleProfileData } from "@canvasloop/prose";
+import { loadStyleProfileData } from "canvasloop-prose";
 import { styleProfileEntrySchema } from "../schemas.js";
 
 const inputShape = {

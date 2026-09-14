@@ -11,7 +11,7 @@ import {
   type VisualFoliageCommandOptions,
 } from "./commands/visual-foliage.js";
 import { runVisualSheetCommand, type VisualSheetCommandOptions } from "./commands/visual-sheet.js";
-import { FOLIAGE_PRESETS } from "@canvasloop/visual";
+import { FOLIAGE_PRESETS } from "canvasloop-visual";
 
 const CLI_VERSION = "0.1.0";
 const EXPORT_FORMATS = ["ink", "yarn", "json", "strings"] as const;

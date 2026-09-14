@@ -1,4 +1,4 @@
-# @canvasloop/mcp-server
+# canvasloop-mcp-server
 
 The [CanvasLoop](https://github.com/SirStig/CanvasLoop) MCP server. Exposes both
 craft tracks over stdio to Claude Code or any other MCP client.
@@ -6,7 +6,7 @@ craft tracks over stdio to Claude Code or any other MCP client.
 Register it in whichever project you want it available in:
 
 ```sh
-claude mcp add --scope project canvasloop -- npx -y @canvasloop/mcp-server
+claude mcp add --scope project canvasloop -- npx -y canvasloop-mcp-server
 ```
 
 `--scope project` writes a `.mcp.json` into your game's repo so it's there for

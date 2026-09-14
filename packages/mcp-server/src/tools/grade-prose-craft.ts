@@ -1,7 +1,7 @@
 import { z } from "zod";
 import type { McpServer, RegisteredTool } from "@modelcontextprotocol/sdk/server/mcp.js";
-import type { Finding } from "@canvasloop/core";
-import { loadCraftRubricData } from "@canvasloop/prose";
+import type { Finding } from "canvasloop-core";
+import { loadCraftRubricData } from "canvasloop-prose";
 import { craftVerdictSchema, findingSchema } from "../schemas.js";
 
 const inputShape = {

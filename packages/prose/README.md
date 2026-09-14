@@ -1,14 +1,14 @@
-# @canvasloop/prose
+# canvasloop-prose
 
 Track B of [CanvasLoop](https://github.com/SirStig/CanvasLoop): deterministic
 craft grading for game dialogue and UI text. No model calls, no API key.
 
 ```sh
-npm install @canvasloop/prose
+npm install canvasloop-prose
 ```
 
 ```ts
-import { gradeProsePattern, parseDialogueFile } from "@canvasloop/prose";
+import { gradeProsePattern, parseDialogueFile } from "canvasloop-prose";
 
 const lines = parseDialogueFile("Marta: This is a testament to our resolve.");
 const result = gradeProsePattern(lines);

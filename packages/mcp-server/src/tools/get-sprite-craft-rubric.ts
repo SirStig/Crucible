@@ -1,6 +1,6 @@
 import { z } from "zod";
 import type { McpServer, RegisteredTool } from "@modelcontextprotocol/sdk/server/mcp.js";
-import { loadVisualCraftRubricData } from "@canvasloop/visual";
+import { loadVisualCraftRubricData } from "canvasloop-visual";
 import { craftRubricEntrySchema } from "../schemas.js";
 
 const inputShape = {

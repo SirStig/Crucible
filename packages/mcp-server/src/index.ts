@@ -13,6 +13,8 @@ import { registerGetSpriteCraftRubricTool } from "./tools/get-sprite-craft-rubri
 import { registerGradeSpriteCraftTool } from "./tools/grade-sprite-craft.js";
 import { registerGenerateFoliageTool } from "./tools/generate-foliage.js";
 import { registerPackSpriteSheetTool } from "./tools/pack-sprite-sheet.js";
+import { realpathSync } from "node:fs";
+import { pathToFileURL } from "node:url";
 
 /**
  * One shared server for both tracks: a common shell with track-specific
@@ -50,12 +52,25 @@ async function main(): Promise<void> {
   await server.connect(transport);
 }
 
-// Only auto-start when this file is run directly (`node dist/index.js`),
-// not when `createServer` is imported elsewhere, such as from a test, where
-// starting a stdio transport would be an unwanted side effect.
-const isMainModule =
-  process.argv[1] !== undefined && import.meta.url === `file://${process.argv[1]}`;
-if (isMainModule) {
+// Only auto-start when this file is run directly (`node dist/index.js`, or
+// via the installed `canvasloop-mcp-server` bin), not when `createServer` is
+// imported elsewhere, such as from a test, where starting a stdio transport
+// would be an unwanted side effect.
+//
+// argv[1] needs realpath + pathToFileURL rather than a hand-built `file://`
+// string: npm installs the bin as a symlink, so argv[1] is the link path
+// while import.meta.url is the resolved target, and a raw interpolation also
+// mis-encodes paths containing spaces.
+function isMainModule(): boolean {
+  const entry = process.argv[1];
+  if (entry === undefined) return false;
+  try {
+    return import.meta.url === pathToFileURL(realpathSync(entry)).href;
+  } catch {
+    return false;
+  }
+}
+if (isMainModule()) {
   main().catch((error: unknown) => {
     console.error("CanvasLoop MCP server failed to start:", error);
     process.exitCode = 1;

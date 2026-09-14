@@ -1,4 +1,4 @@
-import type { Finding } from "@canvasloop/core";
+import type { Finding } from "canvasloop-core";
 import type { DialogueLine } from "../types.js";
 import type { StyleProfileEntry } from "../data-loader.js";
 import { excerpt } from "../text-normalize.js";

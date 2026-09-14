@@ -1,6 +1,6 @@
 import { z } from "zod";
 import type { McpServer, RegisteredTool } from "@modelcontextprotocol/sdk/server/mcp.js";
-import { renderSprite } from "@canvasloop/visual";
+import { renderSprite } from "canvasloop-visual";
 import { spriteInputShape } from "../schemas.js";
 
 export interface RenderSpriteInput {

@@ -5,8 +5,8 @@ import {
   generateFoliageSvg,
   renderSprite,
   FOLIAGE_PRESETS,
-} from "@canvasloop/visual";
-import type { LSystemSpec } from "@canvasloop/visual";
+} from "canvasloop-visual";
+import type { LSystemSpec } from "canvasloop-visual";
 
 const lSystemSpecSchema = z.object({
   axiom: z.string().min(1),

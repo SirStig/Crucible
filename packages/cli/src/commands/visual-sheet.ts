@@ -1,7 +1,7 @@
 import { readFileSync, writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
-import type { SpriteSheetFrame } from "@canvasloop/visual";
-import { packSpriteSheet } from "@canvasloop/visual";
+import type { SpriteSheetFrame } from "canvasloop-visual";
+import { packSpriteSheet } from "canvasloop-visual";
 
 interface ManifestEntry {
   file: string;

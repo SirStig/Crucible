@@ -1,5 +1,5 @@
 {
-  "name": "@canvasloop/cli",
+  "name": "canvasloop",
   "version": "0.1.0",
   "description": "canvasloop CLI: grade/export prose (Track B) and render/grade pixel-art sprites (Track A) from the command line.",
   "author": "Joshua Kac <joshua@houseofkac.com>",
@@ -21,9 +21,6 @@
   "bugs": {
     "url": "https://github.com/SirStig/CanvasLoop/issues"
   },
-  "publishConfig": {
-    "access": "public"
-  },
   "type": "module",
   "bin": {
     "canvasloop": "./dist/bin.js"
@@ -38,9 +35,9 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@canvasloop/core": "0.1.0",
-    "@canvasloop/prose": "0.1.0",
-    "@canvasloop/visual": "0.1.0",
+    "canvasloop-core": "0.1.0",
+    "canvasloop-prose": "0.1.0",
+    "canvasloop-visual": "0.1.0",
     "commander": "^15.0.0"
   }
 }

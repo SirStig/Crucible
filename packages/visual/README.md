@@ -1,14 +1,14 @@
-# @canvasloop/visual
+# canvasloop-visual
 
 Track A of [CanvasLoop](https://github.com/SirStig/CanvasLoop): pixel-exact SVG
 rendering plus deterministic craft grading for pixel-art sprites and tiles.
 
 ```sh
-npm install @canvasloop/visual
+npm install canvasloop-visual
 ```
 
 ```ts
-import { renderSprite, gradeSpritePattern } from "@canvasloop/visual";
+import { renderSprite, gradeSpritePattern } from "canvasloop-visual";
 
 const rendered = renderSprite({ svg, gridWidth: 16, gridHeight: 16 });
 rendered.png; // PNG-encoded Buffer, exactly 16x16

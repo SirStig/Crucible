@@ -1,11 +1,11 @@
-# @canvasloop/cli
+# canvasloop
 
 Command-line access to [CanvasLoop](https://github.com/SirStig/CanvasLoop)'s
 Tier 1 craft checks. Useful in CI, or for a quick spot-check without starting
 an agent.
 
 ```sh
-npx @canvasloop/cli prose grade scene.txt
+npx canvasloop prose grade scene.txt
 ```
 
 ```sh
@@ -22,6 +22,6 @@ canvasloop visual sheet manifest.json --out sheet.png
 
 Tier 1 only. Tier 2 needs an agent to apply judgment against a named rubric
 item, which is what the
-[MCP server](https://www.npmjs.com/package/@canvasloop/mcp-server) is for.
+[MCP server](https://www.npmjs.com/package/canvasloop-mcp-server) is for.
 
 Requires Node 22.12 or newer. MIT licensed.

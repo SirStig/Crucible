@@ -1,4 +1,4 @@
-import type { GradeResult } from "@canvasloop/core";
+import type { GradeResult } from "canvasloop-core";
 
 /**
  * One parsed line of input. `raw` is preserved verbatim for export; `text` is

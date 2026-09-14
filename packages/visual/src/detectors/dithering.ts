@@ -1,4 +1,4 @@
-import type { Finding, Severity } from "@canvasloop/core";
+import type { Finding, Severity } from "canvasloop-core";
 import type { PixelGrid } from "../pixel-grid.js";
 import type { VisualGradeOptions } from "../types.js";
 import { rgbaEqual } from "../color.js";

@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { z } from "zod";
-import type { Severity } from "@canvasloop/core";
+import type { Severity } from "canvasloop-core";
 
 const severitySchema: z.ZodType<Severity> = z.enum(["info", "warn", "fail"]);
 

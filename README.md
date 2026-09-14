@@ -1,7 +1,7 @@
 # CanvasLoop
 
 [![CI](https://github.com/SirStig/CanvasLoop/actions/workflows/ci.yml/badge.svg)](https://github.com/SirStig/CanvasLoop/actions/workflows/ci.yml)
-[![npm](https://img.shields.io/npm/v/@canvasloop/cli)](https://www.npmjs.com/package/@canvasloop/cli)
+[![npm](https://img.shields.io/npm/v/canvasloop)](https://www.npmjs.com/package/canvasloop)
 [![license](https://img.shields.io/badge/license-MIT-blue)](./LICENSE)
 
 CanvasLoop grades game content an AI agent just produced, and tells it what to
@@ -63,7 +63,7 @@ it available in:
 
 ```sh
 cd /path/to/your-game
-claude mcp add --scope project canvasloop -- npx -y @canvasloop/mcp-server
+claude mcp add --scope project canvasloop -- npx -y canvasloop-mcp-server
 ```
 
 `--scope project` writes a `.mcp.json` into your game's repo, so it's there for
@@ -75,7 +75,7 @@ Any MCP client can talk to the server over stdio. Claude Code is one option, not
 a requirement:
 
 ```sh
-npx -y @canvasloop/mcp-server
+npx -y canvasloop-mcp-server
 ```
 
 Registering the server only makes the tools available. It doesn't make an agent
@@ -91,7 +91,7 @@ CI, or a quick spot-check without starting an agent. `grade` exits non-zero on a
 failing grade, so it drops straight into a CI step.
 
 ```sh
-npx @canvasloop/cli prose grade scene.txt
+npx canvasloop prose grade scene.txt
 ```
 
 ```sh
@@ -144,13 +144,13 @@ at it.
 
 ## Packages
 
-| Package                                           | What it is                                                                                                   |
-| ------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
-| [`@canvasloop/core`](./packages/core)             | Track-agnostic shared types and the generate/check/fix loop controller.                                      |
-| [`@canvasloop/prose`](./packages/prose)           | Track B engine: Tier 1 detectors, Tier 2 rubric, style profiles, export adapters.                            |
-| [`@canvasloop/visual`](./packages/visual)         | Track A engine: SVG renderer, structural grader, Tier 1 detectors, Tier 2 rubric, foliage and sheet helpers. |
-| [`@canvasloop/mcp-server`](./packages/mcp-server) | MCP server exposing both tracks' tools over stdio.                                                           |
-| [`@canvasloop/cli`](./packages/cli)               | The `canvasloop` command-line tool.                                                                          |
+| Package                                          | What it is                                                                                                   |
+| ------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ |
+| [`canvasloop-core`](./packages/core)             | Track-agnostic shared types and the generate/check/fix loop controller.                                      |
+| [`canvasloop-prose`](./packages/prose)           | Track B engine: Tier 1 detectors, Tier 2 rubric, style profiles, export adapters.                            |
+| [`canvasloop-visual`](./packages/visual)         | Track A engine: SVG renderer, structural grader, Tier 1 detectors, Tier 2 rubric, foliage and sheet helpers. |
+| [`canvasloop-mcp-server`](./packages/mcp-server) | MCP server exposing both tracks' tools over stdio.                                                           |
+| [`canvasloop`](./packages/cli)                   | The `canvasloop` command-line tool.                                                                          |
 
 ## Development
 

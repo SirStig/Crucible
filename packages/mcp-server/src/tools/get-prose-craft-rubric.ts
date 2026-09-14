@@ -1,6 +1,6 @@
 import { z } from "zod";
 import type { McpServer, RegisteredTool } from "@modelcontextprotocol/sdk/server/mcp.js";
-import { loadCraftRubricData } from "@canvasloop/prose";
+import { loadCraftRubricData } from "canvasloop-prose";
 import { craftRubricEntrySchema } from "../schemas.js";
 
 const inputShape = {

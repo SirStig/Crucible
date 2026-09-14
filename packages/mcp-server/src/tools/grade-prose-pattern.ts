@@ -1,6 +1,6 @@
 import { z } from "zod";
 import type { McpServer, RegisteredTool } from "@modelcontextprotocol/sdk/server/mcp.js";
-import { parseDialogueFile, gradeProsePattern } from "@canvasloop/prose";
+import { parseDialogueFile, gradeProsePattern } from "canvasloop-prose";
 import { gradeOptionsSchema, gradeResultSchema, type GradeOptionsInput } from "../schemas.js";
 
 const inputShape = {

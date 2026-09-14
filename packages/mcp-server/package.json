@@ -1,5 +1,5 @@
 {
-  "name": "@canvasloop/mcp-server",
+  "name": "canvasloop-mcp-server",
   "version": "0.1.0",
   "description": "CanvasLoop MCP server: exposes both tracks' tools over stdio, covering Track B prose grading and Track A pixel-art sprite grading.",
   "author": "Joshua Kac <joshua@houseofkac.com>",
@@ -22,9 +22,6 @@
   "bugs": {
     "url": "https://github.com/SirStig/CanvasLoop/issues"
   },
-  "publishConfig": {
-    "access": "public"
-  },
   "type": "module",
   "main": "./dist/index.js",
   "bin": {
@@ -41,9 +38,9 @@
     "start": "node dist/index.js"
   },
   "dependencies": {
-    "@canvasloop/core": "0.1.0",
-    "@canvasloop/prose": "0.1.0",
-    "@canvasloop/visual": "0.1.0",
+    "canvasloop-core": "0.1.0",
+    "canvasloop-prose": "0.1.0",
+    "canvasloop-visual": "0.1.0",
     "@modelcontextprotocol/sdk": "^1.30.0",
     "zod": "^4.6.2"
   }

@@ -1,5 +1,5 @@
-import type { Finding } from "@canvasloop/core";
-import type { VisualGradeResult } from "@canvasloop/visual";
+import type { Finding } from "canvasloop-core";
+import type { VisualGradeResult } from "canvasloop-visual";
 
 const SEVERITY_LABEL: Record<Finding["severity"], string> = {
   fail: "[FAIL]",

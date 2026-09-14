@@ -26,9 +26,9 @@ jobs:
       - name: Publish packages in dependency order
         run: |
           set -e
-          for pkg in core prose visual mcp-server cli; do
-            echo "::group::publishing @canvasloop/$pkg"
-            npm publish --workspace "@canvasloop/$pkg" --provenance --access public
+          for pkg in canvasloop-core canvasloop-prose canvasloop-visual canvasloop-mcp-server canvasloop; do
+            echo "::group::publishing $pkg"
+            npm publish --workspace "$pkg" --provenance
             echo "::endgroup::"
           done
         env:

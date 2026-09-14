@@ -1,7 +1,7 @@
 # Changelog
 
 All notable changes to this project are documented here. Versions follow
-[semantic versioning](https://semver.org/). All five `@canvasloop/*` packages
+[semantic versioning](https://semver.org/). All five `canvasloop-*` packages
 are released together under one version number.
 
 ## [0.1.0] - Unreleased

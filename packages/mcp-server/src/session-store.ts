@@ -1,4 +1,4 @@
-import { LoopController } from "@canvasloop/core";
+import { LoopController } from "canvasloop-core";
 
 const DEFAULT_MAX_ITERATIONS = 5;
 

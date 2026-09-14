@@ -1,4 +1,4 @@
-import type { Finding, GradeStatus } from "@canvasloop/core";
+import type { Finding, GradeStatus } from "canvasloop-core";
 import type {
   RenderedSprite,
   SpriteInput,

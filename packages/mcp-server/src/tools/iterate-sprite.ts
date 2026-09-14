@@ -1,8 +1,8 @@
 import { z } from "zod";
 import type { McpServer, RegisteredTool } from "@modelcontextprotocol/sdk/server/mcp.js";
-import type { Finding, GradeStatus } from "@canvasloop/core";
-import { diffLines } from "@canvasloop/core";
-import { renderSprite, gradeRenderedSprite } from "@canvasloop/visual";
+import type { Finding, GradeStatus } from "canvasloop-core";
+import { diffLines } from "canvasloop-core";
+import { renderSprite, gradeRenderedSprite } from "canvasloop-visual";
 import {
   spriteInputShape,
   visualGradeOptionsSchema,
@@ -53,7 +53,7 @@ function combinedStatus(findings: readonly Finding[]): GradeStatus {
 /**
  * The tool's actual logic, exported standalone so tests can drive a
  * multi-call session directly without a transport. Diffs the SVG *source*
- * text line-by-line (reusing `diffLines` from `@canvasloop/core`, so no new
+ * text line-by-line (reusing `diffLines` from `canvasloop-core`, so no new
  * diff algorithm needed) rather than diffing pixels, since "what changed"
  * is more useful to an agent as source-level context than a raster delta.
  */

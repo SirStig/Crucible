@@ -1,4 +1,4 @@
-import type { Finding, Severity } from "@canvasloop/core";
+import type { Finding, Severity } from "canvasloop-core";
 import type { DialogueLine, GradeOptions } from "../types.js";
 import { contentTokens } from "../text-normalize.js";
 
