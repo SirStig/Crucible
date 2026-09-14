@@ -1,5 +1,11 @@
 import { describe, expect, it } from "vitest";
-import { rgbaEqual, rgbaKey, redmeanDistance, hexToRgba, rgbaToHex } from "../../src/visual/color.js";
+import {
+  rgbaEqual,
+  rgbaKey,
+  redmeanDistance,
+  hexToRgba,
+  rgbaToHex,
+} from "../../src/visual/color.js";
 
 describe("rgbaEqual / rgbaKey", () => {
   it("treats identical channels as equal", () => {

@@ -46,22 +46,12 @@ a style profile.
 
 ## Releasing
 
-All five packages share one version number and are published by hand.
-
-Bump the version in each `packages/*/package.json`, add a dated section to
-`CHANGELOG.md`, then:
-
 ```sh
 npm run build && npm test
-for p in crucible-base crucible-prose crucible-visual crucible-mcp-server crucible-loop; do
-  npm publish --workspace "$p" || break
-done
-git tag -a vX.Y.Z -m "Crucible vX.Y.Z" && git push origin vX.Y.Z
+npm version <patch|minor|major>
+npm publish
+git push && git push --tags
 ```
 
-Order matters. Cross-package dependencies are pinned to exact versions, so a
-dependent published before its dependency is briefly uninstallable. The
-`|| break` stops the loop rather than continuing past a failure.
-
 A published version can never be reused, even after unpublishing, so run
-`npm publish --workspace <pkg> --dry-run` first if anything looks off.
+`npm publish --dry-run` first if anything looks off.
